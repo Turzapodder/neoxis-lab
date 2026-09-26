@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Neue Montreal Local Webfonts */
 @font-face {
   font-family: 'Neue Montreal';
@@ -37,13 +39,34 @@
   --font-clash: 'Clash Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-neue: 'Neue Montreal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   
-  /* Color Palette Tokens */
-  --color-white: #FFFFFF;
-  --color-rich-black: #111111;
-  --color-canvas-bg: #090A0F;
-  --color-medium-gray: #797979;
-  --color-light-gray: #F2F2F2;
-  --color-text-muted: #9E9E9E;
+  /* Theme Tokens - Light Mode (Default) */
+  --color-canvas-bg: #F8F9FC;
+  --color-canvas-subtle: #F0F2F7;
+  --color-text-primary: #0F1016;
+  --color-text-secondary: #525463;
+  --color-text-muted: #7E8292;
+  --color-text-dim: #A4A7B5;
+  
+  --color-glass-panel: rgba(255, 255, 255, 0.75);
+  --color-glass-panel-border: rgba(0, 0, 0, 0.08);
+  --color-glass-panel-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.07);
+
+  --color-glass-pill: rgba(255, 255, 255, 0.85);
+  --color-glass-pill-border: rgba(0, 0, 0, 0.09);
+  --color-glass-pill-hover: rgba(0, 0, 0, 0.04);
+  --color-glass-pill-active: #0F1016;
+  --color-glass-pill-active-text: #FFFFFF;
+
+  --color-card-bg: #FFFFFF;
+  --color-card-border: rgba(0, 0, 0, 0.08);
+  --color-card-border-hover: rgba(0, 0, 0, 0.22);
+  --color-card-shadow: 0 20px 45px -12px rgba(0, 0, 0, 0.09);
+
+  --ambient-orb-1: rgba(168, 85, 247, 0.12);
+  --ambient-orb-2: rgba(99, 102, 241, 0.09);
+  --ambient-orb-3: rgba(236, 72, 153, 0.08);
+
+  --color-divider: rgba(0, 0, 0, 0.08);
 }
 
 /* Custom font utilities */
@@ -55,43 +78,60 @@
   font-family: var(--font-neue);
 }
 
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 body {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
   background-color: var(--color-canvas-bg);
-  color: var(--color-white);
+  color: var(--color-text-primary);
   font-family: var(--font-neue);
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 /* Glassmorphism utilities */
 .glass-panel {
-  background: rgba(18, 20, 26, 0.65);
+  background: var(--color-glass-panel);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  border: 1px solid var(--color-glass-panel-border);
+  box-shadow: var(--color-glass-panel-shadow);
+  transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
 .glass-pill {
-  background: rgba(18, 20, 26, 0.7);
+  background: var(--color-glass-pill);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--color-glass-pill-border);
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
 }
 
 .glass-pill-active {
-  background: #FFFFFF;
-  color: #111111;
-  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+  background: var(--color-glass-pill-active);
+  color: var(--color-glass-pill-active-text);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .glass-card {
-  background: rgba(15, 17, 23, 0.8);
+  background: var(--color-card-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--color-card-border);
+  box-shadow: var(--color-card-shadow);
+  transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
 /* Smooth ambient floating animation */

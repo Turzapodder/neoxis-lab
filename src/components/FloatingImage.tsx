@@ -17,7 +17,7 @@ export const FloatingImage = React.forwardRef<HTMLDivElement, FloatingImageProps
     return (
       <div
         ref={ref}
-        className={`absolute overflow-hidden rounded-[20px] sm:rounded-[24px] border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.65)] pointer-events-none ${className}`}
+        className={`absolute overflow-hidden rounded-[20px] sm:rounded-[24px] border border-black/10 dark:border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.12)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.65)] pointer-events-none transition-colors duration-300 ${className}`}
         style={{
           backgroundColor: bgColor,
           zIndex,

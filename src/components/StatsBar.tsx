@@ -16,7 +16,7 @@ export const StatsBar: React.FC = () => {
       icon: (
         /* Starburst / 8-point star icon matching UI */
         <svg
-          className="w-5 h-5 text-white/90"
+          className="w-5 h-5 text-current"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -35,7 +35,7 @@ export const StatsBar: React.FC = () => {
       icon: (
         /* Two users / community icon */
         <svg
-          className="w-5 h-5 text-white/90"
+          className="w-5 h-5 text-current"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -57,7 +57,7 @@ export const StatsBar: React.FC = () => {
       icon: (
         /* Rocket launch icon */
         <svg
-          className="w-5 h-5 text-white/90"
+          className="w-5 h-5 text-current"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -79,7 +79,7 @@ export const StatsBar: React.FC = () => {
       icon: (
         /* Globe icon */
         <svg
-          className="w-5 h-5 text-white/90"
+          className="w-5 h-5 text-current"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -97,26 +97,26 @@ export const StatsBar: React.FC = () => {
 
   return (
     <div className="w-full relative z-30 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 mt-6 lg:mt-8 pb-10">
-      <div className="glass-panel rounded-[24px] sm:rounded-[28px] p-4 sm:p-6 lg:px-10 lg:py-6 shadow-2xl transition-all duration-300 hover:border-white/20">
+      <div className="glass-panel rounded-[24px] sm:rounded-[28px] p-4 sm:p-6 lg:px-10 lg:py-6 shadow-xl dark:shadow-2xl transition-all duration-300 hover:border-black/20 dark:hover:border-white/20">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {stats.map((stat, index) => (
             <div
               key={stat.id}
-              className={`flex items-center gap-3 sm:gap-4 p-2 sm:p-3 rounded-2xl transition-all duration-300 hover:bg-white/[0.03] group ${
-                index !== 0 ? 'md:border-l md:border-white/10 md:pl-6 lg:pl-8' : ''
+              className={`flex items-center gap-3 sm:gap-4 p-2 sm:p-3 rounded-2xl transition-all duration-300 hover:bg-black/[0.03] dark:hover:bg-white/[0.03] group ${
+                index !== 0 ? 'md:border-l md:border-black/10 dark:md:border-white/10 md:pl-6 lg:pl-8' : ''
               }`}
             >
               {/* Icon Container */}
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/[0.06] border border-white/10 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-white/10 group-hover:border-white/20 transition-all duration-300 shadow-inner">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/10 dark:border-white/10 flex items-center justify-center shrink-0 text-neutral-900 dark:text-white/90 group-hover:scale-110 group-hover:bg-black/[0.08] dark:group-hover:bg-white/10 group-hover:border-black/20 dark:group-hover:border-white/20 transition-all duration-300 shadow-inner">
                 {stat.icon}
               </div>
 
               {/* Stat Text */}
               <div className="flex flex-col">
-                <span className="font-clash text-2xl sm:text-3xl font-bold tracking-tight text-white group-hover:text-white transition-colors leading-tight">
+                <span className="font-clash text-2xl sm:text-3xl font-bold tracking-tight text-neutral-950 dark:text-white transition-colors leading-tight">
                   {stat.value}
                 </span>
-                <span className="font-neue text-xs sm:text-[13.5px] font-normal text-[#9E9E9E] group-hover:text-white/80 transition-colors whitespace-nowrap mt-0.5">
+                <span className="font-neue text-xs sm:text-[13.5px] font-normal text-neutral-500 dark:text-[#9E9E9E] group-hover:text-neutral-900 dark:group-hover:text-white/80 transition-colors whitespace-nowrap mt-0.5">
                   {stat.label}
                 </span>
               </div>

@@ -17,6 +17,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'Studio', label: 'Studio' },
     { id: 'Project', label: 'Project', badge: '(12)' },
     { id: 'Service', label: 'Service' },
+    { id: 'Team', label: 'Team' },
     { id: 'Blog', label: 'Blog' },
   ];
 
@@ -28,15 +29,15 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <header className="w-full relative z-40 px-6 sm:px-10 lg:px-16 pt-7 pb-4">
+    <header className="w-full relative z-40 px-6 sm:px-10 lg:px-16 pt-6 sm:pt-7 pb-4">
       <nav className="max-w-[1440px] mx-auto flex items-center justify-between">
-        {/* Brand Logo */}
+        {/* Brand Logo: neoxis® */}
         <a
           href="#"
-          className="group flex items-baseline gap-0.5 text-white tracking-[-0.03em] select-none"
+          className="group flex items-baseline gap-0.5 text-white tracking-[-0.03em] select-none transition-colors duration-300"
         >
           <span className="font-clash text-2xl sm:text-[28px] font-bold tracking-tight">
-            luvron
+            neoxis
           </span>
           <span className="font-clash text-[13px] sm:text-[14px] font-medium leading-none ml-0.5 text-white/90">
             ®
@@ -45,7 +46,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Center Floating Pill Navigation (Desktop/Tablet) */}
         <div className="hidden md:flex items-center">
-          <div className="glass-pill p-1.5 rounded-full flex items-center gap-1 shadow-2xl">
+          <div className="bg-black/50 backdrop-blur-xl border border-white/15 p-1.5 rounded-full flex items-center gap-1 shadow-2xl">
             {tabs.map((tab) => {
               const isActive = currentTab === tab.id;
               return (
@@ -55,14 +56,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                   className={`relative px-5 py-2 rounded-full text-[13.5px] font-clash transition-all duration-300 cursor-pointer flex items-center gap-1 select-none ${
                     isActive
                       ? 'bg-white text-black font-semibold shadow-md'
-                      : 'text-[#8E8E93] hover:text-white font-normal hover:bg-white/5'
+                      : 'text-white/70 hover:text-white font-normal hover:bg-white/10'
                   }`}
                 >
                   <span>{tab.label}</span>
                   {tab.badge && (
                     <span
                       className={`text-[12px] ml-0.5 transition-colors ${
-                        isActive ? 'text-black/70' : 'text-[#8E8E93]'
+                        isActive ? 'text-black/70' : 'text-white/60'
                       }`}
                     >
                       {tab.badge}
@@ -74,11 +75,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </div>
 
-        {/* Right Menu Button */}
-        <div className="flex items-center gap-3">
+        {/* Right Actions: Menu Button */}
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          {/* Menu Button */}
           <button
             onClick={onOpenMenu}
-            className="glass-pill text-white px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-sm font-clash font-medium flex items-center gap-2.5 hover:bg-white/15 active:scale-95 transition-all duration-200 cursor-pointer select-none group"
+            className="bg-black/50 backdrop-blur-xl border border-white/15 text-white px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-sm font-clash font-medium flex items-center gap-2.5 hover:bg-black/70 hover:border-white/30 active:scale-95 transition-all duration-200 cursor-pointer select-none group shadow-lg"
             aria-label="Open navigation menu"
           >
             <span>Menu</span>

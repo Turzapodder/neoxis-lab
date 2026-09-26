@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import headerBg from './assets/images/headr-bg.png';
+import heroBg from './assets/images/header.png';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { StatsBar } from './components/StatsBar';
 import { CreativeStudioSection } from './components/CreativeStudioSection';
+import { TeamSection } from './components/TeamSection';
 import { MenuModal } from './components/MenuModal';
 import { ConnectModal } from './components/ConnectModal';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
+import { ThemeProvider } from './context';
 
-export const App: React.FC = () => {
+const AgencyLanding: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isConnectOpen, setIsConnectOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('Studio');
@@ -16,51 +18,60 @@ export const App: React.FC = () => {
   useSmoothScroll(true);
 
   return (
-    <div className="relative w-full bg-[#090A0F] text-white selection:bg-white/20 selection:text-white">
+    <div className="relative w-full max-w-full overflow-x-clip bg-[var(--color-canvas-bg)] text-[var(--color-text-primary)] selection:bg-purple-500/25 selection:text-current transition-colors duration-300">
       
-      {/* ========================================= */}
-      {/* 1. HERO & STATS CONTAINER                 */}
-      {/* ========================================= */}
-      <div className="relative min-h-screen w-full flex flex-col justify-between overflow-visible">
-        {/* Ambient Radial Background Glows matching the 3D ribbon */}
-        <div className="absolute top-[-10%] right-[-5%] w-[600px] sm:w-[800px] h-[600px] sm:h-[800px] rounded-full bg-purple-900/20 blur-[130px] pointer-events-none z-0" />
-        <div className="absolute top-[20%] right-[10%] w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] rounded-full bg-violet-600/15 blur-[120px] pointer-events-none z-0" />
-        <div className="absolute bottom-[10%] left-[-5%] w-[400px] h-[400px] rounded-full bg-indigo-950/25 blur-[100px] pointer-events-none z-0" />
+      {/* ========================================================================= */}
+      {/* 1. HERO WRAPPER WITH WHITE FRAME & ROUNDED EDGES (Matching Reference)    */}
+      {/* ========================================================================= */}
+      <div className="w-full max-w-full overflow-x-clip bg-white p-1.5 sm:p-2 transition-colors duration-500">
+        <div className="relative min-h-[calc(100vh-1.25rem)] sm:min-h-[calc(100vh-2rem)] md:min-h-[calc(100vh-2.5rem)] w-full rounded-[24px] sm:rounded-[32px] md:rounded-[40px] lg:rounded-[44px] overflow-hidden flex flex-col justify-between shadow-[0_20px_60px_-15px_rgba(0,0,0,0.65)] border border-neutral-200/80 z-20">
+          
+          {/* Full-width liquid chrome background image with dark overlay */}
+          <div className="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden">
+            <img
+              src={heroBg}
+              alt="Neoxis Liquid Chrome Background"
+              className="w-full h-full object-cover object-center scale-[1.01]"
+            />
+            {/* Dark overlay for optimal text contrast and readability */}
+            <div className="absolute inset-0 bg-black/30 backdrop-blur-[0.5px]" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/65" />
+            <div className="absolute inset-0 bg-radial from-transparent via-transparent to-black/60" />
+          </div>
 
-        {/* 3D Iridescent Torus Ribbon Background Image */}
-        <div className="absolute -right-20 sm:-right-24 md:-right-16 lg:right-[-2%] xl:right-[1%] top-[-2%] sm:top-[-4%] md:top-[-2%] lg:top-[0%] w-[480px] sm:w-[700px] md:w-[850px] lg:w-[1020px] xl:w-[1180px] pointer-events-none select-none z-10">
-          <img
-            src={headerBg}
-            alt="3D Iridescent Glass Structure"
-            className="w-full h-auto object-contain opacity-95 animate-float transition-all duration-1000"
-            style={{
-              filter: 'drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6))',
+          {/* Top Navbar */}
+          <Navbar
+            activeTab={activeTab}
+            onSelectTab={(tab) => {
+              setActiveTab(tab);
+              if (tab === 'Team') {
+                const el = document.getElementById('team-section');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              } else if (tab === 'Studio') {
+                const el = document.getElementById('creative-studio-section');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }
             }}
+            onOpenMenu={() => setIsMenuOpen(true)}
           />
+
+          {/* Main Hero Section */}
+          <main className="flex-1 flex flex-col justify-center relative z-20 my-auto py-2 sm:py-4">
+            <Hero
+              onConnectClick={() => setIsConnectOpen(true)}
+              onViewWorksClick={() => {
+                const el = document.getElementById('creative-studio-section');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+            />
+          </main>
+
         </div>
+      </div>
 
-        {/* Top Navbar */}
-        <Navbar
-          activeTab={activeTab}
-          onSelectTab={setActiveTab}
-          onOpenMenu={() => setIsMenuOpen(true)}
-        />
-
-        {/* Main Hero Section */}
-        <main className="flex-1 flex flex-col justify-center relative z-20 my-auto py-2 sm:py-4">
-          <Hero
-            onConnectClick={() => setIsConnectOpen(true)}
-            onViewWorksClick={() => {
-              const el = document.getElementById('creative-studio-section');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }}
-          />
-        </main>
-
-        {/* Bottom Floating Stats Dock */}
-        <div className="relative z-30 w-full">
-          <StatsBar />
-        </div>
+      {/* Bottom Floating Stats Dock */}
+      <div className="relative z-30 w-full pt-4 pb-2">
+        <StatsBar />
       </div>
 
       {/* ========================================= */}
@@ -73,7 +84,17 @@ export const App: React.FC = () => {
       </div>
 
       {/* ========================================= */}
-      {/* 3. INTERACTIVE MODALS                     */}
+      {/* 3. MEET OUR TEAM SECTION                  */}
+      {/* ========================================= */}
+      <div id="team-section" className="relative w-full z-30">
+        <TeamSection
+          onMoreAboutUsClick={() => setIsConnectOpen(true)}
+          onSelectMember={() => setIsConnectOpen(true)}
+        />
+      </div>
+
+      {/* ========================================= */}
+      {/* 4. INTERACTIVE MODALS                     */}
       {/* ========================================= */}
       <MenuModal
         isOpen={isMenuOpen}
@@ -85,6 +106,14 @@ export const App: React.FC = () => {
       />
 
     </div>
+  );
+};
+
+export const App: React.FC = () => {
+  return (
+    <ThemeProvider>
+      <AgencyLanding />
+    </ThemeProvider>
   );
 };
 

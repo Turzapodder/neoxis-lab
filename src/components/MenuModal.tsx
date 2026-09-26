@@ -18,42 +18,44 @@ export const MenuModal: React.FC<MenuModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-end">
-      {/* Dark Frosted Backdrop */}
+      {/* Frosted Backdrop */}
       <div
         onClick={onClose}
-        className="fixed inset-0 bg-black/80 backdrop-blur-xl transition-opacity animate-in fade-in duration-300"
+        className="fixed inset-0 bg-black/60 backdrop-blur-xl transition-opacity animate-in fade-in duration-300"
       />
 
       {/* Slide-over Drawer Panel */}
-      <div className="relative w-full max-w-xl h-full bg-[#0C0D13]/95 border-l border-white/10 p-8 sm:p-12 flex flex-col justify-between overflow-y-auto z-10 shadow-2xl">
+      <div className="relative w-full max-w-xl h-full bg-[#FAFBFD]/95 border-l border-black/10 p-8 sm:p-12 flex flex-col justify-between overflow-y-auto z-10 shadow-2xl transition-colors duration-300">
         {/* Header */}
-        <div className="flex items-center justify-between pb-8 border-b border-white/10">
+        <div className="flex items-center justify-between pb-8 border-b border-black/10">
           <div className="flex items-baseline gap-1">
-            <span className="font-clash text-2xl font-bold tracking-tight text-white">
-              luvron
+            <span className="font-clash text-2xl font-bold tracking-tight text-neutral-900">
+              neoxis
             </span>
-            <span className="font-clash text-xs font-semibold text-white/80">
+            <span className="font-clash text-xs font-semibold text-neutral-500">
               ®
             </span>
           </div>
 
-          <button
-            onClick={onClose}
-            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center text-white transition-all cursor-pointer"
-            aria-label="Close menu"
-          >
-            <svg
-              className="w-5 h-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+          <div className="flex items-center gap-3">
+            <button
+              onClick={onClose}
+              className="w-10 h-10 rounded-full bg-black/5 hover:bg-black/10 border border-black/10 flex items-center justify-center text-neutral-800 transition-all cursor-pointer"
+              aria-label="Close menu"
             >
-              <path d="M18 6 6 18M6 6l12 12" />
-            </svg>
-          </button>
+              <svg
+                className="w-5 h-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M18 6 6 18M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Menu Navigation Links */}
@@ -63,17 +65,17 @@ export const MenuModal: React.FC<MenuModalProps> = ({ isOpen, onClose }) => {
               key={item.number}
               href="#"
               onClick={onClose}
-              className="group flex items-baseline justify-between py-2 border-b border-white/5 hover:border-white/20 transition-colors"
+              className="group flex items-baseline justify-between py-2 border-b border-black/5 hover:border-black/20 transition-colors"
             >
               <div className="flex items-baseline gap-4">
-                <span className="font-clash text-xs text-[#797979] group-hover:text-white transition-colors">
+                <span className="font-clash text-xs text-neutral-400 group-hover:text-neutral-900 transition-colors">
                   {item.number}
                 </span>
-                <span className="font-clash text-2xl sm:text-3xl font-semibold text-white group-hover:translate-x-2 transition-transform duration-300">
+                <span className="font-clash text-2xl sm:text-3xl font-semibold text-neutral-900 group-hover:translate-x-2 transition-transform duration-300">
                   {item.title}
                 </span>
               </div>
-              <span className="hidden sm:inline font-neue text-xs text-[#797979] group-hover:text-white/80 transition-colors">
+              <span className="hidden sm:inline font-neue text-xs text-neutral-500 group-hover:text-neutral-900 transition-colors">
                 {item.desc}
               </span>
             </a>
@@ -81,17 +83,17 @@ export const MenuModal: React.FC<MenuModalProps> = ({ isOpen, onClose }) => {
         </div>
 
         {/* Footer info */}
-        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-4 text-xs font-neue text-[#797979]">
+        <div className="pt-8 border-t border-black/10 flex flex-col sm:flex-row justify-between gap-4 text-xs font-neue text-neutral-500">
           <div>
-            <p className="text-white font-medium">Get in touch</p>
-            <p className="mt-1">hello@luvron.design</p>
+            <p className="text-neutral-900 font-medium">Get in touch</p>
+            <p className="mt-1">hello@neoxis.design</p>
           </div>
           <div>
-            <p className="text-white font-medium">Follow us</p>
-            <div className="flex gap-3 mt-1 text-white/70">
-              <a href="#" className="hover:text-white transition-colors">Twitter (X)</a>
-              <a href="#" className="hover:text-white transition-colors">Instagram</a>
-              <a href="#" className="hover:text-white transition-colors">Dribbble</a>
+            <p className="text-neutral-900 font-medium">Follow us</p>
+            <div className="flex gap-3 mt-1 text-neutral-700">
+              <a href="#" className="hover:text-black transition-colors">Twitter (X)</a>
+              <a href="#" className="hover:text-black transition-colors">Instagram</a>
+              <a href="#" className="hover:text-black transition-colors">Dribbble</a>
             </div>
           </div>
         </div>

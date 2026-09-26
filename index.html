@@ -1,17 +1,29 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="light" data-theme="light" style="color-scheme: light;">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>luvron® — Design Agency</title>
+    <title>neoxis® — Design Agency</title>
     <meta name="description" content="We create digital experiences that are beautiful, functional, and built to make an impact." />
     <!-- Preconnect & Clash Display Webfont from Fontshare -->
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
     <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
     <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap" rel="stylesheet">
+    <!-- Light mode enforcement and legacy theme storage cleanup -->
+    <script>
+      (function() {
+        try {
+          localStorage.removeItem('luvron-theme');
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+          document.documentElement.setAttribute('data-theme', 'light');
+          document.documentElement.style.colorScheme = 'light';
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body class="bg-[#090A0F] text-white overflow-x-hidden antialiased selection:bg-white/20 selection:text-white">
+  <body class="overflow-x-hidden antialiased selection:bg-purple-500/25 selection:text-current transition-colors duration-300">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
