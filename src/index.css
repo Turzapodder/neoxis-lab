@@ -100,6 +100,16 @@ body {
   }
 }
 
+/* Continuous marquee ticker animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 
 /* Front card of a stack drops out, then tucks in at the back (--tx/--ty/--s are its final offsets) */
 @keyframes stack-shuffle {

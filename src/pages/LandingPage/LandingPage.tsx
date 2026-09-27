@@ -39,7 +39,11 @@ const Anchor: React.FC<AnchorProps> = ({ id, zClass = 'z-30', children }) => (
   </div>
 );
 
-export const LandingPage: React.FC = () => {
+interface LandingPageProps {
+  onNavigateProject?: (id: string) => void;
+}
+
+export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateProject }) => {
   const menu = useDisclosure();
   const connect = useDisclosure();
   const [activeTab, setActiveTab] = useState(DEFAULT_NAV_TAB);
@@ -53,6 +57,14 @@ export const LandingPage: React.FC = () => {
   const handleSelectTab = (tab: NavTab) => {
     setActiveTab(tab.id);
     if (tab.target) scrollToSection(tab.target);
+  };
+
+  const handleSelectProject = (project: { id: string }) => {
+    if (onNavigateProject) {
+      onNavigateProject(project.id);
+    } else {
+      connect.open();
+    }
   };
 
   return (
@@ -76,7 +88,7 @@ export const LandingPage: React.FC = () => {
       </Anchor>
 
       <Anchor id={SECTION_IDS.selectedWork} zClass="z-35">
-        <SelectedWorkSection onSelectProject={connect.open} />
+        <SelectedWorkSection onSelectProject={handleSelectProject} />
       </Anchor>
 
       <Anchor id={SECTION_IDS.services} zClass="z-35">

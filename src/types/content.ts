@@ -65,6 +65,42 @@ export interface SelectedProject {
   category: string;
   image: string;
   colSpanClass?: string;
+  logoType?: 'infinity' | 'speed' | 'wordmark' | 'monogram';
+}
+
+export interface ProjectDetail {
+  id: string;
+  title: string;
+  subtitle: string;
+  service: string;
+  industry: string;
+  year: string;
+  liveUrl?: string;
+  liveLabel?: string;
+  heroImage1: string;
+  heroImage2: string;
+  purpose: {
+    heading: string;
+    description: string[];
+    bullets: string[];
+  };
+  purposeImages: string[];
+  goals: {
+    heading: string;
+    description: string[];
+    points: string[];
+  };
+  testimonial: {
+    quote: string;
+    clientName: string;
+    clientRole: string;
+    clientImage: string;
+  };
+  showcaseImage: string;
+  nextProject: {
+    id: string;
+    title: string;
+  };
 }
 
 export interface ServiceSlide {

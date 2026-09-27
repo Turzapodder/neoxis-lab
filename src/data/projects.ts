@@ -13,6 +13,7 @@ export const SELECTED_PROJECTS: SelectedProject[] = [
     year: '2025',
     category: 'Spatial Web Experience',
     image: neonFrameImg,
+    logoType: 'infinity',
     colSpanClass: 'lg:col-span-7 xl:col-span-8',
   },
   {
@@ -22,6 +23,7 @@ export const SELECTED_PROJECTS: SelectedProject[] = [
     year: '2024',
     category: 'AI Audio Experience & Identity',
     image: musicOsImg,
+    logoType: 'speed',
     colSpanClass: 'lg:col-span-5 xl:col-span-4',
   },
   {
@@ -31,6 +33,7 @@ export const SELECTED_PROJECTS: SelectedProject[] = [
     year: '2024',
     category: 'Tactile Mobile OS & Flow',
     image: botlyAppImg,
+    logoType: 'wordmark',
   },
   {
     id: 'curea-studio',
@@ -39,6 +42,7 @@ export const SELECTED_PROJECTS: SelectedProject[] = [
     year: '2023',
     category: 'Editorial Brand World',
     image: cureaStudioImg,
+    logoType: 'monogram',
   },
   {
     id: 'sos-core-identity-app',
@@ -47,6 +51,7 @@ export const SELECTED_PROJECTS: SelectedProject[] = [
     year: '2025',
     category: 'Next-Gen iOS App & Tokens',
     image: sosIdentityImg,
+    logoType: 'infinity',
   },
 ];
 
