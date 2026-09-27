@@ -5,128 +5,50 @@ import tobiasImg from '@/assets/images/team/tobias.jpg';
 import randalImg from '@/assets/images/team/randal.jpg';
 import elenaImg from '@/assets/images/team/elena.jpg';
 import marcusImg from '@/assets/images/team/marcus.jpg';
-import type { Mind, TeamMember } from '@/types/content';
+import type { TeamMember } from '@/types/content';
 
+/** People featured in the team spotlight inside the services section. */
 export const TEAM_MEMBERS: TeamMember[] = [
   {
-    id: 'kate-lee-cobe',
-    name: 'Kate Lee Cobe',
-    role: 'Founder Kudos',
-    category: 'Leadership',
-    image: kateImg,
-    rating: 5,
-    quote:
-      'Design is not just what it looks like, it is how every interaction resonates with purpose, craft, and human connection.',
-    bio: 'Pioneering holistic creative strategy and digital craft for visionary ventures.',
-    accentColor: '#F59E0B',
-    socials: {
-      x: 'https://twitter.com',
-      linkedin: 'https://linkedin.com',
-    },
+    id: 'sienna-cruz',
+    name: 'Sienna Cruz',
+    role: 'Brand designer',
+    location: 'Lisbon',
+    bio: 'Builds identity systems that hold up from a favicon to a billboard.',
+    image: siennaImg,
   },
   {
     id: 'leo-martin',
     name: 'Leo Martin',
-    role: 'Head of Design',
-    category: 'Design',
+    role: 'Head of design',
+    location: 'Berlin',
+    bio: 'Sets the visual direction and keeps every screen true to it.',
     image: leoImg,
-    rating: 5,
-    quote:
-      'Pushing boundaries between brutalist precision and kinetic fluidity to create memorable digital identities that stand the test of time.',
-    bio: 'Art director focusing on typography systems and interactive motion design.',
-    accentColor: '#EC4899',
-    socials: {
-      x: 'https://twitter.com',
-      linkedin: 'https://linkedin.com',
-    },
-  },
-  {
-    id: 'sienna-cruz',
-    name: 'Sienna Cruz',
-    role: 'Brand Designer',
-    category: 'Branding',
-    image: siennaImg,
-    rating: 5,
-    quote:
-      'Transforming abstract visions into cohesive, timeless design languages that stand out in crowded markets.',
-    bio: 'Specialist in high-impact brand identities, packaging, and editorial guidelines.',
-    accentColor: '#8B5CF6',
-    socials: {
-      x: 'https://twitter.com',
-      linkedin: 'https://linkedin.com',
-    },
-  },
-  {
-    id: 'tobias-nguyen',
-    name: 'Tobias Nguyen',
-    role: 'Lead Developer',
-    category: 'Engineering',
-    image: tobiasImg,
-    rating: 5,
-    quote:
-      'Bridging the gap between ambitious visual design and silky 60fps web performance across all platforms.',
-    bio: 'Creative technologist with deep expertise in WebGL, GSAP, and reactive systems.',
-    accentColor: '#3B82F6',
-    socials: {
-      x: 'https://twitter.com',
-      linkedin: 'https://linkedin.com',
-    },
-  },
-  {
-    id: 'randal-boucher',
-    name: 'Randal Boucher',
-    role: 'UI Designer',
-    category: 'Product Design',
-    image: randalImg,
-    rating: 5,
-    quote:
-      'This course helped me understand design from a real industry perspective. The projects improved my portfolio significantly.',
-    bio: 'Senior UI/UX specialist focused on tactile micro-interactions and design systems.',
-    accentColor: '#EA580C',
-    socials: {
-      x: 'https://twitter.com',
-      linkedin: 'https://linkedin.com',
-    },
   },
   {
     id: 'elena-rostova',
     name: 'Elena Rostova',
-    role: 'Motion Director',
-    category: 'Motion & 3D',
+    role: 'Motion director',
+    location: 'Prague',
+    bio: 'Adds movement that explains the interface instead of decorating it.',
     image: elenaImg,
-    rating: 5,
-    quote:
-      'Adding soul and momentum to modern interfaces through calculated micro-physics and kinetic storytelling.',
-    bio: '3D and motion artist crafting cinematic interactions and generative visuals.',
-    accentColor: '#10B981',
-    socials: {
-      x: 'https://twitter.com',
-      linkedin: 'https://linkedin.com',
-    },
+  },
+  {
+    id: 'tobias-nguyen',
+    name: 'Tobias Nguyen',
+    role: 'Lead developer',
+    location: 'Singapore',
+    bio: 'Turns finished designs into fast, accessible production code.',
+    image: tobiasImg,
   },
   {
     id: 'marcus-vance',
     name: 'Marcus Vance',
-    role: 'Design Technologist',
-    category: 'Systems',
+    role: 'Design technologist',
+    location: 'Toronto',
+    bio: 'Maintains the tokens and components your team keeps using after launch.',
     image: marcusImg,
-    rating: 5,
-    quote:
-      'Crafting scalable architecture and modular design systems that empower high-growth engineering teams.',
-    bio: 'Specializing in design tokens, component scalability, and frontend efficiency.',
-    accentColor: '#6366F1',
-    socials: {
-      x: 'https://twitter.com',
-      linkedin: 'https://linkedin.com',
-    },
   },
-];
-
-/** Staggered "Meet The Minds" cards in the dark services section. */
-export const MINDS: Mind[] = [
-  { id: 'jame-nolan', name: 'Jame Nolan', role: 'Web Designer', hashtag: '#theleader', image: siennaImg, offset: 'lg:mt-0' },
-  { id: 'jame-obsbon', name: 'Jame Obsbon', role: 'UI Designer', hashtag: '#dynamic', image: leoImg, offset: 'lg:mt-20' },
-  { id: 'bruno-santost', name: 'Bruno Santost', role: 'Art Director', hashtag: '#thecreative', image: marcusImg, offset: 'lg:mt-32' },
 ];
 
 /** Avatar sets reused in small "team" stacks across sections. */

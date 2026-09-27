@@ -1,8 +1,9 @@
 import React from 'react';
-import { ArrowRight, Minus, Plus } from 'lucide-react';
+import { Minus, Plus } from 'lucide-react';
 import { Collapse } from '@/components/ui/Collapse';
 import type { Service } from '@/types/content';
 import { padNumber } from '@/utils/format';
+import { ServiceShowcase } from './ServiceShowcase';
 
 interface ServiceItemProps {
   service: Service;
@@ -67,29 +68,7 @@ export const ServiceItem: React.FC<ServiceItemProps> = ({ service, index, isOpen
       <Collapse open={isOpen} id={panelId}>
         <div className="grid grid-cols-1 md:grid-cols-[1fr_3fr] gap-6 px-5 sm:px-7 pb-6 sm:pb-7">
           <div className="hidden md:block" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-            <div className="aspect-[16/10] rounded-2xl overflow-hidden bg-neutral-800">
-              <img
-                src={service.image}
-                alt={service.title}
-                loading="lazy"
-                className="w-full h-full object-cover hover:scale-[1.03] transition-transform duration-700"
-              />
-            </div>
-            <div className="flex flex-col justify-between gap-6">
-              <p className="font-neue text-sm leading-relaxed text-neutral-300 max-w-[300px]">{service.description}</p>
-              <button
-                type="button"
-                onClick={() => onExplore?.(service.id)}
-                className="group/btn self-start flex items-center gap-3 rounded-full bg-white pl-5 pr-1 py-1 text-sm font-medium text-neutral-950 hover:bg-neutral-200 active:scale-95 transition-all"
-              >
-                Explore Now
-                <span className="w-8 h-8 rounded-full bg-neutral-950 text-white flex items-center justify-center">
-                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
-                </span>
-              </button>
-            </div>
-          </div>
+          <ServiceShowcase service={service} isOpen={isOpen} onExplore={onExplore} />
         </div>
       </Collapse>
     </div>

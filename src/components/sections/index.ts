@@ -5,7 +5,6 @@ export { MeetTheMindsSection } from './MeetTheMinds/MeetTheMindsSection';
 export { SelectedWorkSection } from './SelectedWork/SelectedWorkSection';
 export { ServicesSection } from './Services/ServicesSection';
 export { ProcessSection } from './Process/ProcessSection';
-export { TeamSection } from './Team/TeamSection';
 export { TestimonialsSection } from './Testimonials/TestimonialsSection';
 export { PricingSection } from './Pricing/PricingSection';
 export { FaqSection } from './Faq/FaqSection';

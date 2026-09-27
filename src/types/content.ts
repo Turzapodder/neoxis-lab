@@ -66,12 +66,21 @@ export interface SelectedProject {
   colSpanClass?: string;
 }
 
+export interface ServiceSlide {
+  id: string;
+  /** Short name shown on the stacked card. */
+  label: string;
+  title: string;
+  description: string;
+  image: string;
+}
+
 export interface Service {
   id: string;
   title: string;
   tags: string[];
-  description: string;
-  image: string;
+  /** Examples that cycle through the card stack when the row is open. */
+  slides: ServiceSlide[];
 }
 
 export interface ProcessStep {
@@ -87,26 +96,9 @@ export interface TeamMember {
   id: string;
   name: string;
   role: string;
-  category: string;
-  image: string;
-  rating: number;
-  quote: string;
+  location: string;
   bio: string;
-  accentColor?: string;
-  socials: {
-    x?: string;
-    linkedin?: string;
-  };
-}
-
-export interface Mind {
-  id: string;
-  name: string;
-  role: string;
-  hashtag: string;
   image: string;
-  /** Vertical offset class that staggers the cards on desktop. */
-  offset: string;
 }
 
 export interface Testimonial {

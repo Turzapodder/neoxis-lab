@@ -14,7 +14,6 @@ import {
   SelectedWorkSection,
   ServicesSection,
   StatsBar,
-  TeamSection,
   TestimonialsSection,
 } from '@/components/sections';
 import { SECTION_IDS } from '@/constants/sections';
@@ -75,15 +74,11 @@ export const LandingPage: React.FC = () => {
       </Anchor>
 
       <Anchor id={SECTION_IDS.services} zClass="z-35">
-        <ServicesSection onExploreClick={connect.open} />
+        <ServicesSection onExploreClick={connect.open} onTeamContactClick={connect.open} />
       </Anchor>
 
       <Anchor id={SECTION_IDS.process}>
         <ProcessSection />
-      </Anchor>
-
-      <Anchor id={SECTION_IDS.team}>
-        <TeamSection onMoreAboutUsClick={connect.open} onSelectMember={connect.open} />
       </Anchor>
 
       <Anchor id={SECTION_IDS.testimonials}>

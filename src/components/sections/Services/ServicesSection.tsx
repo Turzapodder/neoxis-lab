@@ -4,15 +4,16 @@ import { SectionTag } from '@/components/ui/SectionTag';
 import { SERVICES } from '@/data/services';
 import { useAccordion } from '@/hooks/useAccordion';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
-import { MindsShowcase } from './MindsShowcase';
 import { ServiceItem } from './ServiceItem';
+import { TeamShowcase } from './TeamShowcase';
 
 interface ServicesSectionProps {
   onExploreClick?: (serviceId: string) => void;
+  onTeamContactClick?: () => void;
 }
 
-/** Dark framed section: services accordion followed by the "Meet The Minds" team cards. */
-export const ServicesSection: React.FC<ServicesSectionProps> = ({ onExploreClick }) => {
+/** Dark framed section: services accordion followed by the team spotlight. */
+export const ServicesSection: React.FC<ServicesSectionProps> = ({ onExploreClick, onTeamContactClick }) => {
   const sectionRef = useRef<HTMLElement>(null);
   const { openId, toggle } = useAccordion(SERVICES[0].id);
 
@@ -31,7 +32,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onExploreClick
           <div className="absolute inset-0 bg-gradient-to-b from-black via-black/40 to-black" />
         </div>
 
-        <div className="relative z-10 max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-16 pt-20 sm:pt-28 pb-10">
+        <div className="relative z-10 max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-16 pt-20 sm:pt-28">
           <div className="flex items-start justify-between gap-6 pb-8 sm:pb-10">
             <div className="flex flex-col items-start">
               <SectionTag tone="light" className="text-white mb-3 sm:mb-5">
@@ -57,7 +58,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onExploreClick
             ))}
           </div>
 
-          <MindsShowcase />
+          <TeamShowcase onContactClick={onTeamContactClick} />
         </div>
       </div>
     </section>
