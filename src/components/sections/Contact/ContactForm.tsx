@@ -1,63 +1,65 @@
 import React from 'react';
-import { Check } from 'lucide-react';
-import { BUDGET_OPTIONS } from '@/data/support';
+import { ArrowRight, Check } from 'lucide-react';
+import { BUDGET_OPTIONS, PROJECT_TYPES } from '@/data/support';
+import { ChipGroup } from './ChipGroup';
 import { useContactForm } from './useContactForm';
 
+const LABEL_CLASS = 'flex flex-col gap-2 text-sm text-white';
 const FIELD_CLASS =
-  'mt-3 pb-3 border-b border-neutral-200 text-sm font-normal outline-none focus:border-neutral-900 transition-colors';
-const INPUT_CLASS = `${FIELD_CLASS} placeholder:text-neutral-400`;
+  'bg-transparent border-b border-white/15 pb-3 text-base font-normal text-white outline-none placeholder:text-neutral-500 focus:border-white transition-colors';
 
 export const ContactForm: React.FC = () => {
-  const { budget, toggleBudget, submitted, handleSubmit } = useContactForm();
+  const { projectTypes, toggleProjectType, budget, toggleBudget, submitted, handleSubmit } = useContactForm();
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-[20px] bg-white text-neutral-950 p-5 sm:p-6 flex flex-col">
-      <label className="flex flex-col text-xs font-medium">
-        Your Email*
-        <input type="email" name="email" required placeholder="Enter the Email" className={INPUT_CLASS} />
-      </label>
-      <label className="flex flex-col text-xs font-medium mt-6">
-        Your Phone*
-        <input type="tel" name="phone" required placeholder="Enter your phone number" className={INPUT_CLASS} />
-      </label>
-      <label className="flex flex-col text-xs font-medium mt-6">
-        Message
-        <textarea name="message" rows={4} className={`${FIELD_CLASS} resize-none`} />
+    <form onSubmit={handleSubmit} className="flex flex-col gap-9">
+      <ChipGroup
+        legend="What do you need?"
+        hint="Pick any"
+        options={PROJECT_TYPES}
+        isSelected={(type) => projectTypes.includes(type)}
+        onToggle={toggleProjectType}
+      />
+
+      <ChipGroup legend="Budget" options={BUDGET_OPTIONS} isSelected={(option) => budget === option} onToggle={toggleBudget} />
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <label className={LABEL_CLASS}>
+          Your name
+          <input type="text" name="name" required autoComplete="name" placeholder="Alex Morgan" className={FIELD_CLASS} />
+        </label>
+        <label className={LABEL_CLASS}>
+          Email
+          <input type="email" name="email" required autoComplete="email" placeholder="alex@company.com" className={FIELD_CLASS} />
+        </label>
+      </div>
+
+      <label className={LABEL_CLASS}>
+        About the project
+        <textarea
+          name="message"
+          rows={3}
+          placeholder="What are you building, and when do you need it?"
+          className={`${FIELD_CLASS} resize-none`}
+        />
       </label>
 
-      <fieldset className="mt-8">
-        <legend className="sr-only">Project budget</legend>
-        <div className="flex flex-wrap gap-2">
-          {BUDGET_OPTIONS.map((option) => (
-            <button
-              key={option}
-              type="button"
-              aria-pressed={budget === option}
-              onClick={() => toggleBudget(option)}
-              className={`rounded-full border px-4 py-2 text-xs transition-colors ${
-                budget === option
-                  ? 'bg-neutral-950 border-neutral-950 text-white'
-                  : 'border-neutral-200 text-neutral-800 hover:border-neutral-900'
-              }`}
-            >
-              {option}
-            </button>
-          ))}
-        </div>
-      </fieldset>
-
-      <button
-        type="submit"
-        className="mt-10 w-full rounded-full bg-neutral-950 text-white py-3.5 text-sm font-medium hover:bg-neutral-800 active:scale-[0.99] transition-all flex items-center justify-center gap-2"
-      >
-        {submitted ? (
-          <>
-            <Check className="w-4 h-4" /> Message sent
-          </>
-        ) : (
-          'Send message'
-        )}
-      </button>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <p className="text-xs text-neutral-500 max-w-[260px]">We only use your details to reply to this message.</p>
+        <button
+          type="submit"
+          className="group/btn self-start sm:self-auto flex items-center gap-3 rounded-full bg-white pl-6 pr-1.5 py-1.5 text-sm font-medium text-neutral-950 hover:bg-neutral-200 active:scale-95 transition-all"
+        >
+          {submitted ? 'Message sent' : 'Send message'}
+          <span className="w-9 h-9 rounded-full bg-neutral-950 text-white flex items-center justify-center">
+            {submitted ? (
+              <Check className="w-4 h-4" />
+            ) : (
+              <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
+            )}
+          </span>
+        </button>
+      </div>
     </form>
   );
 };

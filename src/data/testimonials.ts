@@ -2,13 +2,12 @@ import kateImg from '@/assets/images/team/kate.jpg';
 import leoImg from '@/assets/images/team/leo.jpg';
 import tobiasImg from '@/assets/images/team/tobias.jpg';
 import elenaImg from '@/assets/images/team/elena.jpg';
-import type { ClientStat, Partner, Testimonial } from '@/types/content';
-import { TEAM_AVATARS } from './team';
+import type { ClientStat, Testimonial } from '@/types/content';
 
 export const TESTIMONIALS: Testimonial[] = [
   {
     id: 'liam-chen',
-    lead: 'We were struggling to create a unified design experience until we worked with Ezendo.',
+    lead: 'We were struggling to create a unified design experience until we worked with neoxis.',
     rest: 'The team not only brought consistency but elevated every screen with thoughtful detail.',
     name: 'Liam Chen',
     role: 'Product Manager, NovaStack',
@@ -17,7 +16,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     id: 'marco-diaz',
-    lead: 'Ezendo turned a scattered brand into one clear, confident voice.',
+    lead: 'neoxis turned a scattered brand into one clear, confident voice.',
     rest: 'Our launch landed better than any campaign we have run before.',
     name: 'Marco Diaz',
     role: 'Founder, Crona Labs',
@@ -44,18 +43,10 @@ export const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
-export const CLIENT_STATS: ClientStat[] = [
-  { id: 'happy-people', label: 'Happy people', value: '3M+', avatars: TEAM_AVATARS.happyPeople },
-  { id: 'roi', label: 'ROI Improvement', value: '95%', caption: 'Clients reported better ROI within 1 month.' },
-  { id: 'retention', label: 'Client Retention', value: '88%', caption: 'Come back for second or third projects.' },
-];
+export const TESTIMONIAL_RATING = { score: '4.9', reviews: '60+' } as const;
 
-export const PARTNERS: Partner[] = [
-  { name: 'zantic', mark: 'zantic', className: 'text-xl font-semibold lowercase' },
-  { name: 'BookStore', mark: 'bookstore', className: 'text-lg font-medium' },
-  { name: 'Wager', mark: 'wager', className: 'text-base font-semibold' },
-  { name: 'Wager', mark: 'wager', className: 'text-base font-semibold' },
-  { name: 'Crona', mark: 'crona', className: 'text-base font-semibold' },
-  { name: 'Mercury', mark: 'mercury', className: 'text-base font-semibold' },
-  { name: 'Crona', mark: 'crona', className: 'text-base font-semibold' },
+/** Outcomes shown under the quotes. */
+export const CLIENT_STATS: ClientStat[] = [
+  { id: 'roi', value: '95%', caption: 'of clients report better ROI within a month of launch' },
+  { id: 'retention', value: '88%', caption: 'come back to us for a second or third project' },
 ];

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { Navbar } from '@/components/layout/Navbar';
 import { ConnectModal } from '@/components/modals/ConnectModal';
@@ -19,6 +19,8 @@ import {
 import { SECTION_IDS } from '@/constants/sections';
 import { DEFAULT_NAV_TAB } from '@/data/navigation';
 import { useDisclosure } from '@/hooks/useDisclosure';
+import { useScrollTriggerAutoRefresh } from '@/hooks/useScrollTriggerAutoRefresh';
+import { useSectionTransitions } from '@/hooks/useSectionTransitions';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import type { NavTab } from '@/types/content';
 import { scrollToSection } from '@/utils/scroll';
@@ -42,7 +44,11 @@ export const LandingPage: React.FC = () => {
   const connect = useDisclosure();
   const [activeTab, setActiveTab] = useState(DEFAULT_NAV_TAB);
 
+  const pageRef = useRef<HTMLDivElement>(null);
+
   useSmoothScroll();
+  useSectionTransitions(pageRef);
+  useScrollTriggerAutoRefresh(pageRef);
 
   const handleSelectTab = (tab: NavTab) => {
     setActiveTab(tab.id);
@@ -50,7 +56,7 @@ export const LandingPage: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full max-w-full overflow-x-clip bg-[var(--color-canvas-bg)] text-[var(--color-text-primary)] selection:bg-purple-500/25 selection:text-current transition-colors duration-300">
+    <div ref={pageRef} className="relative w-full max-w-full overflow-x-clip bg-[var(--color-canvas-bg)] text-[var(--color-text-primary)] selection:bg-purple-500/25 selection:text-current transition-colors duration-300">
       <HeroSection
         header={<Navbar activeTab={activeTab} onSelectTab={handleSelectTab} onOpenMenu={menu.open} />}
         onConnectClick={connect.open}
@@ -94,7 +100,7 @@ export const LandingPage: React.FC = () => {
       </Anchor>
 
       <Anchor id={SECTION_IDS.contact}>
-        <ContactSection />
+        <ContactSection onBookCallClick={connect.open} />
       </Anchor>
 
       <Anchor id={SECTION_IDS.footer}>

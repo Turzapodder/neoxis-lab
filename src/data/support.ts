@@ -1,4 +1,5 @@
 import type { Faq } from '@/types/content';
+import { SERVICES } from './services';
 
 export const FAQS: Faq[] = [
   {
@@ -29,3 +30,6 @@ export const FAQS: Faq[] = [
 ];
 
 export const BUDGET_OPTIONS = ['< $1,000', '$1,000 - $5,000', '$5,000 - $10,000', '$10,000 - $20,000', '> $20,000'];
+
+/** "What do you need?" options in the contact form. */
+export const PROJECT_TYPES = [...SERVICES.map((service) => service.title), 'Something else'];

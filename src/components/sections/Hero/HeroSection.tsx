@@ -41,11 +41,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ header, onConnectClick
                 <h1 className="font-clash font-bold text-white tracking-[-0.04em] leading-[0.88] text-[clamp(3.5rem,14vw,14rem)] drop-shadow-2xl">
                   neoxis
                 </h1>
-                <div className="ml-2 sm:ml-4 mt-2 sm:mt-4 md:mt-6 lg:mt-8 flex items-center justify-center">
-                  <span className="w-7 h-7 sm:w-11 sm:h-11 md:w-14 md:h-14 lg:w-18 lg:h-18 rounded-full border-2 sm:border-3 lg:border-4 border-white flex items-center justify-center font-clash font-bold text-white text-xs sm:text-lg md:text-xl lg:text-2xl leading-none shadow-md shrink-0">
-                    R
-                  </span>
-                </div>
+                {/* Registered mark matches the footer wordmark: one third of the name size */}
+                <span
+                  aria-hidden
+                  className="font-clash font-bold text-white leading-none text-[clamp(1.2rem,4.7vw,4.7rem)] ml-1 sm:ml-2 drop-shadow-2xl"
+                >
+                  ®
+                </span>
               </div>
             </div>
 

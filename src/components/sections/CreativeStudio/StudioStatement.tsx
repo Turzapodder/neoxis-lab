@@ -1,11 +1,10 @@
 import React from 'react';
-import { Lottie } from 'lottie-react';
-import bouncyArrowData from '@/assets/bouncy-arrow.json';
+import { ArrowRight } from 'lucide-react';
 
 interface StudioStatementProps {
   /**
-   * 'base' is the light layer with the live arrow and CTA.
-   * 'overlay' is the dark layer that uses empty spacers in the same positions.
+   * 'base' is the light layer; 'overlay' is the dark layer that wipes up over it.
+   * Both render the same elements at the same sizes so the text lines up throughout the wipe.
    */
   variant: 'base' | 'overlay';
   imagesRowRef: React.Ref<HTMLDivElement>;
@@ -16,24 +15,31 @@ interface StudioStatementProps {
 
 const LINE_CLASS = 'flex flex-nowrap whitespace-nowrap items-center justify-center leading-none';
 const NEXT_LINE_CLASS = `${LINE_CLASS} mt-2.5 sm:mt-3.5 md:mt-5`;
-const SLOT_CLASS =
-  'w-8 h-8 sm:w-11 sm:h-11 md:w-16 md:h-16 lg:w-22 lg:h-22 rounded-xl sm:rounded-2xl md:rounded-3xl bg-transparent shrink-0 overflow-hidden';
-const ARROW_SIZE_CLASS = 'w-9 sm:w-14 md:w-20 lg:w-26 h-7 sm:h-11 md:h-16 lg:h-22 mx-1.5 sm:mx-3 shrink-0';
+/** Square size shared by the card slots and the arrow circle. */
+const SQUARE_CLASS = 'w-8 h-8 sm:w-11 sm:h-11 md:w-16 md:h-16 lg:w-22 lg:h-22';
+const SLOT_CLASS = `${SQUARE_CLASS} rounded-xl sm:rounded-2xl md:rounded-3xl shrink-0 overflow-hidden`;
+/** Gap before each inline object equals one word space, so both sides of it look even. */
+const INLINE_GAP = 'ml-[0.26em]';
 
 const VARIANT_STYLES = {
   base: {
-    text: 'text-[#111111]',
-    solution: 'from-[#14151E] via-[#7B2CBF] to-[#D946EF]',
-    solutionGlow: 'from-purple-400/25 to-pink-400/25',
+    text: 'text-neutral-950',
+    // ~3.4:1 on the light canvas, above the 3:1 minimum for large text
+    muted: 'text-[#8B8B8B]',
+    arrow: 'border-neutral-950 text-neutral-950',
+    button: 'bg-neutral-950 text-white hover:bg-neutral-800',
+    buttonIcon: 'bg-white text-neutral-950',
   },
   overlay: {
     text: 'text-white',
-    solution: 'from-violet-300 via-fuchsia-300 to-pink-400',
-    solutionGlow: 'from-violet-500/30 to-fuchsia-500/30',
+    muted: 'text-neutral-400',
+    arrow: 'border-white text-white',
+    button: 'bg-white text-neutral-950',
+    buttonIcon: 'bg-neutral-950 text-white',
   },
 } as const;
 
-/** "We [images] are a creative / studio ➔ dedicated / to craft a [CTA] solution" headline. */
+/** "We [cards] are a creative / studio (→) dedicated / to craft a [Work with us] solution". */
 export const StudioStatement: React.FC<StudioStatementProps> = ({
   variant,
   imagesRowRef,
@@ -47,15 +53,15 @@ export const StudioStatement: React.FC<StudioStatementProps> = ({
   return (
     <div className="relative z-10 max-w-[1400px] w-full mx-auto text-center">
       <h2
-        className={`font-clash font-bold text-[22px] sm:text-[34px] md:text-[52px] lg:text-[76px] xl:text-[98px] leading-[1.2] tracking-[-0.035em] ${styles.text}`}
+        className={`font-clash font-bold text-[22px] sm:text-[34px] md:text-[clamp(40px,5.6vw,56px)] lg:text-[clamp(56px,5.7vw,76px)] xl:text-[clamp(80px,6.6vw,98px)] leading-[1.2] tracking-[-0.015em] [word-spacing:0.14em] ${styles.text}`}
       >
-        {/* LINE 1: We [images] are a creative */}
+        {/* LINE 1: We [cards] are a creative */}
         <div className={LINE_CLASS}>
           <span>We</span>
-          {/* Inline slots that receive the flying project cards */}
+          {/* Slots that receive the flying project cards */}
           <div
             ref={imagesRowRef}
-            className="inline-flex items-center gap-1.5 sm:gap-2.5 md:gap-3.5 mx-2 sm:mx-3 md:mx-4 shrink-0 align-middle py-1 overflow-hidden"
+            className={`inline-flex items-center gap-1.5 sm:gap-2.5 md:gap-3.5 ${INLINE_GAP} shrink-0 align-middle py-1 overflow-hidden`}
           >
             <div className={SLOT_CLASS} />
             <div className={SLOT_CLASS} />
@@ -64,47 +70,39 @@ export const StudioStatement: React.FC<StudioStatementProps> = ({
           <span>&nbsp;are a creative</span>
         </div>
 
-        {/* LINE 2: studio ➔ dedicated */}
+        {/* LINE 2: studio (→) dedicated */}
         <div className={NEXT_LINE_CLASS}>
           <span>studio</span>
-          {isBase ? (
-            <div
-              ref={arrowRef}
-              className={`relative inline-flex items-center justify-center ${ARROW_SIZE_CLASS} align-middle transition-transform duration-300 hover:scale-110 cursor-pointer overflow-hidden group`}
-            >
-              <div className="w-full h-full -rotate-90 flex items-center justify-center pointer-events-none scale-[1.7] sm:scale-[1.9] md:scale-[2.2]">
-                <Lottie src={bouncyArrowData} loop autoplay className="w-full h-full" />
-              </div>
-            </div>
-          ) : (
-            <div ref={arrowRef} className={`${ARROW_SIZE_CLASS} overflow-hidden align-middle inline-flex`} />
-          )}
-          <span>&nbsp;dedicated</span>
+          <div
+            ref={arrowRef}
+            className={`relative inline-flex items-center justify-center ${SQUARE_CLASS} ${INLINE_GAP} shrink-0 align-middle rounded-full border-2 overflow-hidden ${styles.arrow}`}
+          >
+            <ArrowRight
+              aria-hidden
+              strokeWidth={2.25}
+              className="w-[42%] h-[42%] animate-[arrow-nudge_1.8s_ease-in-out_infinite] motion-reduce:animate-none"
+            />
+          </div>
+          <span className={styles.muted}>&nbsp;dedicated</span>
         </div>
 
-        {/* LINE 3: to craft a [WORK WITH US] solution */}
+        {/* LINE 3: to craft a [Work with us] solution */}
         <div className={NEXT_LINE_CLASS}>
-          <span>to craft a</span>
-          {isBase ? (
-            <div ref={buttonSlotRef} className="relative inline-flex items-center shrink-0 mx-2 sm:mx-3 md:mx-4 overflow-hidden">
-              <button
-                onClick={onWorkWithUsClick}
-                className="relative inline-flex items-center justify-center px-4 sm:px-6 md:px-8 h-8 sm:h-11 md:h-14 lg:h-16 rounded-full bg-gradient-to-r from-[#D73827] to-[#E34E39] text-white text-[10px] sm:text-xs md:text-sm lg:text-base font-neue font-bold uppercase tracking-wider shrink-0 align-middle hover:brightness-110 active:scale-95 transition-all cursor-pointer whitespace-nowrap overflow-hidden border border-white/25 shadow-lg"
-              >
-                WORK WITH US
-              </button>
-            </div>
-          ) : (
-            <div
-              ref={buttonSlotRef}
-              className="h-8 sm:h-11 md:h-14 lg:h-16 mx-2 sm:mx-3 md:mx-4 shrink-0 overflow-hidden align-middle inline-flex"
-            />
-          )}
-          <span>&nbsp;</span>
-          <span className="relative inline-block">
-            <span className={`bg-gradient-to-r bg-clip-text text-transparent ${styles.solution}`}>solution</span>
-            <span className={`absolute inset-0 bg-gradient-to-r blur-2xl -z-10 pointer-events-none ${styles.solutionGlow}`} />
-          </span>
+          <span className={styles.muted}>to craft a</span>
+          <div ref={buttonSlotRef} className={`relative inline-flex items-center shrink-0 ${INLINE_GAP} overflow-hidden`}>
+            <button
+              type="button"
+              onClick={isBase ? onWorkWithUsClick : undefined}
+              tabIndex={isBase ? undefined : -1}
+              className={`group/cta inline-flex items-center gap-2 sm:gap-3 h-8 sm:h-11 md:h-14 lg:h-16 pl-3 sm:pl-5 md:pl-6 pr-1 sm:pr-1.5 rounded-full font-neue font-medium text-[10px] sm:text-xs md:text-sm lg:text-base tracking-normal [word-spacing:normal] whitespace-nowrap transition-colors active:scale-95 ${styles.button}`}
+            >
+              Work with us
+              <span className={`h-6 sm:h-8 md:h-11 lg:h-13 aspect-square rounded-full flex items-center justify-center ${styles.buttonIcon}`}>
+                <ArrowRight aria-hidden className="w-[45%] h-[45%] transition-transform group-hover/cta:translate-x-0.5" />
+              </span>
+            </button>
+          </div>
+          <span className={styles.muted}>&nbsp;solution</span>
         </div>
       </h2>
     </div>

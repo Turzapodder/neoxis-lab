@@ -5,12 +5,16 @@ import { useTransientFlag } from '@/hooks/useTransientFlag';
 const CONFIRMATION_MS = 2500;
 
 /**
- * Contact form state: single-select budget and a temporary "sent" confirmation.
- * Submission is mocked; it clears the form without sending anything.
+ * Contact form state: multi-select project types, single-select budget and a
+ * temporary "sent" confirmation. Submission is mocked; it clears the form without sending anything.
  */
 export function useContactForm() {
+  const [projectTypes, setProjectTypes] = useState<string[]>([]);
   const [budget, setBudget] = useState<string | null>(null);
   const [submitted, showConfirmation] = useTransientFlag(CONFIRMATION_MS);
+
+  const toggleProjectType = (type: string) =>
+    setProjectTypes((current) => (current.includes(type) ? current.filter((t) => t !== type) : [...current, type]));
 
   const toggleBudget = (option: string) => setBudget((current) => (current === option ? null : option));
 
@@ -18,8 +22,9 @@ export function useContactForm() {
     e.preventDefault();
     showConfirmation();
     e.currentTarget.reset();
+    setProjectTypes([]);
     setBudget(null);
   };
 
-  return { budget, toggleBudget, submitted, handleSubmit };
+  return { projectTypes, toggleProjectType, budget, toggleBudget, submitted, handleSubmit };
 }

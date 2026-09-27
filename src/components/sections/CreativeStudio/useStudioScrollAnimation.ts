@@ -28,6 +28,18 @@ interface Box {
 }
 
 const MOBILE_BREAKPOINT = 768;
+
+/**
+ * Clip-path for the overlay, which rises as a framed card inset from the viewport edges.
+ * All four insets are px so GSAP interpolates each value against its counterpart.
+ */
+const overlayClip = (container: HTMLElement, state: 'hidden' | 'shown') => {
+  const small = window.innerWidth < 640;
+  const gap = small ? 6 : 8;
+  const radius = small ? 24 : 40;
+  const top = state === 'hidden' ? container.offsetHeight : gap;
+  return `inset(${top}px ${gap}px ${gap}px ${gap}px round ${radius}px)`;
+};
 const HERO_CARD_COUNT = 3;
 
 /** Position of `el` relative to the pinned container, with a fallback size when it is not laid out. */
@@ -105,7 +117,7 @@ export function useStudioScrollAnimation(refs: StudioAnimationRefs) {
         });
       });
 
-      gsap.set(overlay, { clipPath: 'inset(100% 0 0 0)' });
+      gsap.set(overlay, { clipPath: overlayClip(pinContainer, 'hidden') });
 
       // ── 2. STAGE 1: Flight from hero to line 1 (top 85% → top top) ──
       const flightTl = gsap.timeline({
@@ -181,8 +193,13 @@ export function useStudioScrollAnimation(refs: StudioAnimationRefs) {
       // Hold in docked state initially
       pinnedTl.to({}, { duration: 0.2 });
 
-      // Overlay rises from bottom (100%) to top (0%)
-      pinnedTl.to(overlay, { clipPath: 'inset(0% 0 0 0)', ease: 'none', duration: 1.0 }, 0.1);
+      // Overlay card rises from the bottom edge to its framed position
+      pinnedTl.fromTo(
+        overlay,
+        { clipPath: () => overlayClip(pinContainer, 'hidden') },
+        { clipPath: () => overlayClip(pinContainer, 'shown'), ease: 'none', duration: 1.0, immediateRender: false },
+        0.1,
+      );
 
       // Timed to the rising curtain: bottom line collapses first, top line last
       const collapseSequence = [

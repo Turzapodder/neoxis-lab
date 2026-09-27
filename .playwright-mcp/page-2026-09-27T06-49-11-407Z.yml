@@ -1,0 +1,669 @@
+- generic [ref=f18e3]:
+  - generic [ref=f18e5]:
+    - generic:
+      - img "Neoxis Liquid Chrome Background"
+    - banner [ref=f18e6]:
+      - navigation [ref=f18e7]:
+        - link "neoxis ®" [ref=f18e8] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f18e9]: neoxis
+          - generic [ref=f18e10]: ®
+        - generic [ref=f18e12]:
+          - button "Studio" [ref=f18e13] [cursor=pointer]
+          - button "Project (12)" [ref=f18e15] [cursor=pointer]:
+            - generic [ref=f18e16]: Project
+            - generic [ref=f18e17]: (12)
+          - button "Service" [ref=f18e18] [cursor=pointer]
+          - button "Team" [ref=f18e20] [cursor=pointer]
+          - button "Blog" [ref=f18e22] [cursor=pointer]
+        - button "Open navigation menu" [ref=f18e25] [cursor=pointer]:
+          - generic [ref=f18e26]: Menu
+    - main [ref=f18e29]:
+      - generic [ref=f18e31]:
+        - generic [ref=f18e33]:
+          - heading "neoxis" [level=1] [ref=f18e34]
+          - generic [aria-hidden] [ref=f18e35]: ®
+        - generic [ref=f18e36]:
+          - generic [ref=f18e37]:
+            - generic [ref=f18e38]: DESIGN AGENCY
+            - generic [ref=f18e41]:
+              - generic [ref=f18e42]: /
+              - paragraph [ref=f18e43]: We craft futuristic experiences where technology, emotion, and visual storytelling merge into one seamless flow.
+            - generic [ref=f18e44]:
+              - button "View My Works" [ref=f18e45] [cursor=pointer]
+              - button "Connect Us" [ref=f18e48] [cursor=pointer]
+          - generic [ref=f18e54]:
+            - generic [ref=f18e55]:
+              - generic [ref=f18e56]:
+                - generic [ref=f18e57] [cursor=pointer]:
+                  - img "Track. Analyze. Optimize."
+                  - generic: Track. Analyze. Optimize.
+                - generic [ref=f18e58] [cursor=pointer]:
+                  - img "Aurea Studio"
+                  - generic: Aurea Studio
+                - generic [ref=f18e59] [cursor=pointer]:
+                  - img "Aura Spatial"
+                  - generic: AURA SPATIAL
+              - button "Move slider right" [ref=f18e60] [cursor=pointer]
+            - generic [ref=f18e63]:
+              - button "Previous project" [ref=f18e64] [cursor=pointer]: "01"
+              - generic [ref=f18e65] [cursor=pointer]
+              - button "Next project" [ref=f18e68] [cursor=pointer]: "03"
+  - generic [ref=f18e72]:
+    - generic [ref=f18e77]:
+      - generic [ref=f18e78]: 50+
+      - generic [ref=f18e79]: Projects Completed
+    - generic [ref=f18e87]:
+      - generic [ref=f18e88]: 30+
+      - generic [ref=f18e89]: Happy Clients
+    - generic [ref=f18e97]:
+      - generic [ref=f18e98]: 8+
+      - generic [ref=f18e99]: Years Experience
+    - generic [ref=f18e105]:
+      - generic [ref=f18e106]: 15+
+      - generic [ref=f18e107]: Countries Served
+  - generic [ref=f18e111]:
+    - generic [ref=f18e112]:
+      - generic:
+        - generic: Who we are
+        - generic:
+          - paragraph: Brand, digital and product design for ambitious teams.
+          - generic: Scroll to explore
+      - heading "We are a creative studio dedicated to craft a Work with us solution" [level=2] [ref=f18e114]:
+        - generic [ref=f18e115]:
+          - generic [ref=f18e116]: We
+          - generic [ref=f18e121]: are a creative
+        - generic [ref=f18e122]:
+          - generic [ref=f18e123]: studio
+          - generic [ref=f18e127]: dedicated
+        - generic [ref=f18e128]:
+          - generic [ref=f18e129]: to craft a
+          - button [ref=f18e131]
+          - generic [ref=f18e135]: solution
+    - generic:
+      - img "Track. Analyze. Optimize. Fintech UI"
+    - generic:
+      - img "Aurea Studio Brand Identity"
+    - generic:
+      - img "Aura Spatial Hardware Interface"
+    - generic [aria-hidden]:
+      - generic:
+        - generic: Who we are
+        - generic:
+          - paragraph: Brand, digital and product design for ambitious teams.
+          - generic: Scroll to explore
+      - generic:
+        - heading [level=2]:
+          - generic:
+            - generic: We
+            - generic: are a creative
+          - generic:
+            - generic: studio
+            - generic: dedicated
+          - generic:
+            - generic: to craft a
+            - generic:
+              - button: Work with us
+            - generic: solution
+  - generic [ref=f18e138]:
+    - generic [ref=f18e139]:
+      - generic [ref=f18e140]:
+        - generic [ref=f18e141]: Why choose us
+        - heading "Why teams choose neoxis." [level=2] [ref=f18e144]: Why teamschoose neoxis.
+      - generic [ref=f18e145]:
+        - paragraph [ref=f18e146]: We bring together designers, strategists and makers in one small studio. You get bold, considered digital work without the layers of a big agency.
+        - button [ref=f18e147]
+    - generic [ref=f18e151]:
+      - generic [ref=f18e152]:
+        - img "The neoxis team together in the studio" [ref=f18e153]
+        - generic [ref=f18e156]:
+          - paragraph [ref=f18e157]: 12 specialists
+          - paragraph [ref=f18e158]: Working across 12 countries
+      - generic [ref=f18e159]:
+        - img "Designers reviewing work at a desk" [ref=f18e160]
+        - generic [ref=f18e162]:
+          - paragraph [ref=f18e163]: 230+
+          - paragraph [ref=f18e164]: Projects launched for clients worldwide
+    - list [ref=f18e165]:
+      - listitem [ref=f18e166]:
+        - generic [ref=f18e172]:
+          - heading "Senior people on every project" [level=3] [ref=f18e173]
+          - paragraph [ref=f18e174]: The designers you meet in the first call are the ones doing the work.
+      - listitem [ref=f18e175]:
+        - generic [ref=f18e181]:
+          - heading "Strategy, design and build in one team" [level=3] [ref=f18e182]
+          - paragraph [ref=f18e183]: No hand-offs between agencies, so nothing gets lost between stages.
+      - listitem [ref=f18e184]:
+        - generic [ref=f18e191]:
+          - heading "Made to be handed over" [level=3] [ref=f18e192]
+          - paragraph [ref=f18e193]: Clean files, documented systems and code your team can extend.
+    - generic [ref=f18e194]:
+      - paragraph [ref=f18e195]: Trusted by 400+ teams
+      - generic [ref=f18e196]:
+        - generic [ref=f18e197]: thea
+        - generic [ref=f18e199]: Leafe
+        - generic [ref=f18e203]: hues
+        - generic [ref=f18e209]:
+          - generic [ref=f18e210]: ZUMAR
+          - generic [ref=f18e211]: CONS
+        - generic [ref=f18e212]: Crona
+        - generic [ref=f18e216]: Mercury
+  - generic [ref=f18e222]:
+    - generic [ref=f18e223]:
+      - generic [ref=f18e224]: Project showcase
+      - generic [ref=f18e227]:
+        - heading "Selected Work." [level=2] [ref=f18e228]
+        - generic [ref=f18e229]: (5)
+      - generic [ref=f18e230]:
+        - paragraph [ref=f18e231]: We've helped businesses across industries achieve their goals. Here are some of our recent projects.
+        - generic [ref=f18e232]: 16-25©
+    - generic [ref=f18e233]:
+      - generic [ref=f18e234] [cursor=pointer]:
+        - img "Neon Frame System." [ref=f18e236]
+        - generic [ref=f18e238]:
+          - generic [ref=f18e239]:
+            - generic [ref=f18e240]: "01."
+            - heading "Neon Frame System." [level=3] [ref=f18e241]
+          - generic [ref=f18e242]: "2025"
+      - generic [ref=f18e243] [cursor=pointer]:
+        - img "Music OS AI." [ref=f18e245]
+        - generic [ref=f18e247]:
+          - generic [ref=f18e248]:
+            - generic [ref=f18e249]: "02."
+            - heading "Music OS AI." [level=3] [ref=f18e250]
+          - generic [ref=f18e251]: "2024"
+    - generic [ref=f18e252]:
+      - generic [ref=f18e253] [cursor=pointer]:
+        - img "Botly® Port App." [ref=f18e255]
+        - generic [ref=f18e257]:
+          - generic [ref=f18e258]:
+            - generic [ref=f18e259]: "03."
+            - heading "Botly® Port App." [level=3] [ref=f18e260]
+          - generic [ref=f18e261]: "2022"
+      - generic [ref=f18e262] [cursor=pointer]:
+        - img "Curea Studio" [ref=f18e264]
+        - generic [ref=f18e266]:
+          - generic [ref=f18e267]:
+            - generic [ref=f18e268]: "04."
+            - heading "Curea Studio" [level=3] [ref=f18e269]
+          - generic [ref=f18e270]: "2020"
+      - generic [ref=f18e271] [cursor=pointer]:
+        - img "Sos Core Identity App." [ref=f18e273]
+        - generic [ref=f18e275]:
+          - generic [ref=f18e276]:
+            - generic [ref=f18e277]: "05."
+            - heading "Sos Core Identity App." [level=3] [ref=f18e278]
+          - generic [ref=f18e279]: "2024"
+  - generic [ref=f18e283]:
+    - generic [ref=f18e284]:
+      - generic [ref=f18e285]:
+        - generic [ref=f18e286]: Shape what's next.
+        - heading "Our Services" [level=2] [ref=f18e289]
+      - generic [ref=f18e290]: "04"
+    - generic [ref=f18e291]:
+      - generic [ref=f18e292]:
+        - button "01. Branding Design Brand Strategy Visual Identity" [expanded] [ref=f18e293]:
+          - generic [ref=f18e294]: "01."
+          - generic [ref=f18e295]:
+            - generic [ref=f18e296]: Branding Design
+            - generic [ref=f18e297]:
+              - generic [ref=f18e298]: Brand Strategy
+              - generic [ref=f18e299]: Visual Identity
+        - generic [ref=f18e306]:
+          - button "Show next example" [ref=f18e307]:
+            - generic [ref=f18e308]:
+              - generic [ref=f18e309]:
+                - generic [ref=f18e310]:
+                  - generic [ref=f18e311]: "01."
+                  - generic [ref=f18e312]: Strategy
+                - img "Brand strategy" [ref=f18e314]
+              - generic [ref=f18e316]:
+                - generic [ref=f18e317]: "02."
+                - generic [ref=f18e318]: Logo
+              - generic [ref=f18e321]:
+                - generic [ref=f18e322]: "03."
+                - generic [ref=f18e323]: Identity
+              - generic [ref=f18e326]:
+                - generic [ref=f18e327]: "04."
+                - generic [ref=f18e328]: Guidelines
+          - generic [ref=f18e330]:
+            - generic [ref=f18e331]:
+              - generic [ref=f18e332]: 01 / 04
+              - heading "Brand strategy" [level=4] [ref=f18e333]
+              - paragraph [ref=f18e334]: Positioning, voice and naming worked out before anything gets drawn.
+            - generic [ref=f18e335]:
+              - group "Choose example" [ref=f18e336]:
+                - button "Show Brand strategy" [ref=f18e337]
+                - button "Show Logo systems" [ref=f18e339]
+                - button "Show Visual identity" [ref=f18e341]
+                - button "Show Brand guidelines" [ref=f18e343]
+              - button [ref=f18e345]
+      - generic [ref=f18e349]:
+        - button "02. Digital Design Motion Design Accessibility" [ref=f18e350]:
+          - generic [ref=f18e351]: "02."
+          - generic [ref=f18e352]:
+            - generic [ref=f18e353]: Digital Design
+            - generic [ref=f18e354]:
+              - generic [ref=f18e355]: Motion Design
+              - generic [ref=f18e356]: Accessibility
+        - generic [ref=f18e361]:
+          - button "Show next example" [ref=f18e362]:
+            - generic [ref=f18e363]:
+              - generic [ref=f18e364]:
+                - generic [ref=f18e365]:
+                  - generic [ref=f18e366]: "01."
+                  - generic [ref=f18e367]: Motion
+                - img "Motion design" [ref=f18e369]
+              - generic [ref=f18e371]:
+                - generic [ref=f18e372]: "02."
+                - generic [ref=f18e373]: Campaigns
+              - generic [ref=f18e376]:
+                - generic [ref=f18e377]: "03."
+                - generic [ref=f18e378]: Accessibility
+              - generic [ref=f18e381]:
+                - generic [ref=f18e382]: "04."
+                - generic [ref=f18e383]: Illustration
+          - generic [ref=f18e385]:
+            - generic [ref=f18e386]:
+              - generic [ref=f18e387]: 01 / 04
+              - heading "Motion design" [level=4] [ref=f18e388]
+              - paragraph [ref=f18e389]: Animation that guides attention and explains what just changed.
+            - generic [ref=f18e390]:
+              - group "Choose example" [ref=f18e391]:
+                - button "Show Motion design" [ref=f18e392]
+                - button "Show Campaign assets" [ref=f18e394]
+                - button "Show Accessible by default" [ref=f18e396]
+                - button "Show Illustration and 3D" [ref=f18e398]
+              - button [ref=f18e400]
+      - generic [ref=f18e404]:
+        - button "03. Web Design Landing Pages Portfolio Sites" [ref=f18e405]:
+          - generic [ref=f18e406]: "03."
+          - generic [ref=f18e407]:
+            - generic [ref=f18e408]: Web Design
+            - generic [ref=f18e409]:
+              - generic [ref=f18e410]: Landing Pages
+              - generic [ref=f18e411]: Portfolio Sites
+        - generic [ref=f18e416]:
+          - button "Show next example" [ref=f18e417]:
+            - generic [ref=f18e418]:
+              - generic [ref=f18e419]:
+                - generic [ref=f18e420]:
+                  - generic [ref=f18e421]: "01."
+                  - generic [ref=f18e422]: Landing
+                - img "Landing pages" [ref=f18e424]
+              - generic [ref=f18e426]:
+                - generic [ref=f18e427]: "02."
+                - generic [ref=f18e428]: Portfolio
+              - generic [ref=f18e431]:
+                - generic [ref=f18e432]: "03."
+                - generic [ref=f18e433]: Commerce
+              - generic [ref=f18e436]:
+                - generic [ref=f18e437]: "04."
+                - generic [ref=f18e438]: CMS
+          - generic [ref=f18e440]:
+            - generic [ref=f18e441]:
+              - generic [ref=f18e442]: 01 / 04
+              - heading "Landing pages" [level=4] [ref=f18e443]
+              - paragraph [ref=f18e444]: Modern, responsive, and user-friendly websites designed to engage visitors and drive conversions.
+            - generic [ref=f18e445]:
+              - group "Choose example" [ref=f18e446]:
+                - button "Show Landing pages" [ref=f18e447]
+                - button "Show Portfolio sites" [ref=f18e449]
+                - button "Show E-commerce" [ref=f18e451]
+                - button "Show CMS builds" [ref=f18e453]
+              - button [ref=f18e455]
+      - generic [ref=f18e459]:
+        - button "04. UI,UX design User Research Wireframing" [ref=f18e460]:
+          - generic [ref=f18e461]: "04."
+          - generic [ref=f18e462]:
+            - generic [ref=f18e463]: UI,UX design
+            - generic [ref=f18e464]:
+              - generic [ref=f18e465]: User Research
+              - generic [ref=f18e466]: Wireframing
+        - generic [ref=f18e471]:
+          - button "Show next example" [ref=f18e472]:
+            - generic [ref=f18e473]:
+              - generic [ref=f18e474]:
+                - generic [ref=f18e475]:
+                  - generic [ref=f18e476]: "01."
+                  - generic [ref=f18e477]: Research
+                - img "User research" [ref=f18e479]
+              - generic [ref=f18e481]:
+                - generic [ref=f18e482]: "02."
+                - generic [ref=f18e483]: Wireframes
+              - generic [ref=f18e486]:
+                - generic [ref=f18e487]: "03."
+                - generic [ref=f18e488]: Mobile
+              - generic [ref=f18e491]:
+                - generic [ref=f18e492]: "04."
+                - generic [ref=f18e493]: Systems
+          - generic [ref=f18e495]:
+            - generic [ref=f18e496]:
+              - generic [ref=f18e497]: 01 / 04
+              - heading "User research" [level=4] [ref=f18e498]
+              - paragraph [ref=f18e499]: Interviews and usability tests that show where people get stuck.
+            - generic [ref=f18e500]:
+              - group "Choose example" [ref=f18e501]:
+                - button "Show User research" [ref=f18e502]
+                - button "Show Wireframing" [ref=f18e504]
+                - button "Show Mobile apps" [ref=f18e506]
+                - button "Show Design systems" [ref=f18e508]
+              - button [ref=f18e510]
+    - generic [ref=f18e514]:
+      - generic [ref=f18e515]:
+        - generic [ref=f18e516]:
+          - generic [ref=f18e517]: Our people
+          - heading "The minds behind every launch." [level=2] [ref=f18e520]: The minds behindevery launch.
+        - paragraph [ref=f18e521]: A small senior team. You work directly with the people designing and building your product.
+      - generic [ref=f18e522]:
+        - generic [ref=f18e523]:
+          - img "Sienna Cruz" [ref=f18e524]
+          - generic [ref=f18e530]:
+            - generic [ref=f18e531]: Brand designer
+            - generic [ref=f18e532]: Lisbon
+          - generic [ref=f18e533]:
+            - generic [ref=f18e534]:
+              - heading "Sienna Cruz" [level=3] [ref=f18e535]
+              - paragraph [ref=f18e536]: Builds identity systems that hold up from a favicon to a billboard.
+            - generic [ref=f18e537]:
+              - link "Sienna Cruz on X" [ref=f18e538] [cursor=pointer]:
+                - /url: https://twitter.com
+              - link "Sienna Cruz on Dribbble" [ref=f18e541] [cursor=pointer]:
+                - /url: https://dribbble.com
+              - link "Sienna Cruz on LinkedIn" [ref=f18e547] [cursor=pointer]:
+                - /url: https://linkedin.com
+        - generic [ref=f18e550]:
+          - list [ref=f18e551]:
+            - listitem [ref=f18e552]:
+              - button "Sienna Cruz Brand designer" [pressed] [ref=f18e553]:
+                - generic [ref=f18e555]:
+                  - generic [ref=f18e556]: Sienna Cruz
+                  - generic [ref=f18e557]: Brand designer
+            - listitem [ref=f18e562]:
+              - button "Leo Martin Head of design" [ref=f18e563]:
+                - generic [ref=f18e564]:
+                  - generic [ref=f18e565]: Leo Martin
+                  - generic [ref=f18e566]: Head of design
+            - listitem [ref=f18e571]:
+              - button "Elena Rostova Motion director" [ref=f18e572]:
+                - generic [ref=f18e573]:
+                  - generic [ref=f18e574]: Elena Rostova
+                  - generic [ref=f18e575]: Motion director
+            - listitem [ref=f18e580]:
+              - button "Tobias Nguyen Lead developer" [ref=f18e581]:
+                - generic [ref=f18e582]:
+                  - generic [ref=f18e583]: Tobias Nguyen
+                  - generic [ref=f18e584]: Lead developer
+            - listitem [ref=f18e589]:
+              - button "Marcus Vance Design technologist" [ref=f18e590]:
+                - generic [ref=f18e591]:
+                  - generic [ref=f18e592]: Marcus Vance
+                  - generic [ref=f18e593]: Design technologist
+          - generic [ref=f18e598]:
+            - paragraph [ref=f18e599]: 5 specialists across design, motion and engineering.
+            - button [ref=f18e600]
+  - generic [ref=f18e606]:
+    - generic [ref=f18e607]:
+      - generic [ref=f18e608]: Our Process
+      - generic [ref=f18e611]:
+        - heading "From Vision To Measurable Value" [level=2] [ref=f18e612]: From Vision ToMeasurable Value
+        - paragraph [ref=f18e613]: From breakthrough portfolios to performance-driven platforms — our numbers speak louder than words.
+    - generic [ref=f18e614]:
+      - generic [ref=f18e616] [cursor=pointer]:
+        - generic [ref=f18e617]:
+          - img "Art Direction and Wireframing" [ref=f18e618]
+          - generic [ref=f18e620]:
+            - generic [ref=f18e621]:
+              - generic [ref=f18e622]: Project Kick-off
+              - heading "Art Direction and Wireframing" [level=3] [ref=f18e623]
+            - generic [ref=f18e624]: ".01"
+        - generic:
+          - generic:
+            - generic: Project Kick-off
+            - heading "Art Direction and Wireframing" [level=3]
+          - generic: ".01"
+      - generic [ref=f18e628] [cursor=pointer]:
+        - generic:
+          - img "Design and Prototype Process"
+          - generic:
+            - generic:
+              - generic: Design Process
+              - heading "Design and Prototype Process" [level=3]
+            - generic: ".02"
+        - generic [ref=f18e629]:
+          - generic [ref=f18e630]:
+            - generic [ref=f18e631]: Design Process
+            - heading "Design and Prototype Process" [level=3] [ref=f18e632]
+          - generic [ref=f18e633]: ".02"
+      - generic [ref=f18e636] [cursor=pointer]:
+        - generic:
+          - img "Product Testing, Quality Control"
+          - generic:
+            - generic:
+              - generic: Testing
+              - heading "Product Testing, Quality Control" [level=3]
+            - generic: ".03"
+        - generic [ref=f18e637]:
+          - generic [ref=f18e638]:
+            - generic [ref=f18e639]: Testing
+            - heading "Product Testing, Quality Control" [level=3] [ref=f18e640]
+          - generic [ref=f18e641]: ".03"
+  - generic [ref=f18e645]:
+    - generic [ref=f18e646]:
+      - generic [ref=f18e647]:
+        - generic [ref=f18e648]: What our clients say
+        - heading "In their words." [level=2] [ref=f18e651]
+      - generic [ref=f18e652]:
+        - generic [ref=f18e653]: "4.9"
+        - generic [ref=f18e654]:
+          - generic "5 out of 5 stars" [ref=f18e655]
+          - paragraph [ref=f18e666]: Average from 60+ project reviews
+    - generic [ref=f18e667]:
+      - blockquote [ref=f18e672]:
+        - paragraph [ref=f18e673]: We were struggling to create a unified design experience until we worked with neoxis. The team not only brought consistency but elevated every screen with thoughtful detail.
+      - generic [ref=f18e675]:
+        - group "Choose a testimonial" [ref=f18e676]:
+          - button "Liam Chen, Product Manager, NovaStack" [pressed] [ref=f18e677]:
+            - generic [ref=f18e678]:
+              - generic [ref=f18e679]: Liam Chen
+              - generic [ref=f18e680]: Product Manager, NovaStack
+          - button "Marco Diaz, Founder, Crona Labs" [ref=f18e681]
+          - button "Sofia Reyes, Head of Growth, Mercury" [ref=f18e682]
+          - button "Hannah Lee, CMO, BookStore" [ref=f18e683]
+        - generic [ref=f18e684]:
+          - generic [ref=f18e685]: 01 / 04
+          - button "Previous testimonial" [ref=f18e686]
+          - button "Next testimonial" [ref=f18e689]
+    - generic [ref=f18e692]:
+      - generic [ref=f18e693]:
+        - generic [ref=f18e694]: 95%
+        - paragraph [ref=f18e695]: of clients report better ROI within a month of launch
+      - generic [ref=f18e696]:
+        - generic [ref=f18e697]: 88%
+        - paragraph [ref=f18e698]: come back to us for a second or third project
+  - generic [ref=f18e702]:
+    - generic [ref=f18e703]:
+      - generic [ref=f18e704]:
+        - generic [ref=f18e705]: Our Pricing
+        - heading [level=2] [ref=f18e708]:
+          - text: Pricing
+          - superscript [ref=f18e709]: (3)
+      - tablist "Pricing tier" [ref=f18e710]:
+        - tab "Standard" [selected] [ref=f18e712]
+        - tab "Premium" [ref=f18e713]
+    - generic [ref=f18e714]:
+      - article [ref=f18e715]:
+        - generic [ref=f18e716]:
+          - generic [ref=f18e717]:
+            - generic [ref=f18e718]: Low-budget
+            - generic [ref=f18e720]: 4-7 Days
+          - paragraph [ref=f18e721]:
+            - generic [ref=f18e722]: $500
+            - generic [ref=f18e723]: /Project
+          - paragraph [ref=f18e724]: Have design ready to build? Or small budget?
+          - button "Choose Plan" [ref=f18e725]
+        - generic [ref=f18e727]:
+          - paragraph [ref=f18e728]: "What's included:"
+          - list [ref=f18e729]:
+            - listitem [ref=f18e730]: Wireframe-ready project required
+            - listitem [ref=f18e734]: UI design using Figma or Framer
+            - listitem [ref=f18e738]: Online/remote collaboration
+            - listitem [ref=f18e742]: 4-7 day turnaround
+            - listitem [ref=f18e746]: Weekday delivery only
+      - article [ref=f18e750]:
+        - generic [ref=f18e751]:
+          - generic [ref=f18e752]:
+            - generic [ref=f18e753]: Standard Plan
+            - generic [ref=f18e755]: 15 Days
+          - paragraph [ref=f18e756]:
+            - generic [ref=f18e757]: $5.000
+            - generic [ref=f18e758]: /Project
+          - paragraph [ref=f18e759]: For growing brands ready to scale
+          - button "Choose Plan" [ref=f18e760]
+        - generic [ref=f18e762]:
+          - paragraph [ref=f18e763]: "What's included:"
+          - list [ref=f18e764]:
+            - listitem [ref=f18e765]: Wireframe assistance optional
+            - listitem [ref=f18e769]: Design in Figma or Framer
+            - listitem [ref=f18e773]: Flexible remote delivery
+            - listitem [ref=f18e777]: Detailed iteration & review flow
+            - listitem [ref=f18e781]: Weekday-only execution
+      - article [ref=f18e785]:
+        - generic [ref=f18e786]:
+          - generic [ref=f18e787]:
+            - generic [ref=f18e788]: For Advanced Project
+            - generic [ref=f18e790]: 3-6 Month
+          - paragraph [ref=f18e791]:
+            - generic [ref=f18e792]: Contact
+          - paragraph [ref=f18e793]: For enterprises and complex design systems
+          - button "Choose Plan" [ref=f18e794]
+        - generic [ref=f18e796]:
+          - paragraph [ref=f18e797]: "What's included:"
+          - list [ref=f18e798]:
+            - listitem [ref=f18e799]: Consultation-based scoping
+            - listitem [ref=f18e803]: Custom UX/UI, design system creation
+            - listitem [ref=f18e807]: Deep collaboration with your team
+            - listitem [ref=f18e811]: Phased delivery model
+            - listitem [ref=f18e815]: Full-stack design integration
+  - generic [ref=f18e821]:
+    - generic [ref=f18e822]:
+      - generic [ref=f18e823]: Find your answer in seconds.
+      - heading "FAQS" [level=2] [ref=f18e826]
+    - generic [ref=f18e827]:
+      - generic [ref=f18e828]:
+        - button "What’s the Ezando® progress like?" [expanded] [ref=f18e829]
+        - paragraph [ref=f18e835]: I specialize in UX/UI design, web development, and branding for individuals and businesses.
+      - generic [ref=f18e836]:
+        - button "Design delivery time estimate?" [ref=f18e837]
+        - paragraph [ref=f18e841]: Small projects ship in 4–7 days, standard projects in about 15 days, and larger engagements are scoped in phases over 3–6 months.
+      - generic [ref=f18e842]:
+        - button "What services do you offer?" [ref=f18e843]
+        - paragraph [ref=f18e847]: Branding, digital and motion design, web design, and end-to-end UI/UX, from research and wireframes to production-ready files.
+      - generic [ref=f18e848]:
+        - button "What if I don’t like design?" [ref=f18e849]
+        - paragraph [ref=f18e853]: Every plan includes review rounds. We iterate with you until the direction feels right before moving on.
+      - generic [ref=f18e854]:
+        - button "Are there any refund?" [ref=f18e855]
+        - paragraph [ref=f18e859]: If we have not started work, you get a full refund. After kickoff, refunds are prorated to the work delivered.
+  - generic [ref=f18e864]:
+    - generic [ref=f18e865]:
+      - generic [ref=f18e866]: Start a project
+      - paragraph [ref=f18e869]: Taking new projects
+    - generic [ref=f18e873]:
+      - generic [ref=f18e874]:
+        - generic [ref=f18e875]:
+          - heading "Have a project in mind?" [level=2] [ref=f18e876]: Have a projectin mind?
+          - paragraph [ref=f18e877]: Tell us what you're building. We'll reply with next steps and a rough plan.
+          - generic [ref=f18e878]:
+            - button "Email us hello@neoxis.design Copy email address" [ref=f18e879]:
+              - generic [ref=f18e880]:
+                - generic [ref=f18e881]: Email us
+                - generic [ref=f18e882]: hello@neoxis.design
+              - generic [ref=f18e887]: Copy email address
+            - button "Prefer to talk? Book a 30-minute intro call" [ref=f18e888]:
+              - generic [ref=f18e889]:
+                - generic [ref=f18e890]: Prefer to talk?
+                - generic [ref=f18e891]: Book a 30-minute intro call
+        - paragraph [ref=f18e898]:
+          - generic [ref=f18e899]: You'll hear from a designer, not a bot.
+          - text: Replies within 24 hours
+      - generic [ref=f18e901]:
+        - group "What do you need? Pick any" [ref=f18e902]:
+          - generic [ref=f18e903]:
+            - text: What do you need?
+            - generic [ref=f18e904]: Pick any
+          - generic [ref=f18e905]:
+            - button "Branding Design" [ref=f18e906]
+            - button "Digital Design" [ref=f18e907]
+            - button "Web Design" [ref=f18e908]
+            - button "UI,UX design" [ref=f18e909]
+            - button "Something else" [ref=f18e910]
+        - group "Budget" [ref=f18e911]:
+          - generic [ref=f18e913]:
+            - button "< $1,000" [ref=f18e914]
+            - button "$1,000 - $5,000" [ref=f18e915]
+            - button "$5,000 - $10,000" [ref=f18e916]
+            - button "$10,000 - $20,000" [ref=f18e917]
+            - button "> $20,000" [ref=f18e918]
+        - generic [ref=f18e919]:
+          - generic [ref=f18e920]:
+            - text: Your name
+            - textbox "Your name" [ref=f18e921]:
+              - /placeholder: Alex Morgan
+          - generic [ref=f18e922]:
+            - text: Email
+            - textbox "Email" [ref=f18e923]:
+              - /placeholder: alex@company.com
+        - generic [ref=f18e924]:
+          - text: About the project
+          - textbox "About the project" [ref=f18e925]:
+            - /placeholder: What are you building, and when do you need it?
+        - generic [ref=f18e926]:
+          - paragraph [ref=f18e927]: We only use your details to reply to this message.
+          - button [ref=f18e928]
+  - contentinfo [ref=f18e933]:
+    - generic [ref=f18e935]:
+      - generic [ref=f18e936]:
+        - generic [ref=f18e937]:
+          - img "neoxis studio team at work" [ref=f18e939]
+          - generic [ref=f18e940]:
+            - generic [ref=f18e941]: Stay connected
+            - link "hello@neoxis.design" [ref=f18e943] [cursor=pointer]:
+              - /url: mailto:hello@neoxis.design
+        - navigation "Footer navigation" [ref=f18e944]:
+          - paragraph [ref=f18e945]: Navigation
+          - list [ref=f18e946]:
+            - listitem [ref=f18e947]:
+              - button "Home" [ref=f18e948]
+            - listitem [ref=f18e949]:
+              - button "Studio" [ref=f18e950]
+            - listitem [ref=f18e951]:
+              - button "Projects" [ref=f18e952]
+            - listitem [ref=f18e953]:
+              - button "Blog" [ref=f18e954]
+        - generic [ref=f18e955]:
+          - paragraph [ref=f18e956]: Social media
+          - list [ref=f18e957]:
+            - listitem [ref=f18e958]:
+              - link "Twitter" [ref=f18e959] [cursor=pointer]:
+                - /url: https://twitter.com
+            - listitem [ref=f18e960]:
+              - link "Dribbble" [ref=f18e961] [cursor=pointer]:
+                - /url: https://dribbble.com
+            - listitem [ref=f18e962]:
+              - link "Instagram" [ref=f18e963] [cursor=pointer]:
+                - /url: https://instagram.com
+            - listitem [ref=f18e964]:
+              - link "Facebook" [ref=f18e965] [cursor=pointer]:
+                - /url: https://facebook.com
+      - generic [ref=f18e966]:
+        - generic [ref=f18e967]: ©2026 neoxis Studio. All Rights Reserved
+        - link "Terms of Use" [ref=f18e968] [cursor=pointer]:
+          - /url: "#"
+        - generic [ref=f18e969]:
+          - link "Privacy Policy" [ref=f18e970] [cursor=pointer]:
+            - /url: "#"
+          - button "Back to top" [ref=f18e971]
+      - generic [aria-hidden] [ref=f18e974]:
+        - generic [ref=f18e975]: neoxis
+        - generic [ref=f18e976]: ®

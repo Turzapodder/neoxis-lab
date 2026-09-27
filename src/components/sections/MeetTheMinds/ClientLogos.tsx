@@ -2,9 +2,9 @@ import React from 'react';
 
 const LOGO_CLASS = 'flex items-center justify-center text-neutral-700 hover:text-neutral-950 transition-colors';
 
-/** Six minimalist client wordmarks in a 3×2 grid. */
-export const ClientLogos: React.FC = () => (
-  <div className="grid grid-cols-3 gap-y-5 gap-x-2 items-center my-6 py-1 select-none">
+/** Six minimalist client wordmarks; the container layout comes from `className`. */
+export const ClientLogos: React.FC<{ className?: string }> = ({ className = 'grid grid-cols-3 gap-y-5 gap-x-2 items-center' }) => (
+  <div className={`select-none ${className}`}>
     <div className="flex items-center justify-center text-neutral-600 hover:text-neutral-950 transition-colors">
       <span className="font-serif italic text-lg sm:text-xl font-bold tracking-wider">thea</span>
     </div>

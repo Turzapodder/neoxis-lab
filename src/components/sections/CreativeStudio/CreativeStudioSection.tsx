@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
+import chromeBg from '@/assets/images/slogan.png';
 import { FLOATING_CARDS } from '@/data/hero';
-import { FloatingActions } from './FloatingActions';
 import { FloatingImage } from './FloatingImage';
+import { StudioFrameDetails } from './StudioFrameDetails';
 import { StudioStatement } from './StudioStatement';
 import { useStudioScrollAnimation } from './useStudioScrollAnimation';
 
@@ -46,16 +47,14 @@ export const CreativeStudioSection: React.FC<CreativeStudioSectionProps> = ({ on
       className="relative w-full max-w-full bg-[var(--color-canvas-bg)] select-none transition-colors duration-300"
       style={{ overflowX: 'clip', overflowY: 'visible' }}
     >
-      {/* Pinned Viewport Container */}
+      {/* Pinned viewport container */}
       <div
         ref={pinContainerRef}
         className="relative w-full max-w-full h-screen flex items-center justify-center overflow-x-clip overflow-y-visible"
       >
-        {/* 1. BASE LAYER: Light canvas */}
-        <div className={`${LAYER_CLASS} z-10 overflow-hidden bg-[#F8F9FC]`}>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] sm:w-[900px] h-[500px] rounded-full blur-[140px] pointer-events-none bg-violet-300/30" />
-          <div className="absolute bottom-10 right-1/4 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none bg-pink-300/25" />
-
+        {/* 1. BASE LAYER: light canvas */}
+        <div className={`${LAYER_CLASS} z-10 overflow-hidden bg-[var(--color-canvas-bg)]`}>
+          <StudioFrameDetails variant="base" />
           <StudioStatement
             variant="base"
             imagesRowRef={imagesRowRef}
@@ -77,40 +76,23 @@ export const CreativeStudioSection: React.FC<CreativeStudioSectionProps> = ({ on
           />
         ))}
 
-        {/* 3. REVEAL OVERLAY LAYER: Dark canvas revealed on scroll */}
+        {/* 3. OVERLAY: framed dark card that rises over the base layer (decorative duplicate) */}
         <div
           ref={overlayRef}
-          className={`${LAYER_CLASS} z-20 pointer-events-none bg-[#090A0F]`}
+          aria-hidden
+          className={`${LAYER_CLASS} z-20 pointer-events-none bg-black`}
           style={{ clipPath: 'inset(100% 0 0 0)' }}
         >
-          <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full blur-[130px] pointer-events-none z-0 bg-violet-900/20" />
-          <div className="absolute bottom-1/4 right-1/3 w-[600px] h-[600px] rounded-full blur-[140px] pointer-events-none z-0 bg-red-900/15" />
-
-          {/* Ambient fluid wavy contour at bottom */}
-          <div className="absolute bottom-0 inset-x-0 h-44 sm:h-56 md:h-72 pointer-events-none overflow-hidden z-0 opacity-70">
-            <svg
-              viewBox="0 0 1440 280"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-full h-full object-cover object-bottom"
-              preserveAspectRatio="none"
-            >
-              <path
-                d="M-50 180 C 280 80, 520 250, 820 130 C 1120 10, 1320 170, 1500 90 L 1500 280 L -50 280 Z"
-                fill="url(#wave-gradient)"
-                stroke="rgba(30, 32, 45, 0.95)"
-                strokeWidth="1.5"
-              />
-              <defs>
-                <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#0F1018" stopOpacity="0.8" />
-                  <stop offset="50%" stopColor="#141520" stopOpacity="0.3" />
-                  <stop offset="100%" stopColor="#090A0F" stopOpacity="0.6" />
-                </linearGradient>
-              </defs>
-            </svg>
+          <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
+            <img
+              src={chromeBg}
+              alt=""
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220%] sm:w-[130%] max-w-none grayscale opacity-25"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
           </div>
 
+          <StudioFrameDetails variant="overlay" />
           <StudioStatement
             variant="overlay"
             imagesRowRef={overlayImagesRowRef}
@@ -118,8 +100,6 @@ export const CreativeStudioSection: React.FC<CreativeStudioSectionProps> = ({ on
             buttonSlotRef={overlayButtonSlotRef}
           />
         </div>
-
-        <FloatingActions onInquiryClick={onWorkWithUsClick} />
       </div>
     </section>
   );

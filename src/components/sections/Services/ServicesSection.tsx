@@ -21,9 +21,9 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onExploreClick
 
   return (
     <section ref={sectionRef} className="relative w-full bg-white p-1.5 sm:p-2">
-      <div className="relative w-full rounded-[24px] sm:rounded-[32px] md:rounded-[40px] overflow-hidden bg-black text-white">
+      <div data-wipe className="relative w-full rounded-[24px] sm:rounded-[32px] md:rounded-[40px] overflow-hidden bg-black text-white">
         {/* Grayscale smoke backdrop */}
-        <div className="absolute inset-0 z-0 pointer-events-none select-none">
+        <div data-wipe-bg className="absolute inset-0 z-0 pointer-events-none select-none">
           <img
             src={smokeBg}
             alt=""

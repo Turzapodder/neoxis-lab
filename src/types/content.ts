@@ -1,3 +1,4 @@
+import type { LucideIcon } from 'lucide-react';
 import type { SectionId } from '@/constants/sections';
 
 // ── Navigation ────────────────────────────────────────────────────────────────
@@ -83,6 +84,13 @@ export interface Service {
   slides: ServiceSlide[];
 }
 
+export interface StudioReason {
+  id: string;
+  icon: LucideIcon;
+  title: string;
+  text: string;
+}
+
 export interface ProcessStep {
   id: string;
   label: string;
@@ -113,18 +121,8 @@ export interface Testimonial {
 
 export interface ClientStat {
   id: string;
-  label: string;
   value: string;
-  caption?: string;
-  avatars?: readonly string[];
-}
-
-export type BrandMarkName = 'zantic' | 'bookstore' | 'wager' | 'crona' | 'mercury';
-
-export interface Partner {
-  name: string;
-  mark: BrandMarkName;
-  className: string;
+  caption: string;
 }
 
 // ── Pricing, FAQ, contact ─────────────────────────────────────────────────────

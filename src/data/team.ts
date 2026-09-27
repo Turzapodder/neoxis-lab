@@ -2,7 +2,6 @@ import kateImg from '@/assets/images/team/kate.jpg';
 import leoImg from '@/assets/images/team/leo.jpg';
 import siennaImg from '@/assets/images/team/sienna.jpg';
 import tobiasImg from '@/assets/images/team/tobias.jpg';
-import randalImg from '@/assets/images/team/randal.jpg';
 import elenaImg from '@/assets/images/team/elena.jpg';
 import marcusImg from '@/assets/images/team/marcus.jpg';
 import type { TeamMember } from '@/types/content';
@@ -54,6 +53,5 @@ export const TEAM_MEMBERS: TeamMember[] = [
 /** Avatar sets reused in small "team" stacks across sections. */
 export const TEAM_AVATARS = {
   meetTheMinds: [kateImg, leoImg, tobiasImg],
-  happyPeople: [kateImg, randalImg, tobiasImg],
   contact: [kateImg, leoImg, siennaImg, marcusImg],
 } as const;

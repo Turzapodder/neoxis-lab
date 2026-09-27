@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import silkBg from '@/assets/images/header.png';
+import silkBg from '@/assets/images/pricing.jpg';
 import { SectionTag } from '@/components/ui/SectionTag';
 import { PRICING_PLANS, PRICING_TIERS } from '@/data/pricing';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
@@ -19,9 +19,9 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onChoosePlan }) 
 
   return (
     <section ref={sectionRef} className="relative w-full bg-white p-1.5 sm:p-2">
-      <div className="relative w-full rounded-[24px] sm:rounded-[32px] md:rounded-[40px] overflow-hidden bg-[#0b0f17] text-white">
+      <div data-wipe className="relative w-full rounded-[24px] sm:rounded-[32px] md:rounded-[40px] overflow-hidden bg-[#0b0f17] text-white">
         {/* Blue-tinted silk backdrop */}
-        <div className="absolute inset-0 z-0 pointer-events-none select-none">
+        <div data-wipe-bg className="absolute inset-0 z-0 pointer-events-none select-none">
           <img
             src={silkBg}
             alt=""
