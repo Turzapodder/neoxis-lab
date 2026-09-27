@@ -25,18 +25,73 @@ export const SelectedWorkSection: React.FC<SelectedWorkSectionProps> = ({ onSele
   const containerRef = useRef<HTMLDivElement>(null);
   const row1Ref = useRef<HTMLDivElement>(null);
   const row2Ref = useRef<HTMLDivElement>(null);
+  const mobileCardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const progressBarsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useProjectStackAnimation({
     containerRef,
     row1Ref,
     row2Ref,
+    mobileCardsRef,
+    progressBarsRef,
   });
 
   return (
     <section className="relative w-full bg-[var(--color-canvas-bg)] text-[var(--color-text-primary)] py-20 sm:py-24 md:py-32 transition-colors duration-500 overflow-visible">
       <div className="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16">
         {/* 1. TOP HEADER GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-end justify-between gap-6 pb-12 sm:pb-16 md:pb-20">
+        {/* Mobile Sticky Header (< md): Keeps "Selected work" visible until last card is scrolled */}
+        <div className="md:hidden sticky top-0 z-30 bg-[var(--color-canvas-bg)]/95 backdrop-blur-md pt-3 pb-2.5 mb-3 -mx-5 px-5 border-b border-black/[0.04]">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-col items-start min-w-0">
+              {/* Subtitle Marquee */}
+              <div className="inline-flex items-center gap-2 w-48 mb-1 select-none overflow-hidden">
+                <svg className="w-3 h-3 shrink-0 text-neutral-400" viewBox="0 0 78 83" fill="currentColor">
+                  <path d="M32.7 31.8V5.4H44.3V31.8H32.7ZM26.9 41.8L4.1 28.6L9.9 18.6L32.6 31.8L26.9 41.8ZM49.9 41.8L44.3 31.9L67.1 18.6L72.9 28.6L49.9 41.8ZM67.1 65L44.1 51.8L49.9 41.9L72.9 55L67.1 65ZM9.9 65L4.1 55L26.9 41.9L32.7 51.8L9.9 65ZM32.7 78.2V51.9H44.1V78.2H32.7Z" />
+                </svg>
+                <div className="relative flex-1 overflow-hidden [mask-image:linear-gradient(90deg,transparent_0%,black_15%,black_85%,transparent_100%)]">
+                  <div className="flex whitespace-nowrap animate-[marquee_14s_linear_infinite] will-change-transform text-[10px] font-neue font-medium tracking-[0.18em] text-neutral-500 uppercase">
+                    <span>Our Portfolio —&nbsp;</span>
+                    <span>Our Portfolio —&nbsp;</span>
+                    <span>Our Portfolio —&nbsp;</span>
+                    <span>Our Portfolio —&nbsp;</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Display Title */}
+              <h2 className="font-clash text-2xl sm:text-3xl font-bold tracking-tight text-neutral-950 uppercase leading-none select-none">
+                Selected{' '}
+                <span className="text-neutral-400 font-bold lowercase tracking-normal">work©</span>
+              </h2>
+            </div>
+
+            {/* Counter */}
+            <div className="font-clash text-xl sm:text-2xl text-neutral-400 font-light select-none shrink-0">
+              ({String(featuredProjects.length).padStart(2, '0')})
+            </div>
+          </div>
+
+          {/* 4-Segment Dynamic Progress Indicator */}
+          <div className="flex items-center gap-1.5 w-full mt-2.5">
+            {featuredProjects.map((p, idx) => (
+              <div
+                key={p.id}
+                className="flex-1 h-1 rounded-full bg-neutral-200/80 overflow-hidden relative"
+              >
+                <div
+                  ref={(el) => {
+                    progressBarsRef.current[idx] = el;
+                  }}
+                  className="h-full w-full bg-neutral-950 origin-left scale-x-0"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop Header (>= md): Classic large display layout */}
+        <div className="hidden md:grid grid-cols-[1fr_auto] items-end justify-between gap-6 pb-12 sm:pb-16 md:pb-20">
           <div className="flex flex-col items-start">
             {/* Subtitle Marquee Component */}
             <div className="inline-flex items-center gap-2.5 w-60 sm:w-72 mb-4 sm:mb-6 select-none overflow-hidden">
@@ -73,11 +128,35 @@ export const SelectedWorkSection: React.FC<SelectedWorkSectionProps> = ({ onSele
         </div>
 
         {/* 2. 3D PERSPECTIVE STACKING PROJECT DECK */}
-        <div ref={containerRef} className="relative flex flex-col [perspective:1200px]">
+        {/* Mobile View (< md): 1 Card per row - Stays in a single place directly below sticky header */}
+        <div className="md:hidden relative flex flex-col w-full pb-12 sm:pb-16">
+          {/* Subtle Ambient Radial Glow behind the active mobile card stage */}
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-tr from-purple-500/10 via-indigo-500/5 to-transparent rounded-full blur-3xl pointer-events-none" />
+
+          {featuredProjects.map((project, index) => (
+            <div
+              key={project.id}
+              ref={(el) => {
+                mobileCardsRef.current[index] = el;
+              }}
+              style={{
+                zIndex: index + 10,
+              }}
+              className={`sticky top-[86px] sm:top-[96px] w-full will-change-transform ${
+                index > 0 ? 'mt-6 sm:mt-8' : ''
+              }`}
+            >
+              <ProjectCard project={project} onSelect={onSelectProject} />
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop View (>= md): 2-Row 3D Deck Stacking */}
+        <div ref={containerRef} className="hidden md:flex relative flex-col [perspective:1200px]">
           {/* ROW 1: Sticky 3D Receding Layer */}
           <div
             ref={row1Ref}
-            className="md:sticky md:top-24 lg:md:top-28 z-10 grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-8 will-change-transform"
+            className="sticky top-24 lg:top-28 z-10 grid grid-cols-2 gap-5 sm:gap-6 lg:gap-8 will-change-transform"
           >
             {row1Projects.map((project) => (
               <ProjectCard key={project.id} project={project} onSelect={onSelectProject} />
@@ -87,7 +166,7 @@ export const SelectedWorkSection: React.FC<SelectedWorkSectionProps> = ({ onSele
           {/* ROW 2: Glides over Row 1 with smooth overlap */}
           <div
             ref={row2Ref}
-            className="relative z-20 mt-5 sm:mt-6 md:mt-8 lg:mt-10 grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-8"
+            className="relative z-20 mt-5 sm:mt-6 md:mt-8 lg:mt-10 grid grid-cols-2 gap-5 sm:gap-6 lg:gap-8"
           >
             {row2Projects.map((project) => (
               <ProjectCard key={project.id} project={project} onSelect={onSelectProject} />
