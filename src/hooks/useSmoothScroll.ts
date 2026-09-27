@@ -1,18 +1,12 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import Lenis from 'lenis';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import { gsap, ScrollTrigger } from '@/lib/gsap';
+import { setLenis } from '@/lib/lenis';
 
 /**
  * Initializes Lenis smooth scrolling and syncs it with GSAP ScrollTrigger.
  */
 export function useSmoothScroll(enabled: boolean = true) {
-  const lenisRef = useRef<Lenis | null>(null);
-
   useEffect(() => {
     if (!enabled) return;
 
@@ -23,11 +17,7 @@ export function useSmoothScroll(enabled: boolean = true) {
       gestureOrientation: 'vertical',
       smoothWheel: true,
     });
-
-    lenisRef.current = lenis;
-    if (typeof window !== 'undefined') {
-      (window as any).lenis = lenis;
-    }
+    setLenis(lenis);
 
     // Sync Lenis -> GSAP ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update);
@@ -42,12 +32,7 @@ export function useSmoothScroll(enabled: boolean = true) {
     return () => {
       gsap.ticker.remove(tickerCallback);
       lenis.destroy();
-      lenisRef.current = null;
-      if (typeof window !== 'undefined') {
-        (window as any).lenis = null;
-      }
+      setLenis(null);
     };
   }, [enabled]);
-
-  return lenisRef;
 }
