@@ -4,7 +4,16 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { StatsBar } from './components/StatsBar';
 import { CreativeStudioSection } from './components/CreativeStudioSection';
+import { MeetTheMindsSection } from './components/MeetTheMindsSection';
+import { SelectedWorkSection } from './components/SelectedWorkSection';
+import { ServicesSection } from './components/ServicesSection';
+import { ProcessSection } from './components/ProcessSection';
 import { TeamSection } from './components/TeamSection';
+import { TestimonialsSection } from './components/TestimonialsSection';
+import { PricingSection } from './components/PricingSection';
+import { FaqSection } from './components/FaqSection';
+import { ContactSection } from './components/ContactSection';
+import { Footer } from './components/Footer';
 import { MenuModal } from './components/MenuModal';
 import { ConnectModal } from './components/ConnectModal';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
@@ -47,6 +56,12 @@ const AgencyLanding: React.FC = () => {
               if (tab === 'Team') {
                 const el = document.getElementById('team-section');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
+              } else if (tab === 'Project') {
+                const el = document.getElementById('selected-work-section');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              } else if (tab === 'Service') {
+                const el = document.getElementById('services-section');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
               } else if (tab === 'Studio') {
                 const el = document.getElementById('creative-studio-section');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -60,7 +75,7 @@ const AgencyLanding: React.FC = () => {
             <Hero
               onConnectClick={() => setIsConnectOpen(true)}
               onViewWorksClick={() => {
-                const el = document.getElementById('creative-studio-section');
+                const el = document.getElementById('selected-work-section');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
             />
@@ -84,6 +99,40 @@ const AgencyLanding: React.FC = () => {
       </div>
 
       {/* ========================================= */}
+      {/* 2.5 MEET THE MINDS BEHIND THE WORK        */}
+      {/* ========================================= */}
+      <div id="meet-the-minds-section" className="relative w-full z-35">
+        <MeetTheMindsSection
+          onBookCallClick={() => setIsConnectOpen(true)}
+        />
+      </div>
+
+      {/* ========================================= */}
+      {/* 2.6 SELECTED WORK SHOWCASE                */}
+      {/* ========================================= */}
+      <div id="selected-work-section" className="relative w-full z-35">
+        <SelectedWorkSection
+          onSelectProject={() => setIsConnectOpen(true)}
+        />
+      </div>
+
+      {/* ========================================= */}
+      {/* 2.7 OUR SERVICES + MINDS (DARK)           */}
+      {/* ========================================= */}
+      <div id="services-section" className="relative w-full z-35">
+        <ServicesSection
+          onExploreClick={() => setIsConnectOpen(true)}
+        />
+      </div>
+
+      {/* ========================================= */}
+      {/* 2.8 OUR PROCESS                           */}
+      {/* ========================================= */}
+      <div id="process-section" className="relative w-full z-30">
+        <ProcessSection />
+      </div>
+
+      {/* ========================================= */}
       {/* 3. MEET OUR TEAM SECTION                  */}
       {/* ========================================= */}
       <div id="team-section" className="relative w-full z-30">
@@ -91,6 +140,43 @@ const AgencyLanding: React.FC = () => {
           onMoreAboutUsClick={() => setIsConnectOpen(true)}
           onSelectMember={() => setIsConnectOpen(true)}
         />
+      </div>
+
+      {/* ========================================= */}
+      {/* 3.5 TESTIMONIALS + PARTNERS               */}
+      {/* ========================================= */}
+      <div id="testimonials-section" className="relative w-full z-30">
+        <TestimonialsSection />
+      </div>
+
+      {/* ========================================= */}
+      {/* 3.6 PRICING                               */}
+      {/* ========================================= */}
+      <div id="pricing-section" className="relative w-full z-30">
+        <PricingSection
+          onChoosePlan={() => setIsConnectOpen(true)}
+        />
+      </div>
+
+      {/* ========================================= */}
+      {/* 3.7 FAQS                                  */}
+      {/* ========================================= */}
+      <div id="faq-section" className="relative w-full z-30">
+        <FaqSection />
+      </div>
+
+      {/* ========================================= */}
+      {/* 3.8 CONTACT                               */}
+      {/* ========================================= */}
+      <div id="contact-section" className="relative w-full z-30">
+        <ContactSection />
+      </div>
+
+      {/* ========================================= */}
+      {/* 3.9 FOOTER                                */}
+      {/* ========================================= */}
+      <div id="footer-section" className="relative w-full z-30">
+        <Footer />
       </div>
 
       {/* ========================================= */}

@@ -25,6 +25,9 @@ export function useSmoothScroll(enabled: boolean = true) {
     });
 
     lenisRef.current = lenis;
+    if (typeof window !== 'undefined') {
+      (window as any).lenis = lenis;
+    }
 
     // Sync Lenis -> GSAP ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update);
@@ -40,6 +43,9 @@ export function useSmoothScroll(enabled: boolean = true) {
       gsap.ticker.remove(tickerCallback);
       lenis.destroy();
       lenisRef.current = null;
+      if (typeof window !== 'undefined') {
+        (window as any).lenis = null;
+      }
     };
   }, [enabled]);
 
