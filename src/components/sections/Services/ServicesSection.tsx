@@ -36,10 +36,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onExploreClick
           <div className="flex items-start justify-between gap-6 pb-8 sm:pb-10">
             <div className="flex flex-col items-start">
               <SectionTag tone="light" className="text-white mb-3 sm:mb-5">
-                Shape what's next.
+                Superpowers unlocked.
               </SectionTag>
               <h2 className="font-clash text-5xl sm:text-7xl md:text-8xl lg:text-[112px] font-bold tracking-tight leading-[0.95] select-none">
-                Our Services
+                Capabilities
               </h2>
             </div>
             <span className="font-neue text-xl sm:text-2xl text-neutral-500 mt-10 sm:mt-16">04</span>

@@ -2,8 +2,8 @@
 export const CONTACT_EMAIL = 'hello@neoxis.design';
 
 export const AVAILABILITY = {
-  status: 'Taking new projects',
-  responseTime: 'Replies within 24 hours',
+  status: 'Open for new collabs',
+  responseTime: 'Fast response within 24h',
 } as const;
 
 export const SOCIAL_PROFILES = {

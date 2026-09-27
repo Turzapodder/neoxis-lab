@@ -55,7 +55,7 @@ export const StudioStatement: React.FC<StudioStatementProps> = ({
       <h2
         className={`font-clash font-bold text-[22px] sm:text-[34px] md:text-[clamp(40px,5.6vw,56px)] lg:text-[clamp(56px,5.7vw,76px)] xl:text-[clamp(80px,6.6vw,98px)] leading-[1.2] tracking-[-0.015em] [word-spacing:0.14em] ${styles.text}`}
       >
-        {/* LINE 1: We [cards] are a creative */}
+        {/* LINE 1: We [cards] build iconic */}
         <div className={LINE_CLASS}>
           <span>We</span>
           {/* Slots that receive the flying project cards */}
@@ -67,12 +67,12 @@ export const StudioStatement: React.FC<StudioStatementProps> = ({
             <div className={SLOT_CLASS} />
             <div className={SLOT_CLASS} />
           </div>
-          <span>&nbsp;are a creative</span>
+          <span>&nbsp;build iconic</span>
         </div>
 
-        {/* LINE 2: studio (→) dedicated */}
+        {/* LINE 2: digital (→) experiences */}
         <div className={NEXT_LINE_CLASS}>
-          <span>studio</span>
+          <span>digital</span>
           <div
             ref={arrowRef}
             className={`relative inline-flex items-center justify-center ${SQUARE_CLASS} ${INLINE_GAP} shrink-0 align-middle rounded-full border-2 overflow-hidden ${styles.arrow}`}
@@ -83,12 +83,12 @@ export const StudioStatement: React.FC<StudioStatementProps> = ({
               className="w-[42%] h-[42%] animate-[arrow-nudge_1.8s_ease-in-out_infinite] motion-reduce:animate-none"
             />
           </div>
-          <span className={styles.muted}>&nbsp;dedicated</span>
+          <span className={styles.muted}>&nbsp;experiences</span>
         </div>
 
-        {/* LINE 3: to craft a [Work with us] solution */}
+        {/* LINE 3: engineered for [Build with us] scale */}
         <div className={NEXT_LINE_CLASS}>
-          <span className={styles.muted}>to craft a</span>
+          <span className={styles.muted}>engineered for</span>
           <div ref={buttonSlotRef} className={`relative inline-flex items-center shrink-0 ${INLINE_GAP} overflow-hidden`}>
             <button
               type="button"
@@ -96,13 +96,13 @@ export const StudioStatement: React.FC<StudioStatementProps> = ({
               tabIndex={isBase ? undefined : -1}
               className={`group/cta inline-flex items-center gap-2 sm:gap-3 h-8 sm:h-11 md:h-14 lg:h-16 pl-3 sm:pl-5 md:pl-6 pr-1 sm:pr-1.5 rounded-full font-neue font-medium text-[10px] sm:text-xs md:text-sm lg:text-base tracking-normal [word-spacing:normal] whitespace-nowrap transition-colors active:scale-95 ${styles.button}`}
             >
-              Work with us
+              Build with us
               <span className={`h-6 sm:h-8 md:h-11 lg:h-13 aspect-square rounded-full flex items-center justify-center ${styles.buttonIcon}`}>
                 <ArrowRight aria-hidden className="w-[45%] h-[45%] transition-transform group-hover/cta:translate-x-0.5" />
               </span>
             </button>
           </div>
-          <span className={styles.muted}>&nbsp;solution</span>
+          <span className={styles.muted}>&nbsp;scale</span>
         </div>
       </h2>
     </div>

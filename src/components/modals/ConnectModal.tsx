@@ -32,8 +32,8 @@ export const ConnectModal: React.FC<ConnectModalProps> = ({ isOpen, onClose }) =
       <div className="relative w-full max-w-lg bg-[#FAFBFD]/95 backdrop-blur-2xl rounded-[28px] p-6 sm:p-8 border border-black/10 shadow-2xl z-10 transition-colors duration-300">
         <div className="flex items-center justify-between pb-4 border-b border-black/10">
           <div>
-            <h3 className="font-clash text-2xl font-bold text-neutral-950">Let&apos;s Connect</h3>
-            <p className="font-neue text-xs text-neutral-500 mt-0.5">Tell us about your project vision</p>
+            <h3 className="font-clash text-2xl font-bold text-neutral-950">Start A Collab</h3>
+            <p className="font-neue text-xs text-neutral-500 mt-0.5">Tell us what you&apos;re cooking up and how we can elevate it</p>
           </div>
           <button
             onClick={onClose}
@@ -49,8 +49,8 @@ export const ConnectModal: React.FC<ConnectModalProps> = ({ isOpen, onClose }) =
             <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-500 border border-emerald-500/30 flex items-center justify-center text-xl">
               ✓
             </div>
-            <h4 className="font-clash text-xl font-semibold text-neutral-950">Message Received</h4>
-            <p className="font-neue text-xs text-neutral-500">We will get back to you within 24 hours.</p>
+            <h4 className="font-clash text-xl font-semibold text-neutral-950">Inquiry Locked In!</h4>
+            <p className="font-neue text-xs text-neutral-500">We&apos;ll review your brief and ping you back within 24 hours.</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
@@ -67,7 +67,7 @@ export const ConnectModal: React.FC<ConnectModalProps> = ({ isOpen, onClose }) =
               <textarea
                 rows={3}
                 required
-                placeholder="We're looking to build a new brand identity and digital experience..."
+                placeholder="Give us the lowdown — what are you building, your dream launch date, and your target goals?"
                 className={`${FIELD_CLASS} resize-none`}
               />
             </div>
@@ -75,7 +75,7 @@ export const ConnectModal: React.FC<ConnectModalProps> = ({ isOpen, onClose }) =
               type="submit"
               className="mt-2 bg-neutral-950 text-white py-3 rounded-full font-clash font-semibold text-sm hover:bg-neutral-850 transition-all cursor-pointer shadow-lg"
             >
-              Send Inquiry →
+              Launch Project Inquiry →
             </button>
           </form>
         )}

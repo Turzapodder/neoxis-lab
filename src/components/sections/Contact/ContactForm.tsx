@@ -14,14 +14,14 @@ export const ContactForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-9">
       <ChipGroup
-        legend="What do you need?"
-        hint="Pick any"
+        legend="What are we building?"
+        hint="Select any"
         options={PROJECT_TYPES}
         isSelected={(type) => projectTypes.includes(type)}
         onToggle={toggleProjectType}
       />
 
-      <ChipGroup legend="Budget" options={BUDGET_OPTIONS} isSelected={(option) => budget === option} onToggle={toggleBudget} />
+      <ChipGroup legend="Target budget" options={BUDGET_OPTIONS} isSelected={(option) => budget === option} onToggle={toggleBudget} />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
         <label className={LABEL_CLASS}>
@@ -35,22 +35,22 @@ export const ContactForm: React.FC = () => {
       </div>
 
       <label className={LABEL_CLASS}>
-        About the project
+        Project brief &amp; vision
         <textarea
           name="message"
           rows={3}
-          placeholder="What are you building, and when do you need it?"
+          placeholder="Give us the TL;DR — what are you building, your dream launch date, and what does success look like?"
           className={`${FIELD_CLASS} resize-none`}
         />
       </label>
 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <p className="text-xs text-neutral-500 max-w-[260px]">We only use your details to reply to this message.</p>
+        <p className="text-xs text-neutral-500 max-w-[260px]">No spam or pushy sales reps. Straight to a lead designer.</p>
         <button
           type="submit"
           className="group/btn self-start sm:self-auto flex items-center gap-3 rounded-full bg-white pl-6 pr-1.5 py-1.5 text-sm font-medium text-neutral-950 hover:bg-neutral-200 active:scale-95 transition-all"
         >
-          {submitted ? 'Message sent' : 'Send message'}
+          {submitted ? 'Brief received!' : 'Launch Inquiry'}
           <span className="w-9 h-9 rounded-full bg-neutral-950 text-white flex items-center justify-center">
             {submitted ? (
               <Check className="w-4 h-4" />

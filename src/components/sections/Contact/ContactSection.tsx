@@ -26,7 +26,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onBookCallClick 
             {/* Top bar */}
             <div className="flex flex-wrap items-center justify-between gap-4 pb-12 sm:pb-16">
               <SectionTag tone="light" className="text-white">
-                Start a project
+                Let&apos;s make history
               </SectionTag>
               <p className="flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
                 <span className="relative flex w-2 h-2">
@@ -42,18 +42,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onBookCallClick 
               <div className="lg:col-span-5 flex flex-col justify-between gap-12">
                 <div>
                   <h2 className="font-clash text-[2.5rem] sm:text-6xl lg:text-[2.625rem] xl:text-6xl 2xl:text-7xl font-bold tracking-tight leading-[1.02]">
-                    Have a project
+                    Got a vision?
                     <br />
-                    in mind?
+                    Let&apos;s build it.
                   </h2>
                   <p className="font-neue text-base text-neutral-400 leading-relaxed mt-6 max-w-[360px]">
-                    Tell us what you're building. We'll reply with next steps and a rough plan.
+                    Tell us what you&apos;re cooking up. We&apos;ll get back to you with an honest breakdown and action plan within 24 hours.
                   </p>
 
                   <div className="mt-10 border-t border-white/10">
                     <button type="button" onClick={() => copy(CONTACT_EMAIL)} className={CHANNEL_CLASS}>
                       <span>
-                        <span className="block text-xs text-neutral-500">Email us</span>
+                        <span className="block text-xs text-neutral-500">Direct line</span>
                         <span className="block text-lg sm:text-xl mt-1">{CONTACT_EMAIL}</span>
                       </span>
                       <span className={CHANNEL_ICON_CLASS} aria-hidden>
@@ -66,8 +66,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onBookCallClick 
 
                     <button type="button" onClick={onBookCallClick} className={CHANNEL_CLASS}>
                       <span>
-                        <span className="block text-xs text-neutral-500">Prefer to talk?</span>
-                        <span className="block text-lg sm:text-xl mt-1">Book a 30-minute intro call</span>
+                        <span className="block text-xs text-neutral-500">Prefer face-to-face?</span>
+                        <span className="block text-lg sm:text-xl mt-1">Grab a 15-minute vibe check</span>
                       </span>
                       <span className={CHANNEL_ICON_CLASS} aria-hidden>
                         <ArrowUpRight className="w-4 h-4" />
@@ -83,7 +83,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onBookCallClick 
                     ))}
                   </div>
                   <p className="text-sm text-neutral-400 leading-tight">
-                    <span className="block text-white">You'll hear from a designer, not a bot.</span>
+                    <span className="block text-white">Real designers, zero automated bots.</span>
                     {AVAILABILITY.responseTime}
                   </p>
                 </div>

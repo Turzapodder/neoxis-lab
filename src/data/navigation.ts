@@ -12,11 +12,11 @@ export const NAV_TABS: NavTab[] = [
 export const DEFAULT_NAV_TAB = NAV_TABS[0].id;
 
 export const MENU_ITEMS: MenuItem[] = [
-  { number: '01', title: 'Studio', desc: 'About our design philosophy & culture' },
-  { number: '02', title: 'Projects', desc: 'Selected works, digital products & case studies' },
-  { number: '03', title: 'Services', desc: 'Brand identity, 3D & UI/UX engineering' },
-  { number: '04', title: 'Articles / Blog', desc: 'Insights, design perspectives & updates' },
-  { number: '05', title: 'Contact', desc: 'Start a new project or say hello' },
+  { number: '01', title: 'Studio', desc: 'Our ethos, vision & creative culture' },
+  { number: '02', title: 'Projects', desc: 'Proof of work, recent drops & case studies' },
+  { number: '03', title: 'Services', desc: 'Brand worlds, kinetic 3D & product systems' },
+  { number: '04', title: 'Articles / Blog', desc: 'Hot takes, design field notes & experiments' },
+  { number: '05', title: 'Contact', desc: 'Start a collab, talk scope, or say hi' },
 ];
 
 export const MENU_SOCIAL_LINKS: ExternalLink[] = [

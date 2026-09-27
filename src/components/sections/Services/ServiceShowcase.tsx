@@ -83,7 +83,7 @@ export const ServiceShowcase: React.FC<ServiceShowcaseProps> = ({ service, isOpe
             onClick={() => onExplore?.(service.id)}
             className="group/btn self-start flex items-center gap-3 rounded-full bg-white pl-5 pr-1 py-1 text-sm font-medium text-neutral-950 hover:bg-neutral-200 active:scale-95 transition-all"
           >
-            Explore Now
+            Dive In
             <span className="w-8 h-8 rounded-full bg-neutral-950 text-white flex items-center justify-center">
               <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
             </span>

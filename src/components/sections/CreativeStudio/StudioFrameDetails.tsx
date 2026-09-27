@@ -14,13 +14,13 @@ export const StudioFrameDetails: React.FC<StudioFrameDetailsProps> = ({ variant 
   return (
     <div className="absolute inset-0 pointer-events-none px-6 sm:px-10 lg:px-16 py-8 sm:py-10 flex flex-col justify-between">
       <SectionTag tone={isBase ? 'dark' : 'light'} className={isBase ? 'text-neutral-900' : 'text-white'}>
-        Who we are
+        The Ethos
       </SectionTag>
 
       <div className={`flex items-end justify-between gap-6 text-xs sm:text-sm ${muted}`}>
-        <p className="max-w-[220px] leading-relaxed">Brand, digital and product design for ambitious teams.</p>
+        <p className="max-w-[250px] leading-relaxed">High-voltage branding, digital systems, and interfaces for founders building what&apos;s next.</p>
         <div className="hidden sm:flex items-center gap-3">
-          <span>Scroll to explore</span>
+          <span>Scroll to dive in</span>
           <span className={`relative block w-12 h-px overflow-hidden ${line}`}>
             <span
               className={`absolute inset-y-0 left-0 w-1/2 animate-[scroll-hint_2.2s_ease-in-out_infinite] motion-reduce:animate-none ${

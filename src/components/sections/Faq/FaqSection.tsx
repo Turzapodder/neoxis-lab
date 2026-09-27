@@ -12,7 +12,7 @@ export const FaqSection: React.FC = () => {
     <section className="relative w-full bg-[var(--color-canvas-bg)] text-neutral-950 py-16 sm:py-20 md:py-28 transition-colors duration-500">
       <div className="max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-16 grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-10 lg:gap-16">
         <div className="flex flex-col items-start">
-          <SectionTag className="text-neutral-900 mb-3 sm:mb-4">Find your answer in seconds.</SectionTag>
+          <SectionTag className="text-neutral-900 mb-3 sm:mb-4">Straight answers, zero runaround.</SectionTag>
           <h2 className="font-clash text-6xl sm:text-7xl md:text-8xl font-bold tracking-tight leading-none select-none">FAQS</h2>
         </div>
 

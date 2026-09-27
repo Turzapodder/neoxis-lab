@@ -66,11 +66,11 @@ export const MenuModal: React.FC<MenuModalProps> = ({ isOpen, onClose }) => {
         {/* Footer info */}
         <div className="pt-8 border-t border-black/10 flex flex-col sm:flex-row justify-between gap-4 text-xs font-neue text-neutral-500">
           <div>
-            <p className="text-neutral-900 font-medium">Get in touch</p>
+            <p className="text-neutral-900 font-medium">Direct line</p>
             <p className="mt-1">{CONTACT_EMAIL}</p>
           </div>
           <div>
-            <p className="text-neutral-900 font-medium">Follow us</p>
+            <p className="text-neutral-900 font-medium">Socials</p>
             <div className="flex gap-3 mt-1 text-neutral-700">
               {MENU_SOCIAL_LINKS.map((link) => (
                 <a key={link.label} href={link.href} className="hover:text-black transition-colors">

@@ -16,7 +16,7 @@ export const SelectedWorkSection: React.FC<SelectedWorkSectionProps> = ({ onSele
     <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16">
       {/* 1. SECTION HEADER */}
       <div className="pb-10 sm:pb-12 md:pb-14">
-        <SectionTag className="text-neutral-600 mb-3 sm:mb-4">Project showcase</SectionTag>
+        <SectionTag className="text-neutral-600 mb-3 sm:mb-4">Proof of work</SectionTag>
 
         <div className="flex items-start gap-2.5 sm:gap-3 select-none">
           <h2 className="font-clash text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-neutral-950 leading-[1.04]">
@@ -28,10 +28,10 @@ export const SelectedWorkSection: React.FC<SelectedWorkSectionProps> = ({ onSele
         </div>
 
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mt-4 pt-1">
-          <p className="font-neue text-sm sm:text-base text-neutral-500 font-normal max-w-[460px] leading-relaxed">
-            We've helped businesses across industries achieve their goals. Here are some of our recent projects.
+          <p className="font-neue text-sm sm:text-base text-neutral-500 font-normal max-w-[480px] leading-relaxed">
+            From hyper-growth startups to culture-defining brands — peep some of our favorite recent drops.
           </p>
-          <span className="font-mono text-xs sm:text-sm text-neutral-400 tracking-wider select-none shrink-0">16-25©</span>
+          <span className="font-mono text-xs sm:text-sm text-neutral-400 tracking-wider select-none shrink-0">20-25©</span>
         </div>
       </div>
 

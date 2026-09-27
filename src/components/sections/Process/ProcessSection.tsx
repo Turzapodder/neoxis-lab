@@ -17,15 +17,15 @@ export const ProcessSection: React.FC = () => {
     >
       <div className="max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-16">
         <div data-reveal className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 pb-10 sm:pb-14">
-          <SectionTag className="text-neutral-900 self-start md:pt-3">Our Process</SectionTag>
+          <SectionTag className="text-neutral-900 self-start md:pt-3">The Playbook</SectionTag>
           <div>
             <h2 className="font-clash text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.05] select-none">
-              From Vision To
+              From Brainstorm
               <br />
-              Measurable Value
+              To Flawless Drop
             </h2>
-            <p className="font-neue text-sm text-neutral-500 max-w-[320px] mt-5 sm:mt-6 leading-relaxed">
-              From breakthrough portfolios to performance-driven platforms — our numbers speak louder than words.
+            <p className="font-neue text-sm text-neutral-500 max-w-[340px] mt-5 sm:mt-6 leading-relaxed">
+              Zero fluff, zero bloated slide decks. Just rapid sprints, tight feedback loops, and elite execution that ships on time.
             </p>
           </div>
         </div>

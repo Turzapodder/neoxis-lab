@@ -35,7 +35,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onChoosePlan }) 
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-8 sm:pb-10">
             <div className="flex flex-col items-start">
               <SectionTag tone="light" className="mb-3 sm:mb-5">
-                Our Pricing
+                Transparent rates
               </SectionTag>
               <h2 className="font-clash text-6xl sm:text-8xl lg:text-[112px] font-bold tracking-tight leading-[0.95] select-none">
                 Pricing

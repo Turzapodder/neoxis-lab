@@ -7,15 +7,15 @@ export const HERO_PROJECTS: HeroProject[] = [
   {
     id: '01',
     number: '01',
-    title: 'Track. Analyze. Optimize.',
-    subtitle: 'Fintech Mobile Experience',
+    title: 'Track. Flex. Scale.',
+    subtitle: 'Next-Gen Fintech UI',
     image: cardMobileImg,
   },
   {
     id: '02',
     number: '02',
     title: 'Aurea Studio',
-    subtitle: 'Brand Identity & 3D Experience',
+    subtitle: '3D Worlds & Visual Identity',
     image: cardAureaImg,
     logo: 'aurea',
   },
@@ -23,7 +23,7 @@ export const HERO_PROJECTS: HeroProject[] = [
     id: '03',
     number: '03',
     title: 'Aura Spatial',
-    subtitle: 'Spatial Hardware Interface',
+    subtitle: 'Spatial OS & Tactile Interface',
     image: cardSpatialImg,
     logo: 'aura',
   },
@@ -31,14 +31,14 @@ export const HERO_PROJECTS: HeroProject[] = [
 
 /** Clones of the hero cards that fly into the studio statement on scroll. */
 export const FLOATING_CARDS: FloatingCard[] = [
-  { src: cardMobileImg, alt: 'Track. Analyze. Optimize. Fintech UI', z: 30 },
-  { src: cardAureaImg, alt: 'Aurea Studio Brand Identity', z: 20 },
-  { src: cardSpatialImg, alt: 'Aura Spatial Hardware Interface', z: 10 },
+  { src: cardMobileImg, alt: 'Track. Flex. Scale. Next-Gen Fintech UI', z: 30 },
+  { src: cardAureaImg, alt: 'Aurea Studio 3D Worlds & Visual Identity', z: 20 },
+  { src: cardSpatialImg, alt: 'Aura Spatial Tactile Interface', z: 10 },
 ];
 
 export const HERO_STATS: StatItem[] = [
-  { id: 'projects', value: '50+', label: 'Projects Completed', icon: 'starburst' },
-  { id: 'clients', value: '30+', label: 'Happy Clients', icon: 'users' },
-  { id: 'experience', value: '8+', label: 'Years Experience', icon: 'rocket' },
-  { id: 'countries', value: '15+', label: 'Countries Served', icon: 'globe' },
+  { id: 'projects', value: '50+', label: 'Drops Shipped', icon: 'starburst' },
+  { id: 'clients', value: '30+', label: 'Obsessed Clients', icon: 'users' },
+  { id: 'experience', value: '8+', label: 'Years In The Game', icon: 'rocket' },
+  { id: 'countries', value: '15+', label: 'Global Footprint', icon: 'globe' },
 ];

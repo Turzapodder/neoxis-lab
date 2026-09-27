@@ -40,14 +40,14 @@ export const PlanCard: React.FC<PlanCardProps> = ({ plan, tier, onChoose }) => (
           plan.featured ? 'bg-white text-neutral-950 hover:bg-neutral-200' : 'bg-white/[0.07] text-white hover:bg-white/[0.12]'
         }`}
       >
-        Choose Plan
+        Lock In Plan
       </button>
     </div>
 
     <div className="mx-4 sm:mx-5 mt-2 border-t border-white/[0.06]" />
 
     <div className="p-4 sm:p-5 pb-6">
-      <p className="text-sm text-white/85">What's included:</p>
+      <p className="text-sm text-white/85">The deliverables:</p>
       <ul className="mt-6 flex flex-col gap-3.5">
         {plan.features.map((feature) => (
           <li key={feature} className="flex items-center gap-3 text-xs sm:text-[13px] text-white/75">

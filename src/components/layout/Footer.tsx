@@ -33,7 +33,7 @@ export const Footer: React.FC = () => (
             <div className="flex items-center justify-between gap-4 mt-5">
               <span className="flex items-center gap-2 text-xs font-medium">
                 <span className="w-1.5 h-1.5 rounded-full bg-neutral-900" />
-                Stay connected
+                Stay in the loop
               </span>
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
@@ -45,7 +45,7 @@ export const Footer: React.FC = () => (
           </div>
 
           <nav aria-label="Footer navigation">
-            <p className="text-xs font-medium mb-5">Navigation</p>
+            <p className="text-xs font-medium mb-5">Explore</p>
             <ul className="flex flex-col gap-1.5">
               {FOOTER_NAV_LINKS.map((link) => (
                 <li key={link.label}>
@@ -58,7 +58,7 @@ export const Footer: React.FC = () => (
           </nav>
 
           <div>
-            <p className="text-xs font-medium mb-5">Social media</p>
+            <p className="text-xs font-medium mb-5">Socials</p>
             <ul className="flex flex-col gap-1.5">
               {FOOTER_SOCIAL_LINKS.map((link) => (
                 <li key={link.label}>
@@ -73,7 +73,7 @@ export const Footer: React.FC = () => (
 
         {/* 2. LEGAL ROW */}
         <div className={`mt-14 sm:mt-16 pt-5 border-t border-neutral-200 ${GRID_CLASS} gap-y-3 items-center text-[11px] sm:text-xs text-neutral-800`}>
-          <span className="col-span-2 lg:col-span-1">©{new Date().getFullYear()} neoxis Studio. All Rights Reserved</span>
+          <span className="col-span-2 lg:col-span-1">©{new Date().getFullYear()} neoxis Studio. Built with obsession. All rights reserved.</span>
           <a href="#" className="hover:text-neutral-500 transition-colors">Terms of Use</a>
           <div className="flex items-center justify-between">
             <a href="#" className="hover:text-neutral-500 transition-colors">Privacy Policy</a>
