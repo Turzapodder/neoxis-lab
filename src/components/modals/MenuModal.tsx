@@ -70,6 +70,38 @@ export const MenuModal: React.FC<MenuModalProps> = ({ isOpen, onClose }) => {
             <p className="mt-1">{CONTACT_EMAIL}</p>
           </div>
           <div>
+            <p className="text-neutral-900 font-medium">Legal</p>
+            <div className="flex gap-2.5 mt-1 text-neutral-700">
+              <a
+                href="/terms-and-conditions"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onClose();
+                  window.history.pushState({}, '', '/terms-and-conditions');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                  window.scrollTo({ top: 0, behavior: 'instant' });
+                }}
+                className="hover:text-black transition-colors"
+              >
+                Terms
+              </a>
+              <span>•</span>
+              <a
+                href="/privacy-policy"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onClose();
+                  window.history.pushState({}, '', '/privacy-policy');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                  window.scrollTo({ top: 0, behavior: 'instant' });
+                }}
+                className="hover:text-black transition-colors"
+              >
+                Privacy
+              </a>
+            </div>
+          </div>
+          <div>
             <p className="text-neutral-900 font-medium">Socials</p>
             <div className="flex gap-3 mt-1 text-neutral-700">
               {MENU_SOCIAL_LINKS.map((link) => (

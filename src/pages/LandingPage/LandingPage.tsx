@@ -41,9 +41,17 @@ const Anchor: React.FC<AnchorProps> = ({ id, zClass = 'z-30', children }) => (
 
 interface LandingPageProps {
   onNavigateProject?: (id: string) => void;
+  onNavigateHome?: (sectionId?: string) => void;
+  onNavigateTerms?: () => void;
+  onNavigatePrivacy?: () => void;
 }
 
-export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateProject }) => {
+export const LandingPage: React.FC<LandingPageProps> = ({
+  onNavigateProject,
+  onNavigateHome,
+  onNavigateTerms,
+  onNavigatePrivacy,
+}) => {
   const menu = useDisclosure();
   const connect = useDisclosure();
   const [activeTab, setActiveTab] = useState(DEFAULT_NAV_TAB);
@@ -116,7 +124,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigateProject }) =
       </Anchor>
 
       <Anchor id={SECTION_IDS.footer}>
-        <Footer />
+        <Footer
+          onNavigateHome={onNavigateHome}
+          onNavigateTerms={onNavigateTerms}
+          onNavigatePrivacy={onNavigatePrivacy}
+        />
       </Anchor>
 
       <MenuModal isOpen={menu.isOpen} onClose={menu.close} />
