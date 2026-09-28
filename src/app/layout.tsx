@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { Inter } from 'next/font/google';
 import { DEFAULT_TITLE } from '@/config/site';
 import { HOME_METADATA, absoluteUrl } from '@/lib/seo';
 import { organizationJsonLd, websiteJsonLd } from '@/lib/jsonld';
@@ -7,6 +8,17 @@ import { CustomCursor } from '@/layout/custom-cursor';
 import { AiCopilotWidget } from '@/layout/floting-ai-copilot';
 import { CookieConsentModal } from '@/components/modals/CookieConsentModal';
 import './globals.css';
+
+/**
+ * Body font. The original design used Neue Montreal (commercial — the local
+ * woff2 files were broken, see git history), so we self-host Inter, the
+ * closest free grotesque, as a drop-in replacement at the same weights.
+ */
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(absoluteUrl('/')),
@@ -32,7 +44,12 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="light" data-theme="light" style={{ colorScheme: 'light' }}>
+    <html
+      lang="en"
+      className={`light ${inter.variable}`}
+      data-theme="light"
+      style={{ colorScheme: 'light' }}
+    >
       <head>
         {/* Preconnect & Clash Display webfont from Fontshare */}
         <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="" />
