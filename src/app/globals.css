@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+/* Neue Montreal Local Webfonts */
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('../assets/fonts/NeueMontreal-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('../assets/fonts/NeueMontreal-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('../assets/fonts/NeueMontreal-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('../assets/fonts/NeueMontreal-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-clash: 'Clash Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-neue: 'Neue Montreal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Theme tokens (light only) */
+  --color-canvas-bg: #F8F9FC;
+  --color-text-primary: #0F1016;
+
+  --color-glass-panel: rgba(255, 255, 255, 0.75);
+  --color-glass-panel-border: rgba(0, 0, 0, 0.08);
+  --color-glass-panel-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.07);
+}
+
+/* Custom font utilities */
+.font-clash {
+  font-family: var(--font-clash);
+}
+
+.font-neue {
+  font-family: var(--font-neue);
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  background-color: var(--color-canvas-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-neue);
+  min-height: 100vh;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+/* Glassmorphism utilities */
+.glass-panel {
+  background: var(--color-glass-panel);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--color-glass-panel-border);
+  box-shadow: var(--color-glass-panel-shadow);
+  transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Short fade + rise used when swapping content (animate-[fade-up_...]) */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Continuous marquee ticker animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+/* Front card of a stack drops out, then tucks in at the back (--tx/--ty/--s are its final offsets) */
+@keyframes stack-shuffle {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    z-index: 50;
+  }
+  45% {
+    transform: translate(-10%, 16%) scale(0.96) rotate(-5deg);
+    z-index: 50;
+  }
+  46% {
+    z-index: 0;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(var(--s)) rotate(0deg);
+    z-index: 0;
+  }
+}
+
+/* Gentle back-and-forth for inline arrows */
+@keyframes arrow-nudge {
+  0%,
+  100% {
+    transform: translateX(-12%);
+  }
+  50% {
+    transform: translateX(12%);
+  }
+}
+
+/* Short line sweeping across a track, used for scroll hints */
+@keyframes scroll-hint {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+/* Autoplay progress line; its animationend advances the testimonial */
+@keyframes quote-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Click ripple: expanding disc from the pointer, fading out. */
+.ripple {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  transform: translate(-50%, -50%) scale(0);
+  animation: ripple-expand 0.65s ease-out forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes ripple-expand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(14);
+    opacity: 0;
+  }
+}
+
+/* Hide the native cursor when the custom cursor is active (fine pointers only). */
+@media (pointer: fine) {
+  body.cursor-hover,
+  body.cursor-hover a,
+  body.cursor-hover button {
+    cursor: pointer;
+  }
+}

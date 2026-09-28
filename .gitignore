@@ -1,0 +1,42 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+.next
+next-env.d.ts
+*.local
+*.tsbuildinfo
+
+# Environment files — never commit secrets (keep the example template)
+.env.local
+.env.*.local
+!.env.example
+
+# Admin CMS data store (JSON db) — runtime data, not source
+data/
+
+# Ephemeral local upload fallback (Cloudinary is the real store)
+public/uploads/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Misc
+next-server.log
+.playwright-mcp/
