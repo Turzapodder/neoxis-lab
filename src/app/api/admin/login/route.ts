@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { authenticate, createSessionToken, setSessionCookie } from '@/server/auth';
+import { authenticate, startSession, setAuthCookies } from '@/server/auth';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,11 +19,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid email or password' }, { status: 401 });
     }
 
-    const token = createSessionToken(user);
-    await setSessionCookie(token);
+    // DB-backed session family + short-lived access token.
+    const { accessToken, refreshToken } = await startSession(
+      user,
+      request.headers.get('user-agent') ?? '',
+    );
+    await setAuthCookies(accessToken, refreshToken);
 
     return NextResponse.json({
       user: { id: user.id, email: user.email, name: user.name, role: user.role },
+      // Exposed so the client can schedule proactive silent refreshes.
+      accessTtlMs: 15 * 60 * 1000,
     });
   } catch {
     return NextResponse.json({ error: 'Login failed' }, { status: 500 });

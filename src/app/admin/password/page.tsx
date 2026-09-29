@@ -2,9 +2,12 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
+import { adminFetch, cancelProactiveRefresh } from '@/lib/admin-fetch';
 
 export default function AdminPasswordPage() {
+  const router = useRouter();
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -28,9 +31,8 @@ export default function AdminPasswordPage() {
 
     setLoading(true);
     try {
-      const res = await fetch('/api/admin/change-password', {
+      const res = await adminFetch('/api/admin/change-password', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ currentPassword, newPassword }),
       });
       const data = (await res.json()) as { error?: string };
@@ -42,6 +44,9 @@ export default function AdminPasswordPage() {
       setCurrentPassword('');
       setNewPassword('');
       setConfirmPassword('');
+      // All session families were revoked server-side; re-auth this device.
+      cancelProactiveRefresh();
+      setTimeout(() => router.replace('/admin/login'), 1200);
     } catch {
       setError('Network error — please try again');
     } finally {
@@ -59,11 +64,14 @@ export default function AdminPasswordPage() {
         Back to dashboard
       </Link>
 
-      <h1 className="font-clash text-2xl font-bold tracking-tight text-neutral-950">
+      <h1 className="font-clash text-3xl font-bold tracking-tight text-neutral-950">
         Change password
       </h1>
-      <p className="mb-6 mt-1 font-neue text-sm text-neutral-500">
+      <p className="mb-2 mt-1.5 font-neue text-sm text-neutral-500">
         Update the password for your admin account.
+      </p>
+      <p className="mb-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 font-neue text-[13px] leading-snug text-amber-700">
+        Changing your password signs out every device — you will be asked to sign in again.
       </p>
 
       <form
@@ -113,7 +121,7 @@ export default function AdminPasswordPage() {
           <div key={field.id} className="mb-4 last:mb-0">
             <label
               htmlFor={field.id}
-              className="mb-1.5 block font-neue text-xs text-neutral-600"
+              className="mb-1.5 block font-neue text-[13px] font-medium text-neutral-700"
             >
               {field.label}
             </label>
@@ -124,7 +132,7 @@ export default function AdminPasswordPage() {
               autoComplete={field.auto}
               value={field.value}
               onChange={(e) => field.set(e.target.value)}
-              className="w-full rounded-xl border border-black/10 bg-black/[0.04] px-4 py-2.5 font-neue text-sm text-neutral-900 transition-colors focus:border-neutral-900/40 focus:outline-none"
+              className="w-full rounded-xl border border-black/10 bg-black/[0.04] px-4 py-3 font-neue text-sm text-neutral-900 transition-colors focus:border-neutral-900/40 focus:outline-none"
             />
           </div>
         ))}

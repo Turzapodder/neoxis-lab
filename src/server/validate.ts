@@ -14,6 +14,10 @@ export interface ValidationError {
 
 const SLIDE_REQUIRED = ['id', 'label', 'title', 'description', 'image'] as const;
 
+/** Fields that must hold a full URL (https://…) or a site path (/…). */
+const URL_FIELDS = new Set(['image', 'socialX', 'socialDribbble', 'socialLinkedin']);
+const URL_PATTERN = /^(https?:\/\/\S+|\/\S+)$/i;
+
 function validateSlides(slides: unknown, prefix: string): ValidationError[] {
   if (!Array.isArray(slides)) return [];
   const errors: ValidationError[] = [];
@@ -96,6 +100,13 @@ export function validateItems(
       }
       if (typeof value === 'string' && rule.max && value.length > rule.max) {
         errors.push({ field: `items.${index}.${field}`, message: `${field} exceeds ${rule.max} characters` });
+        continue;
+      }
+      if (typeof value === 'string' && URL_FIELDS.has(field) && !URL_PATTERN.test(value.trim())) {
+        errors.push({
+          field: `items.${index}.${field}`,
+          message: `${field} must be a full URL (https://…) or a path starting with /`,
+        });
         continue;
       }
       if (field === 'featured') {

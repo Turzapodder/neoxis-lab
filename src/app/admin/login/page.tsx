@@ -24,10 +24,16 @@ function LoginForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-      const data = (await res.json()) as { error?: string };
+      const data = (await res.json()) as { error?: string; accessTtlMs?: number };
       if (!res.ok) {
         setError(data.error || 'Login failed');
         return;
+      }
+      // Kick off the proactive silent-refresh cycle for this session.
+      if (data.accessTtlMs) {
+        void import('@/lib/admin-fetch').then(({ scheduleProactiveRefresh }) =>
+          scheduleProactiveRefresh(data.accessTtlMs!),
+        );
       }
       router.replace(nextPath.startsWith('/admin') ? nextPath : '/admin');
       router.refresh();
@@ -65,7 +71,7 @@ function LoginForm() {
             </p>
           )}
 
-          <label className="mb-1.5 block font-neue text-xs text-neutral-600" htmlFor="email">
+          <label className="mb-1.5 block font-neue text-[13px] font-medium text-neutral-700" htmlFor="email">
             Email
           </label>
           <input
@@ -76,10 +82,10 @@ function LoginForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="admin@neoxis.design"
-            className="mb-4 w-full rounded-xl border border-black/10 bg-black/[0.04] px-4 py-2.5 font-neue text-sm text-neutral-900 placeholder-neutral-400 transition-colors focus:border-neutral-900/40 focus:outline-none"
+            className="mb-4 w-full rounded-xl border border-black/10 bg-black/[0.04] px-4 py-3 font-neue text-base text-neutral-900 placeholder-neutral-400 transition-colors focus:border-neutral-900/40 focus:outline-none"
           />
 
-          <label className="mb-1.5 block font-neue text-xs text-neutral-600" htmlFor="password">
+          <label className="mb-1.5 block font-neue text-[13px] font-medium text-neutral-700" htmlFor="password">
             Password
           </label>
           <input
@@ -90,7 +96,7 @@ function LoginForm() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="••••••••••"
-            className="mb-6 w-full rounded-xl border border-black/10 bg-black/[0.04] px-4 py-2.5 font-neue text-sm text-neutral-900 placeholder-neutral-400 transition-colors focus:border-neutral-900/40 focus:outline-none"
+            className="mb-6 w-full rounded-xl border border-black/10 bg-black/[0.04] px-4 py-3 font-neue text-base text-neutral-900 placeholder-neutral-400 transition-colors focus:border-neutral-900/40 focus:outline-none"
           />
 
           <button

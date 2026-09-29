@@ -22,6 +22,7 @@ export const COLLECTIONS = {
   meta: 'cms_meta',
   users: 'cms_users',
   sections: 'cms_sections',
+  sessions: 'cms_sessions',
 } as const;
 
 interface MongoState {

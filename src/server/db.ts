@@ -32,6 +32,24 @@ export interface CmsData {
   version: 1;
   users: AdminUser[];
   content: Record<string, unknown>;
+  /** Admin session families (refresh tokens live here, hashed). */
+  sessions: StoredSession[];
+}
+
+/** A refresh-token session family, stored hashed. Defined here (not in
+ *  sessions.ts) to avoid a circular import. */
+export interface StoredSession {
+  id: string;
+  userId: string;
+  /** sha256 hex of the CURRENT refresh token. */
+  refreshHash: string;
+  /** Recently rotated-out hashes — reuse of any of these revokes the family. */
+  staleHashes: string[];
+  createdAt: string;
+  lastUsedAt: string;
+  expiresAt: string;
+  revokedAt: string | null;
+  userAgent: string;
 }
 
 export type ActiveStore = 'mongodb' | 'json';
@@ -79,6 +97,7 @@ function mergeWithSeed(parsed: Partial<CmsData> | null): CmsData {
     version: 1,
     users: Array.isArray(storedUsers) && storedUsers.length > 0 ? storedUsers : seed.users,
     content: deepMerge(seed.content, parsed?.content),
+    sessions: Array.isArray(parsed?.sessions) ? parsed!.sessions : [],
   };
 }
 
@@ -104,9 +123,10 @@ async function readMongo(): Promise<CmsData | null> {
   const db = await getDb().catch(() => null);
   if (!db) return null;
 
-  const [userDocs, sectionDocs] = await Promise.all([
+  const [userDocs, sectionDocs, sessionDocs] = await Promise.all([
     db.collection(COLLECTIONS.users).find({}).toArray(),
     db.collection(COLLECTIONS.sections).find({}).toArray(),
+    db.collection(COLLECTIONS.sessions).find({}).toArray(),
   ]);
 
   const stored: Partial<CmsData> = {
@@ -114,6 +134,7 @@ async function readMongo(): Promise<CmsData | null> {
     content: Object.fromEntries(
       sectionDocs.map((doc) => [doc.key as string, doc.value]),
     ),
+    sessions: sessionDocs.map(({ _id: _ignored, ...rest }) => rest as CmsData['sessions'][number]),
   };
   return mergeWithSeed(stored);
 }
@@ -130,6 +151,13 @@ async function writeMongo(data: CmsData): Promise<boolean> {
   await db.collection(COLLECTIONS.users).deleteMany({});
   if (data.users.length > 0) {
     await db.collection(COLLECTIONS.users).insertMany(data.users);
+  }
+
+  await db.collection(COLLECTIONS.sessions).deleteMany({});
+  if (data.sessions.length > 0) {
+    await db.collection(COLLECTIONS.sessions).insertMany(
+      data.sessions.map((session) => ({ ...session, _id: session.id as never })),
+    );
   }
 
   const ops = Object.entries(data.content).map(([key, value]) => ({
