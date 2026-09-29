@@ -16,12 +16,14 @@ next-env.d.ts
 *.tsbuildinfo
 
 # Environment files — never commit secrets (keep the example template)
+.env
 .env.local
 .env.*.local
 !.env.example
 
-# Admin CMS data store (JSON db) — runtime data, not source
-data/
+# Admin CMS JSON fallback store — runtime data at the repo ROOT only.
+# Anchored with a leading slash so it never matches src/data/ (app source!).
+/data/
 
 # Ephemeral local upload fallback (Cloudinary is the real store)
 public/uploads/
