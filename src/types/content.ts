@@ -143,6 +143,8 @@ export interface TeamMember {
   location: string;
   bio: string;
   image: string;
+  portfolio?: string;
+  github?: string;
 }
 
 export interface Testimonial {

@@ -66,10 +66,7 @@ export const LandingPage: React.FC = () => {
   return (
     <div ref={pageRef} className="relative w-full max-w-full overflow-x-clip bg-[var(--color-canvas-bg)] text-[var(--color-text-primary)] selection:bg-purple-500/25 selection:text-current transition-colors duration-300">
       {/* Skip navigation — first focusable element on the page. */}
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-neutral-950 focus:px-5 focus:py-2.5 focus:font-neue focus:text-sm focus:font-semibold focus:text-white focus:shadow-xl"
-      >
+      <a href="#main-content" className="skip-link">
         Skip to main content
       </a>
 

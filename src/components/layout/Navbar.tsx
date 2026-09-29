@@ -34,6 +34,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               onLogoClick();
             }
           }}
+          aria-label="neoxis — back to top"
           className={`group flex items-baseline gap-0.5 ${
             isLight ? 'text-neutral-950' : 'text-white'
           } tracking-[-0.03em] select-none transition-colors duration-300 cursor-pointer`}
@@ -62,7 +63,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               return (
                 <button
                   key={tab.id}
+                  type="button"
                   onClick={() => onSelectTab?.(tab)}
+                  aria-current={isActive ? 'true' : undefined}
                   className={`relative px-5 py-2 rounded-full text-[13.5px] font-clash transition-all duration-300 cursor-pointer flex items-center gap-1 select-none ${
                     isActive
                       ? 'bg-white text-black font-semibold shadow-md'

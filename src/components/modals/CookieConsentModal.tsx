@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { Cookie } from 'lucide-react';
 
@@ -20,7 +20,7 @@ interface StoredConsent {
 
 const readConsent = (): StoredConsent | null => {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = window.localStorage.getItem(STORAGE_KEY);
     return raw ? (JSON.parse(raw) as StoredConsent) : null;
   } catch {
     return null;
@@ -30,9 +30,10 @@ const readConsent = (): StoredConsent | null => {
 export const CookieConsentModal: React.FC = () => {
   const [visible, setVisible] = useState(false);
   const [leaving, setLeaving] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
 
+  // Show once for first-time visitors (deferred past hydration).
   useEffect(() => {
-    // Defer to the client after hydration; skip if the visitor already chose.
     if (readConsent()) return;
     const timer = setTimeout(() => setVisible(true), 900);
     return () => clearTimeout(timer);
@@ -50,6 +51,46 @@ export const CookieConsentModal: React.FC = () => {
     setLeaving(true);
     setTimeout(() => setVisible(false), 320);
   }, []);
+
+  // Stable ref so the keydown handler always sees the latest close.
+  const closeRef = useRef(close);
+  closeRef.current = close;
+
+  // Focus management + Escape-to-close while visible.
+  useEffect(() => {
+    if (!visible) return;
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    requestAnimationFrame(() => {
+      cardRef.current?.querySelector<HTMLElement>('button')?.focus();
+    });
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeRef.current('declined');
+        return;
+      }
+      if (event.key !== 'Tab' || !cardRef.current) return;
+      const focusables = cardRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled])',
+      );
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      previouslyFocused?.focus?.();
+    };
+  }, [visible]);
 
   if (!visible) return null;
 
@@ -70,6 +111,7 @@ export const CookieConsentModal: React.FC = () => {
 
       {/* Card */}
       <div
+        ref={cardRef}
         className={`pointer-events-auto relative w-full max-w-md rounded-[24px] bg-white/95 backdrop-blur-2xl border border-black/10 shadow-2xl p-6 sm:p-7 transition-all duration-300 ${
           leaving ? 'opacity-0 translate-y-6 scale-[0.98]' : 'opacity-100 translate-y-0 scale-100'
         }`}

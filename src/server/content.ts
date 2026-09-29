@@ -52,6 +52,8 @@ export interface TeamMemberView {
   location: string;
   bio: string;
   image: string;
+  portfolio?: string;
+  github?: string;
   social?: { x?: string; dribbble?: string; linkedin?: string };
 }
 
@@ -167,6 +169,8 @@ function mapTeam(content: Record<string, unknown>): TeamMemberView[] {
     location: str(raw.location),
     bio: str(raw.bio),
     image: str(raw.image, '/images/team/sienna.jpg'),
+    portfolio: str(raw.portfolio) || undefined,
+    github: str(raw.github) || undefined,
     social: {
       x: str(raw.socialX) || undefined,
       dribbble: str(raw.socialDribbble) || undefined,

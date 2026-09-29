@@ -371,6 +371,8 @@ export const SECTIONS: SectionDef[] = [
       socialX: { max: 300 },
       socialDribbble: { max: 300 },
       socialLinkedin: { max: 300 },
+      portfolio: { max: 300 },
+      github: { max: 300 },
     },
     seed: [
       {

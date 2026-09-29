@@ -158,3 +158,52 @@ body {
     cursor: pointer;
   }
 }
+
+/* ── Accessibility ──────────────────────────────────────────────────────── */
+
+/* Skip link: hidden until keyboard-focused, then a prominent pill. */
+.skip-link {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link:focus {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  width: auto;
+  height: auto;
+  clip-path: none;
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  background: #0a0a0a;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Consistent, high-visibility keyboard focus everywhere. */
+:focus-visible {
+  outline: 2px solid #7e14ff;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Kill non-essential animation for users who ask for reduced motion.
+   Component-level motion-reduce: classes handle the rest. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

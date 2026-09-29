@@ -15,7 +15,7 @@ export interface ValidationError {
 const SLIDE_REQUIRED = ['id', 'label', 'title', 'description', 'image'] as const;
 
 /** Fields that must hold a full URL (https://…) or a site path (/…). */
-const URL_FIELDS = new Set(['image', 'socialX', 'socialDribbble', 'socialLinkedin']);
+const URL_FIELDS = new Set(['image', 'socialX', 'socialDribbble', 'socialLinkedin', 'portfolio', 'github']);
 const URL_PATTERN = /^(https?:\/\/\S+|\/\S+)$/i;
 
 function validateSlides(slides: unknown, prefix: string): ValidationError[] {

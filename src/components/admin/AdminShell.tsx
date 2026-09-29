@@ -162,7 +162,7 @@ export default function AdminShell({ children }: { children: ReactNode }) {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 space-y-7 overflow-y-auto px-3">
+      <nav aria-label="Admin" className="flex-1 space-y-7 overflow-y-auto px-3">
         <div>
           <p className="px-3.5 pb-2 font-neue text-[11px] font-semibold uppercase tracking-[0.16em] text-neutral-500">
             Overview
@@ -230,7 +230,7 @@ export default function AdminShell({ children }: { children: ReactNode }) {
             title="Log out"
             className="cursor-pointer rounded-lg p-2 text-neutral-400 transition-colors hover:bg-white/10 hover:text-white disabled:opacity-50"
           >
-            <LogOut className="h-[18px] w-[18px]" />
+            <LogOut className="h-[18px] w-[18px]" aria-hidden="true" />
           </button>
         </div>
       </div>
@@ -256,9 +256,11 @@ export default function AdminShell({ children }: { children: ReactNode }) {
           type="button"
           onClick={() => setDrawerOpen((open) => !open)}
           aria-label={drawerOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={drawerOpen}
+          aria-controls="admin-mobile-drawer"
           className="cursor-pointer rounded-lg p-2 text-neutral-300 transition-colors hover:bg-white/10 hover:text-white"
         >
-          {drawerOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {drawerOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
         </button>
       </div>
       {drawerOpen && (
@@ -269,14 +271,18 @@ export default function AdminShell({ children }: { children: ReactNode }) {
             onClick={() => setDrawerOpen(false)}
             className="fixed inset-0 z-40 bg-neutral-950/60 lg:hidden"
           />
-          <aside className="fixed inset-y-0 left-0 z-50 w-64 bg-neutral-950 pt-14 lg:hidden">
+          <aside
+            id="admin-mobile-drawer"
+            aria-label="Admin menu"
+            className="fixed inset-y-0 left-0 z-50 w-64 bg-neutral-950 pt-14 lg:hidden"
+          >
             {sidebar}
           </aside>
         </>
       )}
 
       {/* Content */}
-      <main className="min-w-0 flex-1 px-4 pb-16 pt-20 sm:px-6 lg:px-10 lg:pt-10">
+      <main id="admin-main" className="min-w-0 flex-1 px-4 pb-16 pt-20 sm:px-6 lg:px-10 lg:pt-10">
         {children}
       </main>
     </div>

@@ -16,6 +16,7 @@ import {
   Trash2,
 } from 'lucide-react';
 import { adminFetch } from '@/lib/admin-fetch';
+import { SectionEditorSkeleton } from '@/components/ui/Skeleton';
 
 /* ── Types mirroring the section registry API contract ─────────────────── */
 
@@ -60,6 +61,8 @@ const FIELD_LABELS: Record<string, string> = {
   socialX: 'X / Twitter URL',
   socialDribbble: 'Dribbble URL',
   socialLinkedin: 'LinkedIn URL',
+  portfolio: 'Portfolio URL',
+  github: 'GitHub URL',
   lead: 'Lead quote',
   rest: 'Rest of quote',
   rating: 'Rating (1–5)',
@@ -74,7 +77,7 @@ const FIELD_LABELS: Record<string, string> = {
 };
 
 const TEXTAREA_FIELDS = new Set(['features', 'answer', 'rest', 'bio', 'tagline', 'description']);
-const URL_FIELDS = new Set(['image', 'socialX', 'socialDribbble', 'socialLinkedin']);
+const URL_FIELDS = new Set(['image', 'socialX', 'socialDribbble', 'socialLinkedin', 'portfolio', 'github']);
 
 /* ── Image recommendations per section ──────────────────────────────────── */
 
@@ -284,9 +287,9 @@ function ImageField({
           <div className="mt-1.5 flex flex-wrap items-center gap-2">
             <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-black/10 bg-white px-3 py-1.5 font-neue text-xs font-medium text-neutral-700 transition-colors hover:bg-black/[0.04]">
               {uploading ? (
-                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden="true" />
               ) : (
-                <ImagePlus className="h-3.5 w-3.5" />
+                <ImagePlus className="h-3.5 w-3.5" aria-hidden="true" />
               )}
               {uploading ? 'Uploading…' : 'Upload image'}
               <input
@@ -583,6 +586,7 @@ export default function SectionEditorPage() {
   const renderField = (itemIndex: number, field: string, rule: FieldRule, value: unknown) => {
     const label = FIELD_LABELS[field] ?? field;
     const fieldError = itemErrors[itemIndex]?.[field];
+    const errorId = `item-${itemIndex}-${field}-error`;
     const inputClass = `w-full rounded-lg border bg-black/[0.04] px-3 py-2.5 font-neue text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none ${
       fieldError ? 'border-red-400' : 'border-black/10 focus:border-neutral-900/40'
     }`;
@@ -622,7 +626,10 @@ export default function SectionEditorPage() {
 
     return (
       <div key={field}>
-        <span className="mb-1.5 flex items-baseline justify-between gap-2 font-neue text-[13px] font-medium text-neutral-700">
+        <label
+          htmlFor={`item-${itemIndex}-${field}`}
+          className="mb-1.5 flex items-baseline justify-between gap-2 font-neue text-[13px] font-medium text-neutral-700"
+        >
           <span>
             {label}
             {rule.required && <span className="text-red-500"> *</span>}
@@ -636,37 +643,43 @@ export default function SectionEditorPage() {
               {(value as string).length}/{rule.max}
             </span>
           )}
-        </span>
+        </label>
         {TEXTAREA_FIELDS.has(field) || field === 'tags' ? (
           <textarea
+            id={`item-${itemIndex}-${field}`}
             rows={field === 'features' ? 5 : 2}
             value={Array.isArray(value) ? (value as string[]).join('\n') : asString(value)}
             onChange={(e) => setField(itemIndex, field, e.target.value)}
             onBlur={() => blurValidate(itemIndex, field, rule, value)}
+            aria-invalid={fieldError ? true : undefined}
+            aria-describedby={fieldError ? errorId : undefined}
             className={inputClass}
           />
         ) : (
           <input
+            id={`item-${itemIndex}-${field}`}
             type={field === 'rating' ? 'number' : 'text'}
             min={field === 'rating' ? 1 : undefined}
             max={field === 'rating' ? 5 : undefined}
             value={asString(value)}
             onChange={(e) => setField(itemIndex, field, e.target.value)}
             onBlur={() => blurValidate(itemIndex, field, rule, value)}
+            aria-invalid={fieldError ? true : undefined}
+            aria-describedby={fieldError ? errorId : undefined}
             className={inputClass}
           />
         )}
-        {fieldError && <p className="mt-1 font-neue text-xs text-red-600">{fieldError}</p>}
+        {fieldError && (
+          <p id={errorId} role="alert" className="mt-1 font-neue text-xs text-red-600">
+            {fieldError}
+          </p>
+        )}
       </div>
     );
   };
 
   if (loading) {
-    return (
-      <div className="flex h-[60vh] items-center justify-center text-neutral-400">
-        <Loader2 className="h-7 w-7 animate-spin" />
-      </div>
-    );
+    return <SectionEditorSkeleton />;
   }
 
   if (error || !meta) {
@@ -699,7 +712,11 @@ export default function SectionEditorPage() {
           disabled={saving}
           className="flex cursor-pointer items-center gap-2 rounded-full bg-neutral-950 px-6 py-3 font-clash text-sm font-semibold text-white shadow-lg transition-all hover:bg-neutral-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
+          {saving ? (
+            <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+          ) : (
+            <Save className="h-4 w-4" aria-hidden="true" />
+          )}
           {saving ? 'Saving…' : 'Save & Publish'}
         </button>
       </div>
@@ -858,7 +875,11 @@ export default function SectionEditorPage() {
                 disabled={saving}
                 className="flex cursor-pointer items-center gap-2 rounded-full bg-neutral-950 px-5 py-2.5 font-clash text-sm font-semibold text-white transition-all hover:bg-neutral-800 active:scale-[0.98] disabled:opacity-50"
               >
-                {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
+                {saving ? (
+                  <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                ) : (
+                  <Save className="h-4 w-4" aria-hidden="true" />
+                )}
                 {saving ? 'Saving…' : 'Save & Publish'}
               </button>
             </div>

@@ -7,6 +7,7 @@ import {
   ExternalLink,
   FolderKanban,
   Layers,
+  Lock,
   Moon,
   PanelLeft,
   Sparkles,

@@ -40,7 +40,7 @@ export function SkeletonRegion({
 export function DashboardSkeleton() {
   return (
     <SkeletonRegion label="Loading dashboard">
-      <div className="mx-auto max-w-6xl" aria-hidden="true">
+      <div className="mx-auto max-w-full" aria-hidden="true">
         {/* Header */}
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
@@ -96,7 +96,7 @@ export function DashboardSkeleton() {
 export function SectionEditorSkeleton() {
   return (
     <SkeletonRegion label="Loading section editor">
-      <div className="mx-auto max-w-5xl" aria-hidden="true">
+      <div className="mx-auto max-w-full" aria-hidden="true">
         {/* Header */}
         <div className="mb-7 flex flex-wrap items-start justify-between gap-3">
           <div>

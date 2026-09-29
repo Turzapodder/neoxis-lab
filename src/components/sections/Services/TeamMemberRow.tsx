@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Code2, Globe } from 'lucide-react';
 import type { TeamMember } from '@/types/content';
 
 interface TeamMemberRowProps {
@@ -48,5 +48,33 @@ export const TeamMemberRow: React.FC<TeamMemberRowProps> = ({ member, isActive, 
         <ArrowUpRight className="w-4 h-4" />
       </span>
     </button>
+    {isActive && (member.portfolio || member.github) && (
+      <div className="flex gap-5 pb-5 pl-16 sm:pl-[4.5rem]">
+        {member.portfolio && (
+          <a
+            href={member.portfolio}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 font-neue text-sm text-neutral-300 transition-colors hover:text-white"
+          >
+            <Globe className="h-4 w-4" aria-hidden="true" />
+            Portfolio
+            <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+          </a>
+        )}
+        {member.github && (
+          <a
+            href={member.github}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 font-neue text-sm text-neutral-300 transition-colors hover:text-white"
+          >
+            <Code2 className="h-4 w-4" aria-hidden="true" />
+            GitHub
+            <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+          </a>
+        )}
+      </div>
+    )}
   </li>
 );
