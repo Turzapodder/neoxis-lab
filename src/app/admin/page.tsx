@@ -77,7 +77,7 @@ export default function AdminDashboard() {
   const isLocalhost = typeof window !== 'undefined' && window.location.hostname === 'localhost';
 
   return (
-    <div className="mx-auto max-w-6xl">
+    <div className="mx-auto max-w-full">
       {/* Page header */}
       <header className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>

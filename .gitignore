@@ -16,9 +16,7 @@ next-env.d.ts
 *.tsbuildinfo
 
 # Environment files — never commit secrets (keep the example template)
-.env
-.env.local
-.env.*.local
+.env*
 !.env.example
 
 # Admin CMS JSON fallback store — runtime data at the repo ROOT only.
