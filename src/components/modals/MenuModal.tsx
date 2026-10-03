@@ -1,12 +1,47 @@
 import React, { useEffect, useRef } from 'react';
 import { CloseIcon } from '@/components/icons/UiIcons';
+import { Link } from '@/components/ui/Link';
+import { sectionPath } from '@/constants/routes';
 import { CONTACT_EMAIL } from '@/data/company';
-import { MENU_ITEMS, MENU_SOCIAL_LINKS } from '@/data/navigation';
+import { MENU_ITEMS, MENU_LEGAL_LINKS, MENU_SOCIAL_LINKS } from '@/data/navigation';
+import type { MenuItem } from '@/types/content';
+
+const ITEM_CLASS =
+  'group flex items-baseline justify-between py-2 border-b border-black/5 hover:border-black/20 transition-colors text-left cursor-pointer';
 
 interface MenuModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
+
+/** Numbered menu row; opens its landing section, or only closes the menu when it has none. */
+const MenuRow: React.FC<{ item: MenuItem; onClose: () => void }> = ({ item, onClose }) => {
+  const content = (
+    <>
+      <div className="flex items-baseline gap-4">
+        <span className="font-clash text-xs text-neutral-400 group-hover:text-neutral-900 transition-colors">
+          {item.number}
+        </span>
+        <span className="font-clash text-2xl sm:text-3xl font-semibold text-neutral-900 group-hover:translate-x-2 transition-transform duration-300 motion-reduce:group-hover:translate-x-0">
+          {item.title}
+        </span>
+      </div>
+      <span className="hidden sm:inline font-neue text-xs text-neutral-500 group-hover:text-neutral-900 transition-colors">
+        {item.desc}
+      </span>
+    </>
+  );
+
+  return item.target ? (
+    <Link to={sectionPath(item.target)} onClick={onClose} className={ITEM_CLASS}>
+      {content}
+    </Link>
+  ) : (
+    <button type="button" onClick={onClose} className={ITEM_CLASS}>
+      {content}
+    </button>
+  );
+};
 
 /**
  * Slide-over navigation menu.
@@ -74,12 +109,13 @@ export const MenuModal: React.FC<MenuModalProps> = ({ isOpen, onClose }) => {
         className="fixed inset-0 bg-black/60 backdrop-blur-xl transition-opacity animate-in fade-in duration-300"
       />
 
-      {/* Slide-over Drawer Panel */}
+      {/* Slide-over Drawer Panel; scrolls natively instead of through Lenis */}
       <div
         ref={panelRef}
         role="dialog"
         aria-modal="true"
         aria-label="Site menu"
+        data-lenis-prevent
         className="relative w-full max-w-xl h-full bg-[#FAFBFD]/95 border-l border-black/10 p-8 sm:p-12 flex flex-col justify-between overflow-y-auto z-10 shadow-2xl transition-colors duration-300"
       >
         {/* Header */}
@@ -104,24 +140,7 @@ export const MenuModal: React.FC<MenuModalProps> = ({ isOpen, onClose }) => {
         {/* Menu Navigation Links */}
         <nav aria-label="Menu" className="py-10 flex flex-col gap-6">
           {MENU_ITEMS.map((item) => (
-            <a
-              key={item.number}
-              href="#"
-              onClick={onClose}
-              className="group flex items-baseline justify-between py-2 border-b border-black/5 hover:border-black/20 transition-colors"
-            >
-              <div className="flex items-baseline gap-4">
-                <span className="font-clash text-xs text-neutral-400 group-hover:text-neutral-900 transition-colors">
-                  {item.number}
-                </span>
-                <span className="font-clash text-2xl sm:text-3xl font-semibold text-neutral-900 group-hover:translate-x-2 transition-transform duration-300 motion-reduce:group-hover:translate-x-0">
-                  {item.title}
-                </span>
-              </div>
-              <span className="hidden sm:inline font-neue text-xs text-neutral-500 group-hover:text-neutral-900 transition-colors">
-                {item.desc}
-              </span>
-            </a>
+            <MenuRow key={item.number} item={item} onClose={onClose} />
           ))}
         </nav>
 
@@ -134,6 +153,19 @@ export const MenuModal: React.FC<MenuModalProps> = ({ isOpen, onClose }) => {
                 {CONTACT_EMAIL}
               </a>
             </p>
+          </div>
+          <div>
+            <p className="text-neutral-900 font-medium">Legal</p>
+            <div className="flex gap-2.5 mt-1 text-neutral-700">
+              {MENU_LEGAL_LINKS.map((link, index) => (
+                <React.Fragment key={link.label}>
+                  {index > 0 && <span aria-hidden="true">•</span>}
+                  <Link to={link.to} onClick={onClose} className="hover:text-black transition-colors">
+                    {link.label}
+                  </Link>
+                </React.Fragment>
+              ))}
+            </div>
           </div>
           <div>
             <p className="text-neutral-900 font-medium">Socials</p>

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { ROUTES, projectPath } from '@/constants/routes';
 import { absoluteUrl } from '@/lib/seo';
 import { getCmsContent } from '@/server/content';
 import { PROJECT_DETAILS_MAP } from '@/data/projectDetails';
@@ -19,10 +20,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     ...ids.map((id) => ({
-      url: absoluteUrl(`/project/${id}`),
+      url: absoluteUrl(projectPath(id)),
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.8,
+    })),
+    ...[ROUTES.terms, ROUTES.privacy].map((path) => ({
+      url: absoluteUrl(path),
+      lastModified: new Date(),
+      changeFrequency: 'yearly' as const,
+      priority: 0.3,
     })),
   ];
 }

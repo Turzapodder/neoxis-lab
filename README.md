@@ -10,6 +10,10 @@ per-page SEO.
   selected work 3D deck, services accordion, team showcase, process, testimonials, pricing,
   FAQ, and contact form
 - **Case study pages** — `/project/[id]`, rendered from CMS data
+- **Legal pages** — `/terms-and-conditions` and `/privacy-policy` with search, a live table of
+  contents, print and share (short links `/terms` and `/privacy` redirect)
+- **Shared site chrome** — one fixed navbar on every public page that turns into a frosted
+  glass bar on scroll, plus a shared footer and menu drawer
 - **Admin CMS** — secure login, CRM-style dashboard with sidebar, per-section editors; every
   landing section's content is editable without touching code
 - **MongoDB store** — content and admin users persist to MongoDB, with an automatic JSON-file
@@ -77,6 +81,8 @@ Create a `.env.local` file to set them.
 | ----- | ---- | ----------- |
 | `/` | Dynamic | Landing page — all content from the CMS |
 | `/project/[id]` | Dynamic | Case studies rendered from CMS projects |
+| `/terms-and-conditions` | Static | Terms & Conditions (`/terms` redirects here) |
+| `/privacy-policy` | Static | Privacy Policy (`/privacy` redirects here) |
 | `/admin/**` | Guarded | Admin CMS (redirects to login without a session) |
 | `/sitemap.xml` | Dynamic | Generated from CMS + template projects |
 | `/robots.txt` | Static | Points crawlers at the sitemap |
@@ -107,8 +113,10 @@ src/
 ├── proxy.ts              # Route guard for /admin + /api/admin (Next 16 middleware)
 ├── app/                  # Next.js App Router (routes, metadata, API endpoints)
 │   ├── layout.tsx        # Root layout: fonts, JSON-LD, global overlays
-│   ├── page.tsx          # Home route (loads CMS content)
-│   ├── project/[id]/     # Case study route (CMS-driven metadata)
+│   ├── (site)/           # Public pages; layout.tsx adds the shared navbar, footer and menu
+│   │   ├── page.tsx      # Home route (loads CMS content)
+│   │   ├── project/[id]/ # Case study route (CMS tile over the bundled narrative)
+│   │   ├── terms-and-conditions/ & privacy-policy/
 │   ├── admin/            # CMS: login, dashboard, section editors, password
 │   ├── api/admin/        # Auth, sections CRUD, upload (Express-style handlers)
 │   ├── api/og/           # Dynamic OG image generation
@@ -118,11 +126,11 @@ src/
 │   └── robots.ts
 ├── server/               # CMS core: auth, MongoDB store (JSON fallback), section registry,
 │                         #   validation, content getters, Cloudinary upload
-├── views/                # Page compositions (LandingPage, ProjectDetails)
+├── views/                # Page compositions (LandingPage, ProjectDetails, legal pages)
 ├── components/
 │   ├── content/          # ContentProvider — CMS data bridge for all sections
-│   ├── sections/         # Landing page sections (hero, services, pricing, …)
-│   ├── layout/           # Navbar, Footer
+│   ├── sections/         # Page sections (landing, ProjectDetails, Legal)
+│   ├── layout/           # SiteLayout, Navbar, Footer
 │   ├── modals/           # Menu, Connect, Cookie consent
 │   └── icons/ & ui/      # Shared primitives
 ├── layout/               # Global overlays: custom cursor, click ripples, AI copilot

@@ -5,14 +5,12 @@ import { SECTION_IDS } from '@/constants/sections';
 import { ProjectSlider } from './ProjectSlider';
 
 interface HeroSectionProps {
-  /** Header rendered inside the hero frame, above the content. */
-  header: React.ReactNode;
   onConnectClick?: () => void;
   onViewWorksClick?: () => void;
 }
 
 /** White-framed hero with liquid chrome background, headline, CTAs and project slider. */
-export const HeroSection: React.FC<HeroSectionProps> = ({ header, onConnectClick, onViewWorksClick }) => (
+export const HeroSection: React.FC<HeroSectionProps> = ({ onConnectClick, onViewWorksClick }) => (
   <div className="w-full max-w-full overflow-x-clip bg-white p-1.5 sm:p-2 transition-colors duration-500">
     <div className="relative min-h-[calc(100vh-1.25rem)] sm:min-h-[calc(100vh-2rem)] md:min-h-[calc(100vh-2.5rem)] w-full rounded-[24px] sm:rounded-[32px] md:rounded-[40px] lg:rounded-[44px] overflow-hidden flex flex-col justify-between shadow-[0_20px_60px_-15px_rgba(0,0,0,0.65)] border border-neutral-200/80 z-20">
       {/* Full-width liquid chrome background image with dark overlay */}
@@ -27,9 +25,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ header, onConnectClick
         <div className="absolute inset-0 bg-radial from-transparent via-transparent to-black/60" />
       </div>
 
-      {header}
+      {/* Room for the fixed site navbar, which overlays the top of the hero */}
+      <div aria-hidden className="relative h-[var(--navbar-height)] shrink-0" />
 
-      <main className="flex-1 flex flex-col justify-center relative z-20 my-auto py-2 sm:py-4">
+      <div className="flex-1 flex flex-col justify-center relative z-20 my-auto py-2 sm:py-4">
         <section
           id={SECTION_IDS.hero}
           className="relative w-full max-w-full overflow-hidden z-20 px-4 sm:px-8 lg:px-12 xl:px-16 pt-2 sm:pt-4 md:pt-6 pb-6 sm:pb-8"
@@ -97,7 +96,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ header, onConnectClick
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </div>
   </div>
 );

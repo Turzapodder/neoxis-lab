@@ -36,6 +36,26 @@ export const CloseIcon: React.FC<IconProps> = ({ className }) => (
   </svg>
 );
 
+// ── Filled glyphs ─────────────────────────────────────────────────────────────
+
+export const ArrowUpRightIcon: React.FC<IconProps> = ({ className }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z" />
+  </svg>
+);
+
+export const StarIcon: React.FC<IconProps> = ({ className }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12.0006 18.26L4.94715 22.2082L6.52248 14.2799L0.587891 8.7918L8.61493 7.84006L12.0006 0.5L15.3862 7.84006L23.4132 8.7918L17.4787 14.2799L19.054 22.2082L12.0006 18.26Z" />
+  </svg>
+);
+
+export const AsteriskIcon: React.FC<IconProps> = ({ className }) => (
+  <svg className={className} viewBox="0 0 78 83" fill="currentColor">
+    <path d="M32.7 31.8V5.4H44.3V31.8H32.7ZM26.9 41.8L4.1 28.6L9.9 18.6L32.6 31.8L26.9 41.8ZM49.9 41.8L44.3 31.9L67.1 18.6L72.9 28.6L49.9 41.8ZM67.1 65L44.1 51.8L49.9 41.9L72.9 55L67.1 65ZM9.9 65L4.1 55L26.9 41.9L32.7 51.8L9.9 65ZM32.7 78.2V51.9H44.1V78.2H32.7Z" />
+  </svg>
+);
+
 // ── Hero stat icons ───────────────────────────────────────────────────────────
 
 const STAT_ICON_PATHS: Record<StatIconName, React.ReactNode> = {

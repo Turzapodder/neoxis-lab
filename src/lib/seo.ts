@@ -61,6 +61,38 @@ export const buildProjectMetadata = (project: ProjectDetail): Metadata => ({
   },
 });
 
+/** Metadata for a standalone content page, such as the legal pages. */
+export const buildPageMetadata = (page: {
+  title: string;
+  description: string;
+  path: string;
+  tag?: string;
+}): Metadata => {
+  const title = `${page.title} — ${SITE.name}`;
+  const image = ogImageUrl({ title: page.title, subtitle: SITE.tagline, tag: page.tag });
+
+  return {
+    title: page.title,
+    description: page.description,
+    alternates: { canonical: page.path },
+    openGraph: {
+      title,
+      description: page.description,
+      url: absoluteUrl(page.path),
+      siteName: SITE.name,
+      locale: SITE.locale,
+      type: 'website',
+      images: [{ url: image, width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description: page.description,
+      images: [image],
+    },
+  };
+};
+
 export const HOME_METADATA: Metadata = {
   title: {
     default: DEFAULT_TITLE,

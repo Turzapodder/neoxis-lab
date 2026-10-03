@@ -174,3 +174,7 @@ export const PROJECT_DETAILS_MAP: Record<string, ProjectDetail> = {
     },
   },
 };
+
+/** Bundled case study for `id`, if there is one. Own keys only, so ids like "constructor" miss. */
+export const findProjectDetail = (id: string): ProjectDetail | undefined =>
+  Object.hasOwn(PROJECT_DETAILS_MAP, id) ? PROJECT_DETAILS_MAP[id] : undefined;
