@@ -16,6 +16,10 @@ import { Navbar } from './Navbar';
 /** Navbar tab highlighted on pages other than home, by path prefix. Legal pages highlight none. */
 const ROUTE_TABS: [prefix: string, tab: string][] = [[ROUTES.project, 'Project']];
 
+/** Pages that open with a full-bleed hero, which the navbar overlays instead of sitting above. */
+const opensWithHero = (pathname: string) =>
+  pathname === ROUTES.home || pathname.startsWith(`${ROUTES.project}/`);
+
 interface SiteLayoutProps {
   children: React.ReactNode;
 }
@@ -27,6 +31,7 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({ children }) => {
   const menu = useDisclosure();
   const [selectedTab, setSelectedTab] = useState(DEFAULT_NAV_TAB);
   const isHome = pathname === ROUTES.home;
+  const hasHero = opensWithHero(pathname);
 
   // Smooth scrolling lives here so it persists across page changes
   useSmoothScroll();
@@ -48,14 +53,14 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({ children }) => {
       </a>
 
       <Navbar
-        variant={isHome ? 'dark' : 'light'}
+        variant={hasHero ? 'dark' : 'light'}
         activeTab={isHome ? selectedTab : routeTab}
         onSelectTab={handleSelectTab}
         onOpenMenu={menu.open}
       />
 
-      {/* The landing hero reserves its own room under the navbar; other pages start below it */}
-      {!isHome && <div aria-hidden className="h-[var(--navbar-offset)]" />}
+      {/* Hero pages reserve their own room under the navbar; other pages start below it */}
+      {!hasHero && <div aria-hidden className="h-[var(--navbar-offset)]" />}
 
       <main id="main-content">{children}</main>
 

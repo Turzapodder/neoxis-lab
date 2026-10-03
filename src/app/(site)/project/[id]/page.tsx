@@ -35,7 +35,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd(project)) }}
       />
-      <ProjectDetailsPage project={project} />
+      <ProjectDetailsPage key={project.id} project={project} />
     </ContentProvider>
   );
 }

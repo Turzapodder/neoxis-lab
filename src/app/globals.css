@@ -232,3 +232,18 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* Page-load intros (see useProjectPageAnimation): elements marked data-intro stay hidden until
+   GSAP plays them in, and show anyway after 3s if scripts never run. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-intro] {
+    opacity: 0;
+    animation: intro-fallback 0s 3s forwards;
+  }
+}
+
+@keyframes intro-fallback {
+  to {
+    opacity: 1;
+  }
+}
