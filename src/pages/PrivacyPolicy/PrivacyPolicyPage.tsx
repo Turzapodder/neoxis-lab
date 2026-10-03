@@ -1,70 +1,66 @@
-import React, { useEffect, useRef } from 'react';
-import { Footer } from '@/components/layout/Footer';
-import { Navbar } from '@/components/layout/Navbar';
+import React from 'react';
+import { ShieldCheck } from 'lucide-react';
 import { ConnectModal } from '@/components/modals/ConnectModal';
-import { MenuModal } from '@/components/modals/MenuModal';
+import { DpaRequestCard } from '@/components/sections/Legal/DpaRequestCard';
+import { LegalCtaBanner } from '@/components/sections/Legal/LegalCtaBanner';
+import { LegalDocument } from '@/components/sections/Legal/LegalDocument';
+import { LegalHeader } from '@/components/sections/Legal/LegalHeader';
+import { LegalHighlightsCard } from '@/components/sections/Legal/LegalHighlightsCard';
+import { SubProcessorList } from '@/components/sections/Legal/SubProcessorList';
+import {
+  PRIVACY_CTA,
+  PRIVACY_FACTS,
+  PRIVACY_HIGHLIGHTS,
+  PRIVACY_LABELS,
+  PRIVACY_META,
+  PRIVACY_SECTIONS,
+  SUB_PROCESSORS_SECTION_ID,
+} from '@/data/privacy';
 import { useDisclosure } from '@/hooks/useDisclosure';
-import { PrivacyHeader } from './PrivacyHeader';
-import { PrivacyContent } from './PrivacyContent';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
-interface PrivacyPolicyPageProps {
-  onNavigateHome: (sectionId?: string) => void;
-  onNavigateTerms?: () => void;
-  onNavigatePrivacy?: () => void;
-}
+const SECTION_EXTRAS = { [SUB_PROCESSORS_SECTION_ID]: <SubProcessorList /> };
 
-export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({
-  onNavigateHome,
-  onNavigateTerms,
-  onNavigatePrivacy,
-}) => {
-  const menu = useDisclosure();
+export const PrivacyPolicyPage: React.FC = () => {
   const connect = useDisclosure();
-  const pageRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    const originalTitle = document.title;
-    document.title = 'Privacy Policy — NeoXis Studio | Data Protection & Confidentiality';
-    return () => {
-      document.title = originalTitle;
-    };
-  }, []);
+  useDocumentTitle('Privacy Policy — NeoXis Studio | Data Protection & Confidentiality');
 
   return (
-    <div
-      ref={pageRef}
-      className="relative w-full min-h-screen bg-[var(--color-canvas-bg)] text-[var(--color-text-primary)] selection:bg-purple-500/25 selection:text-current transition-colors duration-300 overflow-x-clip"
-    >
-      {/* Light-mode Sticky Navbar */}
-      <Navbar
-        activeTab="Legal"
-        variant="light"
-        onSelectTab={(tab) => {
-          if (tab.target) onNavigateHome(tab.target);
-          else onNavigateHome();
-        }}
-        onLogoClick={() => onNavigateHome()}
-        onOpenMenu={menu.open}
-        className="sticky top-0 z-50 bg-[var(--color-canvas-bg)]/85 backdrop-blur-md transition-all duration-300 border-b border-black/[0.04]"
-      />
-
-      {/* Main Privacy Content Container */}
+    <>
       <main className="w-full">
-        <PrivacyHeader onNavigateHome={() => onNavigateHome()} />
-        <PrivacyContent onOpenConnectModal={connect.open} />
+        <LegalHeader
+          eyebrow={PRIVACY_META.eyebrow}
+          title={PRIVACY_META.title}
+          intro={PRIVACY_META.intro}
+          facts={PRIVACY_FACTS}
+        />
+        <LegalDocument
+          sections={PRIVACY_SECTIONS}
+          labels={PRIVACY_LABELS}
+          sectionExtras={SECTION_EXTRAS}
+          highlightIcon={<ShieldCheck className="w-5 h-5 shrink-0 mt-0.5 text-emerald-600" />}
+          sidebar={
+            <>
+              <LegalHighlightsCard
+                highlights={PRIVACY_HIGHLIGHTS}
+                icon={<ShieldCheck className="w-4 h-4 text-emerald-400" />}
+                glowClassName="bg-blue-500/10"
+              />
+              <DpaRequestCard />
+            </>
+          }
+          cta={
+            <LegalCtaBanner
+              copy={PRIVACY_CTA}
+              primary={{ label: 'Contact DPO', href: `mailto:${PRIVACY_META.dpoEmail}` }}
+              secondary={{ label: 'Start a Conversation', onClick: connect.open }}
+            />
+          }
+        />
       </main>
 
-      {/* Global Footer */}
-      <Footer
-        onNavigateHome={onNavigateHome}
-        onNavigateTerms={onNavigateTerms}
-        onNavigatePrivacy={onNavigatePrivacy}
-      />
-
-      {/* Modals */}
       <ConnectModal isOpen={connect.isOpen} onClose={connect.close} />
-      <MenuModal isOpen={menu.isOpen} onClose={menu.close} />
-    </div>
+    </>
   );
 };

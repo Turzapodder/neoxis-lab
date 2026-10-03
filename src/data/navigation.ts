@@ -1,3 +1,4 @@
+import { ROUTES, sectionPath } from '@/constants/routes';
 import { SECTION_IDS } from '@/constants/sections';
 import type { ExternalLink, MenuItem, NavLink, NavTab } from '@/types/content';
 
@@ -12,11 +13,11 @@ export const NAV_TABS: NavTab[] = [
 export const DEFAULT_NAV_TAB = NAV_TABS[0].id;
 
 export const MENU_ITEMS: MenuItem[] = [
-  { number: '01', title: 'Studio', desc: 'Our ethos, vision & creative culture' },
-  { number: '02', title: 'Projects', desc: 'Proof of work, recent drops & case studies' },
-  { number: '03', title: 'Services', desc: 'Brand worlds, kinetic 3D & product systems' },
+  { number: '01', title: 'Studio', desc: 'Our ethos, vision & creative culture', target: SECTION_IDS.studio },
+  { number: '02', title: 'Projects', desc: 'Proof of work, recent drops & case studies', target: SECTION_IDS.selectedWork },
+  { number: '03', title: 'Services', desc: 'Brand worlds, kinetic 3D & product systems', target: SECTION_IDS.services },
   { number: '04', title: 'Articles / Blog', desc: 'Hot takes, design field notes & experiments' },
-  { number: '05', title: 'Contact', desc: 'Start a collab, talk scope, or say hi' },
+  { number: '05', title: 'Contact', desc: 'Start a collab, talk scope, or say hi', target: SECTION_IDS.contact },
 ];
 
 export const MENU_SOCIAL_LINKS: ExternalLink[] = [
@@ -25,11 +26,22 @@ export const MENU_SOCIAL_LINKS: ExternalLink[] = [
   { label: 'Dribbble', href: '#' },
 ];
 
+export const MENU_LEGAL_LINKS: NavLink[] = [
+  { label: 'Terms', to: ROUTES.terms },
+  { label: 'Privacy', to: ROUTES.privacy },
+];
+
+export const FOOTER_LEGAL_LINKS: NavLink[] = [
+  { label: 'Home', to: ROUTES.home },
+  { label: 'Terms & Conditions', to: ROUTES.terms },
+  { label: 'Privacy Policy', to: ROUTES.privacy },
+];
+
 export const FOOTER_NAV_LINKS: NavLink[] = [
-  { label: 'Home', target: 'top' },
-  { label: 'Studio', target: SECTION_IDS.studio },
-  { label: 'Projects', target: SECTION_IDS.selectedWork },
-  { label: 'Blog', target: SECTION_IDS.testimonials },
+  { label: 'Home', to: ROUTES.home },
+  { label: 'Studio', to: sectionPath(SECTION_IDS.studio) },
+  { label: 'Projects', to: sectionPath(SECTION_IDS.selectedWork) },
+  { label: 'Blog', to: sectionPath(SECTION_IDS.testimonials) },
 ];
 
 export const FOOTER_SOCIAL_LINKS: ExternalLink[] = [

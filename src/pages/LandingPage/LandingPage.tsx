@@ -1,8 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { Footer } from '@/components/layout/Footer';
-import { Navbar } from '@/components/layout/Navbar';
+import React, { useRef } from 'react';
 import { ConnectModal } from '@/components/modals/ConnectModal';
-import { MenuModal } from '@/components/modals/MenuModal';
 import {
   ContactSection,
   CreativeStudioSection,
@@ -16,13 +13,13 @@ import {
   StatsBar,
   TestimonialsSection,
 } from '@/components/sections';
+import { projectPath } from '@/constants/routes';
 import { SECTION_IDS } from '@/constants/sections';
-import { DEFAULT_NAV_TAB } from '@/data/navigation';
 import { useDisclosure } from '@/hooks/useDisclosure';
 import { useScrollTriggerAutoRefresh } from '@/hooks/useScrollTriggerAutoRefresh';
 import { useSectionTransitions } from '@/hooks/useSectionTransitions';
-import { useSmoothScroll } from '@/hooks/useSmoothScroll';
-import type { NavTab } from '@/types/content';
+import { navigate } from '@/lib/router';
+import type { SelectedProject } from '@/types/content';
 import { scrollToSection } from '@/utils/scroll';
 
 interface AnchorProps {
@@ -39,46 +36,18 @@ const Anchor: React.FC<AnchorProps> = ({ id, zClass = 'z-30', children }) => (
   </div>
 );
 
-interface LandingPageProps {
-  onNavigateProject?: (id: string) => void;
-  onNavigateHome?: (sectionId?: string) => void;
-  onNavigateTerms?: () => void;
-  onNavigatePrivacy?: () => void;
-}
+const openProject = (project: SelectedProject) => navigate(projectPath(project.id));
 
-export const LandingPage: React.FC<LandingPageProps> = ({
-  onNavigateProject,
-  onNavigateHome,
-  onNavigateTerms,
-  onNavigatePrivacy,
-}) => {
-  const menu = useDisclosure();
+export const LandingPage: React.FC = () => {
   const connect = useDisclosure();
-  const [activeTab, setActiveTab] = useState(DEFAULT_NAV_TAB);
-
   const pageRef = useRef<HTMLDivElement>(null);
 
-  useSmoothScroll();
   useSectionTransitions(pageRef);
   useScrollTriggerAutoRefresh(pageRef);
 
-  const handleSelectTab = (tab: NavTab) => {
-    setActiveTab(tab.id);
-    if (tab.target) scrollToSection(tab.target);
-  };
-
-  const handleSelectProject = (project: { id: string }) => {
-    if (onNavigateProject) {
-      onNavigateProject(project.id);
-    } else {
-      connect.open();
-    }
-  };
-
   return (
-    <div ref={pageRef} className="relative w-full max-w-full overflow-x-clip bg-[var(--color-canvas-bg)] text-[var(--color-text-primary)] selection:bg-purple-500/25 selection:text-current transition-colors duration-300">
+    <div ref={pageRef} className="relative w-full">
       <HeroSection
-        header={<Navbar activeTab={activeTab} onSelectTab={handleSelectTab} onOpenMenu={menu.open} />}
         onConnectClick={connect.open}
         onViewWorksClick={() => scrollToSection(SECTION_IDS.selectedWork)}
       />
@@ -96,7 +65,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       </Anchor>
 
       <Anchor id={SECTION_IDS.selectedWork} zClass="z-35">
-        <SelectedWorkSection onSelectProject={handleSelectProject} />
+        <SelectedWorkSection onSelectProject={openProject} />
       </Anchor>
 
       <Anchor id={SECTION_IDS.services} zClass="z-35">
@@ -123,15 +92,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         <ContactSection onBookCallClick={connect.open} />
       </Anchor>
 
-      <Anchor id={SECTION_IDS.footer}>
-        <Footer
-          onNavigateHome={onNavigateHome}
-          onNavigateTerms={onNavigateTerms}
-          onNavigatePrivacy={onNavigatePrivacy}
-        />
-      </Anchor>
-
-      <MenuModal isOpen={menu.isOpen} onClose={menu.close} />
       <ConnectModal isOpen={connect.isOpen} onClose={connect.close} />
     </div>
   );

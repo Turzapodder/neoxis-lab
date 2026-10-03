@@ -41,7 +41,7 @@ export const SelectedWorkSection: React.FC<SelectedWorkSectionProps> = ({ onSele
       <div className="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16">
         {/* 1. TOP HEADER GRID */}
         {/* Mobile Sticky Header (< md): Keeps "Selected work" visible until last card is scrolled */}
-        <div className="md:hidden sticky top-0 z-30 bg-[var(--color-canvas-bg)]/95 backdrop-blur-md pt-3 pb-2.5 mb-3 -mx-5 px-5 border-b border-black/[0.04]">
+        <div className="md:hidden sticky top-[var(--navbar-clearance)] z-30 bg-[var(--color-canvas-bg)]/95 backdrop-blur-md pt-3 pb-2.5 mb-3 -mx-5 px-5 border-b border-black/[0.04]">
           <div className="flex items-center justify-between gap-4">
             <div className="flex flex-col items-start min-w-0">
               {/* Subtitle Marquee */}
@@ -142,7 +142,7 @@ export const SelectedWorkSection: React.FC<SelectedWorkSectionProps> = ({ onSele
               style={{
                 zIndex: index + 10,
               }}
-              className={`sticky top-[86px] sm:top-[96px] w-full will-change-transform ${
+              className={`sticky top-[calc(var(--navbar-clearance)+86px)] sm:top-[calc(var(--navbar-clearance)+96px)] w-full will-change-transform ${
                 index > 0 ? 'mt-6 sm:mt-8' : ''
               }`}
             >

@@ -175,3 +175,7 @@ export const PROJECT_DETAILS_MAP: Record<string, ProjectDetail> = {
     },
   },
 };
+
+/** Case study for `id`; unknown or missing ids fall back to Space. */
+export const getProjectDetail = (id?: string): ProjectDetail =>
+  id && Object.hasOwn(PROJECT_DETAILS_MAP, id) ? PROJECT_DETAILS_MAP[id] : SPACE_PROJECT_DETAIL;

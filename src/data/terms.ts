@@ -1,25 +1,11 @@
-export interface LegalSection {
-  id: string;
-  number: string;
-  title: string;
-  tldr: string;
-  content: string[];
-  bullets?: string[];
-  subsections?: {
-    title: string;
-    description: string;
-    list?: string[];
-  }[];
-  callout?: {
-    type: 'info' | 'important' | 'highlight';
-    title: string;
-    message: string;
-  };
-}
+import { Calendar, FileText, Globe, Mail } from 'lucide-react';
+import type { LegalCta, LegalDocumentLabels, LegalFact, LegalHighlights, LegalSection } from '@/types/content';
 
 export const TERMS_META = {
   title: 'Terms & Conditions',
   eyebrow: 'Legal Specifications & Master Service Agreement',
+  intro:
+    'Clear, transparent, and fair commercial terms governing all bespoke web design, product engineering, and creative deliverables developed by NeoXis Studio.',
   lastUpdated: 'October 24, 2026',
   effectiveDate: 'January 1, 2026',
   version: 'v2.4 (Enterprise & Studio Standard)',
@@ -28,6 +14,37 @@ export const TERMS_META = {
   applicability: 'Digital Product Design, Web Development & Kinetic 3D',
   legalContact: 'legal@neoxis.design',
 } as const;
+
+export const TERMS_FACTS: LegalFact[] = [
+  { icon: Calendar, label: 'Effective', value: TERMS_META.effectiveDate },
+  { icon: FileText, label: 'Edition', value: TERMS_META.version },
+  { icon: Globe, label: 'Jurisdiction', value: TERMS_META.jurisdiction },
+  { icon: Mail, label: 'Legal Desk', value: TERMS_META.legalContact, href: `mailto:${TERMS_META.legalContact}` },
+];
+
+export const TERMS_LABELS: LegalDocumentLabels = {
+  sectionLabel: 'Clause',
+  documentLabel: 'Terms',
+  tocTitle: 'Table of Contents',
+  searchPlaceholder: 'Search clauses (e.g., intellectual property, payment, warranty)...',
+};
+
+export const TERMS_HIGHLIGHTS: LegalHighlights = {
+  eyebrow: 'Client Safeguards',
+  title: 'Built for Transparent Partnerships',
+  items: [
+    '100% intellectual property ownership upon invoice settlement.',
+    'Complimentary 30-day post-launch bug warranty included.',
+    'Structured two-round revision cycles for each milestone.',
+    'Direct repository & Figma design system transfer.',
+  ],
+};
+
+export const TERMS_CTA: LegalCta = {
+  eyebrow: 'Custom Contracts & Tailored SOWs',
+  title: 'Need a specialized agreement or enterprise NDA?',
+  text: 'We frequently accommodate bespoke enterprise procurement requirements, mutual NDAs, and staggered milestone structures.',
+};
 
 export const TERMS_SECTIONS: LegalSection[] = [
   {

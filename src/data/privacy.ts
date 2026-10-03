@@ -1,33 +1,18 @@
-export interface SubProcessor {
-  name: string;
-  category: string;
-  purpose: string;
-  location: string;
-  link: string;
-}
-
-export interface PrivacySection {
-  id: string;
-  number: string;
-  title: string;
-  tldr: string;
-  content: string[];
-  bullets?: string[];
-  subsections?: {
-    title: string;
-    description: string;
-    list?: string[];
-  }[];
-  callout?: {
-    type: 'info' | 'important' | 'highlight';
-    title: string;
-    message: string;
-  };
-}
+import { Calendar, Lock, Mail, ShieldCheck } from 'lucide-react';
+import type {
+  LegalCta,
+  LegalDocumentLabels,
+  LegalFact,
+  LegalHighlights,
+  LegalSection,
+  SubProcessor,
+} from '@/types/content';
 
 export const PRIVACY_META = {
   title: 'Privacy Policy',
   eyebrow: 'Data Protection, Client Confidentiality & GDPR/CCPA Compliance',
+  intro:
+    'How NeoXis Studio safeguards confidential project assets, protects user privacy, and maintains zero data broker monetization across our digital ecosystem.',
   lastUpdated: 'October 24, 2026',
   effectiveDate: 'January 1, 2026',
   version: 'v3.1 (Global Compliance)',
@@ -36,6 +21,40 @@ export const PRIVACY_META = {
   readTime: '7 min read',
   applicability: 'Agency Website, Client Portals, Staging Servers & Creative Services',
 } as const;
+
+export const PRIVACY_FACTS: LegalFact[] = [
+  { icon: Calendar, label: 'Updated', value: PRIVACY_META.lastUpdated },
+  { icon: ShieldCheck, label: 'Standards', value: 'GDPR & CCPA Compliant' },
+  { icon: Lock, label: 'Encryption', value: 'TLS 1.3 & AES-256' },
+  { icon: Mail, label: 'DPO Direct', value: PRIVACY_META.dpoEmail, href: `mailto:${PRIVACY_META.dpoEmail}` },
+];
+
+export const PRIVACY_LABELS: LegalDocumentLabels = {
+  sectionLabel: 'Section',
+  documentLabel: 'Policy',
+  tocTitle: 'Policy Sections',
+  searchPlaceholder: 'Search policy (e.g., cookies, GDPR, sub-processors)...',
+};
+
+export const PRIVACY_HIGHLIGHTS: LegalHighlights = {
+  eyebrow: 'Our Privacy Standard',
+  title: 'Data Protection by Architecture',
+  items: [
+    'Never sold, rented, or brokered to advertising third-parties.',
+    'Private encrypted GitHub repos & isolated client staging.',
+    'Full GDPR, CCPA/CPRA rights fulfilled within 30 days.',
+    'Mandatory MFA on all internal studio software & clouds.',
+  ],
+};
+
+export const PRIVACY_CTA: LegalCta = {
+  eyebrow: 'Data Subject Rights & Audits',
+  title: 'Have questions about our data or security standards?',
+  text: 'Our Data Protection Officer is available for compliance questions, security reviews, and client audit questionnaires.',
+};
+
+/** Id of the policy section that lists sub-processors. */
+export const SUB_PROCESSORS_SECTION_ID = 'subprocessors';
 
 export const SUB_PROCESSORS: SubProcessor[] = [
   {
@@ -82,7 +101,7 @@ export const SUB_PROCESSORS: SubProcessor[] = [
   },
 ];
 
-export const PRIVACY_SECTIONS: PrivacySection[] = [
+export const PRIVACY_SECTIONS: LegalSection[] = [
   {
     id: 'privacy-commitment',
     number: '01',
@@ -186,7 +205,7 @@ export const PRIVACY_SECTIONS: PrivacySection[] = [
     },
   },
   {
-    id: 'subprocessors',
+    id: SUB_PROCESSORS_SECTION_ID,
     number: '06',
     title: 'Sub-processors & Third-Party Service Providers',
     tldr: 'We partner with enterprise-grade cloud providers to run our hosting, billing, and source control. All vendors meet rigorous data protection standards.',
