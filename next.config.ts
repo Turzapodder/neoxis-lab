@@ -5,6 +5,13 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: fileURLToPath(new URL('.', import.meta.url)),
   },
+  // Short legal URLs resolve to the canonical pages
+  async redirects() {
+    return [
+      { source: '/terms', destination: '/terms-and-conditions', permanent: true },
+      { source: '/privacy', destination: '/privacy-policy', permanent: true },
+    ];
+  },
   async headers() {
     return [
       {
