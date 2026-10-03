@@ -40,5 +40,3 @@ public/uploads/
 # Misc
 next-server.log
 .playwright-mcp/
-.vinext/
-.cloudflare/
