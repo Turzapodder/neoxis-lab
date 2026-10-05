@@ -177,6 +177,17 @@ body {
 
 
 
+/* Contact form field focus styling: completely remove browser default blue outline/ring */
+.contact-input,
+.contact-input:focus,
+.contact-input:focus-visible,
+input.contact-input,
+textarea.contact-input {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
 /* ── Accessibility ──────────────────────────────────────────────────────── */
 
 /* Skip link: hidden until keyboard-focused, then a prominent pill. */

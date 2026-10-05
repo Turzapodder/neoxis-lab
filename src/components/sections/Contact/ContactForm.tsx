@@ -6,7 +6,7 @@ import { useContactForm } from './useContactForm';
 
 const LABEL_CLASS = 'flex flex-col gap-2 text-sm text-white';
 const FIELD_CLASS =
-  'bg-transparent border-b border-white/15 pb-3 text-base font-normal text-white outline-none placeholder:text-neutral-500 focus:border-white transition-colors';
+  'contact-input bg-transparent border-b border-white/15 pb-3 text-base font-normal text-white outline-none focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:outline-none focus-visible:ring-0 placeholder:text-neutral-500 focus:border-white transition-colors';
 
 export const ContactForm: React.FC = () => {
   const {

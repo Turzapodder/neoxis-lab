@@ -51,7 +51,7 @@ export const LandingPage: React.FC = () => {
   return (
     <div ref={pageRef} className="relative w-full">
       <HeroSection
-        onConnectClick={connect.open}
+        onConnectClick={() => scrollToSection(SECTION_IDS.contact)}
         onViewWorksClick={() => scrollToSection(SECTION_IDS.selectedWork)}
       />
 
@@ -60,11 +60,11 @@ export const LandingPage: React.FC = () => {
       </div>
 
       <Anchor id={SECTION_IDS.studio} zClass="z-40">
-        <CreativeStudioSection onWorkWithUsClick={connect.open} />
+        <CreativeStudioSection onWorkWithUsClick={() => scrollToSection(SECTION_IDS.contact)} />
       </Anchor>
 
       <Anchor id={SECTION_IDS.meetTheMinds} zClass="z-35">
-        <MeetTheMindsSection onBookCallClick={connect.open} />
+        <MeetTheMindsSection onBookCallClick={() => scrollToSection(SECTION_IDS.contact)} />
       </Anchor>
 
       <Anchor id={SECTION_IDS.selectedWork} zClass="z-35">
@@ -72,7 +72,10 @@ export const LandingPage: React.FC = () => {
       </Anchor>
 
       <Anchor id={SECTION_IDS.services} zClass="z-35">
-        <ServicesSection onExploreClick={connect.open} onTeamContactClick={connect.open} />
+        <ServicesSection
+          onExploreClick={() => scrollToSection(SECTION_IDS.contact)}
+          onTeamContactClick={() => scrollToSection(SECTION_IDS.contact)}
+        />
       </Anchor>
 
       <Anchor id={SECTION_IDS.process}>
@@ -84,7 +87,7 @@ export const LandingPage: React.FC = () => {
       </Anchor>
 
       <Anchor id={SECTION_IDS.pricing}>
-        <PricingSection onChoosePlan={connect.open} />
+        <PricingSection onChoosePlan={() => scrollToSection(SECTION_IDS.contact)} />
       </Anchor>
 
       <Anchor id={SECTION_IDS.faq}>
@@ -92,7 +95,7 @@ export const LandingPage: React.FC = () => {
       </Anchor>
 
       <Anchor id={SECTION_IDS.contact}>
-        <ContactSection onBookCallClick={connect.open} />
+        <ContactSection onBookCallClick={() => scrollToSection(SECTION_IDS.contact)} />
       </Anchor>
 
       <ConnectModal isOpen={connect.isOpen} onClose={connect.close} />

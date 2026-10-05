@@ -28,13 +28,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onBookCallClick 
               <SectionTag tone="light" className="text-white">
                 Let&apos;s make history
               </SectionTag>
-              <p className="flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+              {/* <p className="flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
                 <span className="relative flex w-2 h-2">
                   <span className="absolute inset-0 rounded-full bg-green-500 animate-ping opacity-60 motion-reduce:animate-none" />
                   <span className="relative w-2 h-2 rounded-full bg-green-500" />
                 </span>
                 {AVAILABILITY.status}
-              </p>
+              </p> */}
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16">
