@@ -6,6 +6,7 @@ import {
   CircleHelp,
   ExternalLink,
   FolderKanban,
+  Inbox,
   Layers,
   Lock,
   Moon,
@@ -34,6 +35,13 @@ interface Overview {
   store: { active: 'mongodb' | 'json'; configured: boolean; state: string; error: string | null };
   sections: SectionStat[];
   users: number;
+  inquiryStats?: {
+    total: number;
+    newCount: number;
+    contactedCount: number;
+    scheduledCount: number;
+    closedCount: number;
+  };
 }
 
 const SECTION_ICONS: Record<string, LucideIcon> = {
@@ -99,7 +107,31 @@ export default function AdminDashboard() {
       </header>
 
       {/* Stat tiles */}
-      <div className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        {/* Client Inquiries */}
+        <Link
+          href="/admin/inquiries"
+          className="group rounded-2xl border border-black/10 bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-black/20 hover:shadow-md"
+        >
+          <div className="flex items-center justify-between">
+            <p className="font-neue text-xs font-semibold uppercase tracking-[0.12em] text-neutral-500">
+              Inquiries &amp; Leads
+            </p>
+            {overview.inquiryStats && overview.inquiryStats.newCount > 0 ? (
+              <span className="rounded-full bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 font-clash text-xs font-bold text-emerald-600">
+                {overview.inquiryStats.newCount} New
+              </span>
+            ) : null}
+          </div>
+          <p className="mt-2.5 flex items-center gap-2 font-clash text-xl font-bold text-neutral-950">
+            <Inbox className="h-5 w-5 text-neutral-700" />
+            {overview.inquiryStats?.total ?? 0}
+          </p>
+          <p className="mt-1.5 font-neue text-[13px] text-neutral-500 group-hover:text-neutral-900 transition-colors">
+            {overview.inquiryStats?.scheduledCount ?? 0} meetings scheduled →
+          </p>
+        </Link>
+
         {/* Store status */}
         <div className="rounded-2xl border border-black/10 bg-white p-5 shadow-sm">
           <p className="font-neue text-xs font-semibold uppercase tracking-[0.12em] text-neutral-500">
@@ -115,7 +147,7 @@ export default function AdminDashboard() {
             {storeActive
               ? 'Connected — saving content to the database.'
               : isLocalhost
-                ? 'Mongo unreachable — edits persist to data/cms.json. Start mongod and retry.'
+                ? 'Mongo unreachable — edits persist to data/cms.json.'
                 : 'Mongo unreachable — check MONGO_URL.'}
           </p>
         </div>

@@ -7,8 +7,10 @@ import { createHash } from 'crypto';
  * Consumers just call `uploadImage(fileOrBase64)` and get a URL back.
  */
 
-const CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME;
-const API_KEY = process.env.CLOUDINARY_API_KEY;
+const CLOUD_NAME =
+  process.env.CLOUDINARY_CLOUD_NAME || process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+const API_KEY =
+  process.env.CLOUDINARY_API_KEY || process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY;
 const API_SECRET = process.env.CLOUDINARY_API_SECRET;
 
 export const cloudinaryConfigured = (): boolean =>

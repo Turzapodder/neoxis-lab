@@ -28,12 +28,29 @@ export interface AdminUser {
   createdAt: string;
 }
 
+export interface Inquiry {
+  id: string;
+  name: string;
+  email: string;
+  projectTypes: string[];
+  budget: string | null;
+  message: string;
+  source?: 'contact_section' | 'connect_modal';
+  status: 'new' | 'contacted' | 'scheduled' | 'closed';
+  notes?: string;
+  meetingScheduledAt?: string | null;
+  meetingLink?: string | null;
+  createdAt: string;
+  updatedAt?: string;
+}
+
 export interface CmsData {
   version: 1;
   users: AdminUser[];
   content: Record<string, unknown>;
   /** Admin session families (refresh tokens live here, hashed). */
   sessions: StoredSession[];
+  inquiries?: Inquiry[];
 }
 
 /** A refresh-token session family, stored hashed. Defined here (not in
@@ -98,6 +115,7 @@ function mergeWithSeed(parsed: Partial<CmsData> | null): CmsData {
     users: Array.isArray(storedUsers) && storedUsers.length > 0 ? storedUsers : seed.users,
     content: deepMerge(seed.content, parsed?.content),
     sessions: Array.isArray(parsed?.sessions) ? parsed!.sessions : [],
+    inquiries: Array.isArray(parsed?.inquiries) ? parsed!.inquiries : [],
   };
 }
 
@@ -123,10 +141,11 @@ async function readMongo(): Promise<CmsData | null> {
   const db = await getDb().catch(() => null);
   if (!db) return null;
 
-  const [userDocs, sectionDocs, sessionDocs] = await Promise.all([
+  const [userDocs, sectionDocs, sessionDocs, inquiryDocs] = await Promise.all([
     db.collection(COLLECTIONS.users).find({}).toArray(),
     db.collection(COLLECTIONS.sections).find({}).toArray(),
     db.collection(COLLECTIONS.sessions).find({}).toArray(),
+    db.collection(COLLECTIONS.inquiries).find({}).toArray(),
   ]);
 
   const stored: Partial<CmsData> = {
@@ -135,6 +154,7 @@ async function readMongo(): Promise<CmsData | null> {
       sectionDocs.map((doc) => [doc.key as string, doc.value]),
     ),
     sessions: sessionDocs.map(({ _id: _ignored, ...rest }) => rest as CmsData['sessions'][number]),
+    inquiries: inquiryDocs.map(({ _id: _ignored, ...rest }) => rest as Inquiry),
   };
   return mergeWithSeed(stored);
 }
@@ -157,6 +177,13 @@ async function writeMongo(data: CmsData): Promise<boolean> {
   if (data.sessions.length > 0) {
     await db.collection(COLLECTIONS.sessions).insertMany(
       data.sessions.map((session) => ({ ...session, _id: session.id as never })),
+    );
+  }
+
+  await db.collection(COLLECTIONS.inquiries).deleteMany({});
+  if (data.inquiries && data.inquiries.length > 0) {
+    await db.collection(COLLECTIONS.inquiries).insertMany(
+      data.inquiries.map((inquiry) => ({ ...inquiry, _id: inquiry.id as never })),
     );
   }
 

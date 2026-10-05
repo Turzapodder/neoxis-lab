@@ -15,12 +15,47 @@ const LABEL_CLASS = 'block font-neue text-xs text-neutral-600 mb-1.5';
 
 export const ConnectModal: React.FC<ConnectModalProps> = ({ isOpen, onClose }) => {
   const [submitted, showConfirmation] = useTransientFlag(CONFIRMATION_MS);
+  const [submitting, setSubmitting] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    showConfirmation(onClose);
+    if (submitting) return;
+
+    setError(null);
+    setSubmitting(true);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const name = String(formData.get('name') || '').trim();
+    const email = String(formData.get('email') || '').trim();
+    const message = String(formData.get('message') || '').trim();
+
+    try {
+      const res = await fetch('/api/inquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          source: 'connect_modal',
+        }),
+      });
+
+      const data = (await res.json().catch(() => null)) as { success?: boolean; error?: string } | null;
+      if (!res.ok || !data?.success) {
+        throw new Error(data?.error || 'Failed to submit inquiry.');
+      }
+
+      showConfirmation(onClose);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to send inquiry.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -54,17 +89,23 @@ export const ConnectModal: React.FC<ConnectModalProps> = ({ isOpen, onClose }) =
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
+            {error && (
+              <p className="rounded-xl bg-red-500/10 border border-red-500/20 px-3 py-2 text-xs text-red-600 font-neue">
+                {error}
+              </p>
+            )}
             <div>
               <label className={LABEL_CLASS}>Your Name</label>
-              <input type="text" required placeholder="Alex Morgan" className={FIELD_CLASS} />
+              <input type="text" name="name" required placeholder="Alex Morgan" className={FIELD_CLASS} />
             </div>
             <div>
               <label className={LABEL_CLASS}>Email Address</label>
-              <input type="email" required placeholder="alex@example.com" className={FIELD_CLASS} />
+              <input type="email" name="email" required placeholder="alex@example.com" className={FIELD_CLASS} />
             </div>
             <div>
               <label className={LABEL_CLASS}>Project Scope</label>
               <textarea
+                name="message"
                 rows={3}
                 required
                 placeholder="Give us the lowdown — what are you building, your dream launch date, and your target goals?"
@@ -73,9 +114,10 @@ export const ConnectModal: React.FC<ConnectModalProps> = ({ isOpen, onClose }) =
             </div>
             <button
               type="submit"
-              className="mt-2 bg-neutral-950 text-white py-3 rounded-full font-clash font-semibold text-sm hover:bg-neutral-850 transition-all cursor-pointer shadow-lg"
+              disabled={submitting}
+              className="mt-2 bg-neutral-950 text-white py-3 rounded-full font-clash font-semibold text-sm hover:bg-neutral-850 transition-all cursor-pointer shadow-lg disabled:opacity-50"
             >
-              Launch Project Inquiry →
+              {submitting ? 'Sending Brief...' : 'Launch Project Inquiry →'}
             </button>
           </form>
         )}

@@ -2,13 +2,14 @@ import { NextResponse } from 'next/server';
 import { getSession } from '@/server/auth';
 import { readDb, storeStatus } from '@/server/db';
 import { SECTIONS } from '@/server/sections';
+import { getInquiryStats } from '@/server/inquiries';
 
 export const dynamic = 'force-dynamic';
 
 /**
  * GET /api/admin/overview
  * One call powering the CRM dashboard: signed-in user, active data store
- * (mongodb or json fallback), and live item counts for every section.
+ * (mongodb or json fallback), live item counts for every section, and inquiry stats.
  */
 export async function GET() {
   const session = await getSession();
@@ -16,7 +17,7 @@ export async function GET() {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const db = await readDb();
+  const [db, inquiryStats] = await Promise.all([readDb(), getInquiryStats()]);
   const status = storeStatus();
 
   const sections = SECTIONS.map((section) => {
@@ -39,5 +40,6 @@ export async function GET() {
     },
     sections,
     users: db.users.length,
+    inquiryStats,
   });
 }

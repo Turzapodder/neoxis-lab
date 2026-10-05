@@ -191,7 +191,7 @@ export const SERVICES: Service[] = [
 ];
 
 export const PROCESS_STEPS: ProcessStep[] = [
-  { id: 'art-direction', label: 'Phase 01 // Blueprint', title: 'Creative Direction & Architecture', image: studioFactImg },
-  { id: 'design-prototype', label: 'Phase 02 // Sprints', title: 'High-Fidelity UI & Motion Craft', image: meetMindsTeamImg },
-  { id: 'testing', label: 'Phase 03 // Shipping', title: 'Stress-Testing & Production Drop', image: cardMobileImg },
+  { id: 'art-direction', label: 'Blueprint', title: 'Creative Direction & Architecture', image: studioFactImg },
+  { id: 'design-prototype', label: 'Sprints', title: 'High-Fidelity UI & Motion Craft', image: meetMindsTeamImg },
+  { id: 'testing', label: 'Shipping', title: 'Stress-Testing & Production Drop', image: cardMobileImg },
 ];

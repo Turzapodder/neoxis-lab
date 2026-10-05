@@ -7,6 +7,7 @@ import {
   BadgeDollarSign,
   CircleHelp,
   FolderKanban,
+  Inbox,
   KeyRound,
   LayoutDashboard,
   Layers,
@@ -75,11 +76,22 @@ export default function AdminShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const [user, setUser] = useState<AdminUser | null>(null);
+  const [unreadCount, setUnreadCount] = useState<number>(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
 
   // The login page renders bare (no sidebar/chrome).
   const isLogin = pathname.startsWith('/admin/login');
+
+  useEffect(() => {
+    if (isLogin) return;
+    adminFetch('/api/admin/inquiries')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: { stats?: { newCount: number } } | null) => {
+        if (data?.stats) setUnreadCount(data.stats.newCount);
+      })
+      .catch(() => {});
+  }, [isLogin, pathname]);
 
   useEffect(() => {
     if (isLogin) return;
@@ -167,10 +179,24 @@ export default function AdminShell({ children }: { children: ReactNode }) {
           <p className="px-3.5 pb-2 font-neue text-[11px] font-semibold uppercase tracking-[0.16em] text-neutral-500">
             Overview
           </p>
-          <Link href="/admin" className={navLinkClass(isDashboard)}>
-            <LayoutDashboard className="h-[18px] w-[18px]" />
-            Dashboard
-          </Link>
+          <div className="space-y-1">
+            <Link href="/admin" className={navLinkClass(isDashboard)}>
+              <LayoutDashboard className="h-[18px] w-[18px]" />
+              Dashboard
+            </Link>
+            <Link
+              href="/admin/inquiries"
+              className={navLinkClass(pathname.startsWith('/admin/inquiries'))}
+            >
+              <Inbox className="h-[18px] w-[18px]" />
+              <span className="flex-1">Inquiries</span>
+              {unreadCount > 0 && (
+                <span className="rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 font-clash text-[11px] font-bold">
+                  {unreadCount}
+                </span>
+              )}
+            </Link>
+          </div>
         </div>
 
         <div>

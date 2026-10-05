@@ -10,6 +10,7 @@ export function buildSeed(): CmsData {
     version: 1,
     users: [],
     sessions: [],
+    inquiries: [],
     content: Object.fromEntries(SECTIONS.map((s) => [s.key, { items: s.seed }])),
   };
 }
