@@ -4,7 +4,6 @@ import { DEFAULT_TITLE } from '@/config/site';
 import { HOME_METADATA, absoluteUrl } from '@/lib/seo';
 import { organizationJsonLd, websiteJsonLd } from '@/lib/jsonld';
 import { ClickRipple } from '@/layout/click-ripple';
-import { CustomCursor } from '@/layout/custom-cursor';
 import { AiCopilotWidget } from '@/layout/floting-ai-copilot';
 import { CookieConsentModal } from '@/components/modals/CookieConsentModal';
 import './globals.css';
@@ -76,7 +75,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="overflow-x-hidden antialiased selection:bg-purple-500/25 selection:text-current transition-colors duration-300">
         {children}
         {/* Global interactive layer — each overlay hides itself on /admin */}
-        <CustomCursor />
         <ClickRipple />
         <AiCopilotWidget />
         <CookieConsentModal />

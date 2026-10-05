@@ -175,14 +175,7 @@ body {
   }
 }
 
-/* Hide the native cursor when the custom cursor is active (fine pointers only). */
-@media (pointer: fine) {
-  body.cursor-hover,
-  body.cursor-hover a,
-  body.cursor-hover button {
-    cursor: pointer;
-  }
-}
+
 
 /* ── Accessibility ──────────────────────────────────────────────────────── */
 
