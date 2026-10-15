@@ -62,7 +62,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onConnectClick, onView
                 </div>
 
                 <div className="flex items-start gap-3 max-w-[440px]">
-                  <span className="font-neue text-lg sm:text-xl text-white/60 font-light select-none">/</span>
                   <p className="font-neue text-sm sm:text-base md:text-[17px] text-white/85 font-normal leading-relaxed">
                     We build category-defining digital experiences, viral brand worlds, and fluid interfaces that hit different and scale effortlessly.
                   </p>

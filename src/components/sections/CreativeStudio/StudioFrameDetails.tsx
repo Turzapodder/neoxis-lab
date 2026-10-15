@@ -13,9 +13,6 @@ export const StudioFrameDetails: React.FC<StudioFrameDetailsProps> = ({ variant 
 
   return (
     <div className="absolute inset-0 pointer-events-none px-6 sm:px-10 lg:px-16 py-8 sm:py-10 flex flex-col justify-between">
-      <SectionTag tone={isBase ? 'dark' : 'light'} className={isBase ? 'text-neutral-900' : 'text-white'}>
-        The Ethos
-      </SectionTag>
 
       <div className={`flex items-end justify-between gap-6 text-xs sm:text-sm ${muted}`}>
         <p className="max-w-[250px] leading-relaxed">High-voltage branding, digital systems, and interfaces for founders building what&apos;s next.</p>

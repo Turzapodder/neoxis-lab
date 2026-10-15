@@ -4,7 +4,7 @@ import { DEFAULT_TITLE } from '@/config/site';
 import { HOME_METADATA, absoluteUrl } from '@/lib/seo';
 import { organizationJsonLd, websiteJsonLd } from '@/lib/jsonld';
 import { ClickRipple } from '@/layout/click-ripple';
-import { AiCopilotWidget } from '@/layout/floting-ai-copilot';
+// import { AiCopilotWidget } from '@/layout/floting-ai-copilot';
 import { CookieConsentModal } from '@/components/modals/CookieConsentModal';
 import './globals.css';
 
@@ -76,7 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         {/* Global interactive layer — each overlay hides itself on /admin */}
         <ClickRipple />
-        <AiCopilotWidget />
+        {/* <AiCopilotWidget /> */}
         <CookieConsentModal />
       </body>
     </html>
