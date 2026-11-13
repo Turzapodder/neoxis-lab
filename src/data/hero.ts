@@ -35,8 +35,8 @@ export const FLOATING_CARDS: FloatingCard[] = [
 ];
 
 export const HERO_STATS: StatItem[] = [
-  { id: 'projects', value: '50+', label: 'Drops Shipped', icon: 'starburst' },
-  { id: 'clients', value: '30+', label: 'Obsessed Clients', icon: 'users' },
-  { id: 'experience', value: '8+', label: 'Years In The Game', icon: 'rocket' },
-  { id: 'countries', value: '15+', label: 'Global Footprint', icon: 'globe' },
+  { id: 'projects', value: '20+', label: 'Drops Shipped', icon: 'starburst' },
+  { id: 'clients', value: '15+', label: 'Obsessed Clients', icon: 'users' },
+  { id: 'experience', value: '3+', label: 'Years In The Game', icon: 'rocket' },
+  { id: 'countries', value: '6+', label: 'Global Footprint', icon: 'globe' },
 ];

@@ -51,7 +51,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onChoosePlan }) 
             <TierToggle value={tier} onChange={setTier} />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-2.5 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-2.5 items-stretch">
             {plans.map((plan) => (
               <PlanCard key={plan.id} plan={plan} tier={tier} onChoose={onChoosePlan} />
             ))}
