@@ -45,7 +45,7 @@ export const TestimonialsSection: React.FC = () => {
           {CLIENT_STATS.map((stat) => (
             <div
               key={stat.id}
-              className="flex items-baseline gap-5 py-6 sm:py-2 sm:px-8 sm:first:pl-0 border-t sm:border-t-0 sm:border-l sm:first:border-l-0 border-neutral-200"
+              className="flex items-center gap-5 py-6 sm:py-2 sm:px-8 sm:first:pl-0 border-t sm:border-t-0 sm:border-l sm:first:border-l-0 border-neutral-200"
             >
               <span className="font-clash text-5xl sm:text-6xl font-bold tracking-tight leading-none">{stat.value}</span>
               <p className="text-sm sm:text-base text-neutral-500 leading-snug max-w-[260px]">{stat.caption}</p>

@@ -9,9 +9,10 @@ interface PlanCardProps {
 }
 
 export const PlanCard: React.FC<PlanCardProps> = ({ plan, tier, onChoose }) => (
+  // Full-height flex column: every card in the row matches the tallest one
   <article
     data-reveal
-    className="rounded-[20px] sm:rounded-[22px] bg-[#141414]/95 backdrop-blur-md border border-white/[0.04] p-2.5"
+    className="flex h-full flex-col rounded-[20px] sm:rounded-[22px] bg-[#141414]/95 backdrop-blur-md border border-white/[0.04] p-2.5"
   >
     <div className={`rounded-[16px] p-4 sm:p-5 ${plan.featured ? 'bg-white/[0.06]' : ''}`}>
       <div className="flex items-center justify-between gap-3">
@@ -31,7 +32,8 @@ export const PlanCard: React.FC<PlanCardProps> = ({ plan, tier, onChoose }) => (
         </span>
         {plan.unit && <span className="text-xs text-white/80 ml-0.5">{plan.unit}</span>}
       </p>
-      <p className="text-[11px] text-white/55 mt-2">{plan.tagline}</p>
+      {/* Two lines reserved so the buttons line up whatever the tagline length */}
+      <p className="text-[11px] text-white/55 mt-2 min-h-[2lh]">{plan.tagline}</p>
 
       <button
         type="button"
@@ -46,7 +48,7 @@ export const PlanCard: React.FC<PlanCardProps> = ({ plan, tier, onChoose }) => (
 
     <div className="mx-4 sm:mx-5 mt-2 border-t border-white/[0.06]" />
 
-    <div className="p-4 sm:p-5 pb-6">
+    <div className="flex-1 p-4 sm:p-5 pb-6">
       <p className="text-sm text-white/85">The deliverables:</p>
       <ul className="mt-6 flex flex-col gap-3.5">
         {plan.features.map((feature) => (

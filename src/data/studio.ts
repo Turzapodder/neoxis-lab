@@ -23,9 +23,12 @@ export const STUDIO_REASONS: StudioReason[] = [
   },
 ];
 
+/**
+ * Studio-wide numbers. Keep them honest and in step with the stats bar
+ * (CMS "heroStats"); the specialist count comes from the CMS team list.
+ */
 export const STUDIO_FACTS = {
-  specialists: 12,
-  countries: 12,
-  projects: '230+',
-  partners: '400+',
+  countries: 5,
+  projects: '20+',
+  partners: '15+',
 } as const;

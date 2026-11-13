@@ -40,7 +40,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
-export const TESTIMONIAL_RATING = { score: '4.9', reviews: '60+' } as const;
+export const TESTIMONIAL_RATING = { score: '4.9', reviews: '15+' } as const;
 
 /** Outcomes shown under the quotes. */
 export const CLIENT_STATS: ClientStat[] = [

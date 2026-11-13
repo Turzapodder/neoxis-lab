@@ -25,7 +25,7 @@ export const TeamMemberRow: React.FC<TeamMemberRowProps> = ({ member, isActive, 
           isActive ? 'w-12 sm:w-14 opacity-100' : 'w-0 opacity-0'
         }`}
       >
-        <SmartImage src={member.image} alt="" width={56} height={56} className="w-12 h-12 sm:w-14 sm:h-14 object-cover" />
+        <SmartImage src={member.image} alt="" width={56} height={56} className="w-12 h-12 sm:w-14 sm:h-14 max-w-none object-cover" />
       </span>
 
       <span className="flex-1 min-w-0 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-6">
