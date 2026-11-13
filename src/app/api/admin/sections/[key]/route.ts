@@ -1,3 +1,4 @@
+import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 import { getSession } from '@/server/auth';
 import { readDb, updateDb } from '@/server/db';
@@ -54,6 +55,8 @@ export async function PUT(request: NextRequest, context: RouteContext) {
   await updateDb((data) => {
     data.content[key] = { items: result.items };
   });
+  // Public pages are cached (ISR); rebuild all of them so the edit shows on next visit.
+  revalidatePath('/', 'layout');
 
   return NextResponse.json({ key, items: result.items, updatedBy: session.email });
 }

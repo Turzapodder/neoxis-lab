@@ -4,13 +4,16 @@ import { absoluteUrl } from '@/lib/seo';
 import { getCmsContent } from '@/server/content';
 import { PROJECT_DETAILS_MAP } from '@/data/projectDetails';
 
-export const dynamic = 'force-dynamic';
+/** Rebuilt hourly, and right away when the CMS changes. */
+export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const cms = await getCmsContent();
 
   // CMS projects first, plus any template-only ids so nothing 404s in the sitemap.
   const ids = [...new Set([...cms.projects.map((p) => p.id), ...Object.keys(PROJECT_DETAILS_MAP)])];
+  // Project cover images help the case studies surface in image search.
+  const coverFor = (id: string) => cms.projects.find((p) => p.id === id)?.image ?? PROJECT_DETAILS_MAP[id]?.heroImage1;
 
   return [
     {
@@ -19,12 +22,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly',
       priority: 1,
     },
-    ...ids.map((id) => ({
-      url: absoluteUrl(projectPath(id)),
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    })),
+    ...ids.map((id) => {
+      const cover = coverFor(id);
+      return {
+        url: absoluteUrl(projectPath(id)),
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.8,
+        ...(cover ? { images: [absoluteUrl(cover)] } : {}),
+      };
+    }),
     ...[ROUTES.terms, ROUTES.privacy].map((path) => ({
       url: absoluteUrl(path),
       lastModified: new Date(),

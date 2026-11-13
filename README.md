@@ -20,8 +20,8 @@ per-page SEO.
   fallback when the database is unreachable
 - **Image uploads** — reusable Cloudinary uploader with automatic local fallback in dev
 - **Dynamic SEO** — per-page metadata, JSON-LD structured data, dynamic OG images, sitemap, robots
-- **AI assistant** — floating "Ask AI" copilot grounded in the site's own data (services, pricing,
-  projects, team, FAQs), powered by Groq with a zero-key local fallback
+- **Fast by default** — responsive AVIF/WebP images via `next/image`, cached (ISR) public pages,
+  self-hosted fonts
 - **Cookie consent** — first-visit modal, choice persisted in localStorage
 - **Polish layer** — Lenis smooth scrolling, GSAP scroll animations, custom cursor and click
   ripples (all reduced-motion aware)
@@ -62,7 +62,6 @@ npm run dev        # http://localhost:3000
 | `AUTH_SECRET` | **production** | Signs admin session cookies — generate a strong random value |
 | `ADMIN_EMAIL` / `ADMIN_PASSWORD` | first run | Seeds the initial admin account |
 | `CLOUDINARY_CLOUD_NAME` / `CLOUDINARY_API_KEY` / `CLOUDINARY_API_SECRET` | optional | Image uploads; without them uploads save to `public/uploads` (dev only) |
-| `GROQ_API_KEY` | optional | Enables the LLM-powered AI copilot; without it a smart local fallback answers from site data |
 
 Create a `.env.local` file to set them.
 
@@ -79,15 +78,14 @@ Create a `.env.local` file to set them.
 
 | Route | Type | Description |
 | ----- | ---- | ----------- |
-| `/` | Dynamic | Landing page — all content from the CMS |
-| `/project/[id]` | Dynamic | Case studies rendered from CMS projects |
+| `/` | ISR (5 min) | Landing page — all content from the CMS |
+| `/project/[id]` | ISR (5 min) | Case studies rendered from CMS projects, pre-rendered at build |
 | `/terms-and-conditions` | Static | Terms & Conditions (`/terms` redirects here) |
 | `/privacy-policy` | Static | Privacy Policy (`/privacy` redirects here) |
 | `/admin/**` | Guarded | Admin CMS (redirects to login without a session) |
-| `/sitemap.xml` | Dynamic | Generated from CMS + template projects |
+| `/sitemap.xml` | ISR (1 h) | Generated from CMS + template projects |
 | `/robots.txt` | Static | Points crawlers at the sitemap |
 | `/api/og` | Dynamic | Branded OG image cards (`?title=&subtitle=&tag=`) |
-| `/api/ai-chat` | Dynamic | AI copilot endpoint (Groq cascade → local fallback) |
 | `/api/content` | Dynamic | Public read-only JSON of all CMS content |
 | `/api/admin/**` | Guarded | Auth + sections CRUD + image upload (401 without session) |
 
@@ -120,7 +118,6 @@ src/
 │   ├── admin/            # CMS: login, dashboard, section editors, password
 │   ├── api/admin/        # Auth, sections CRUD, upload (Express-style handlers)
 │   ├── api/og/           # Dynamic OG image generation
-│   ├── api/ai-chat/      # AI copilot backend (Groq)
 │   ├── api/content/      # Public read-only content JSON
 │   ├── sitemap.ts        # robots/sitemap generation
 │   └── robots.ts
@@ -133,7 +130,7 @@ src/
 │   ├── layout/           # SiteLayout, Navbar, Footer
 │   ├── modals/           # Menu, Connect, Cookie consent
 │   └── icons/ & ui/      # Shared primitives
-├── layout/               # Global overlays: custom cursor, click ripples, AI copilot
+├── layout/               # Global overlays: custom cursor, click ripples
 ├── config/site.ts        # Brand identity + SEO defaults (single source of truth)
 ├── data/                 # Static fallback content (bundled seed)
 ├── hooks/                # Scroll, carousel, accordion, clipboard, media queries…
@@ -145,16 +142,15 @@ data/cms.json             # Runtime CMS store (git-ignored; seeded on first run)
 public/images/            # Seed images the CMS references
 ```
 
-Editing content in `/admin` updates the landing sections, contact-form chips, case-study pages,
-sitemap, and the AI assistant's knowledge in one place. `src/data/*` remains as the bundled
+Editing content in `/admin` updates the landing sections, contact-form chips, case-study pages
+and sitemap in one place. `src/data/*` remains as the bundled
 fallback so the site renders even before the CMS is seeded.
 
 ## 🛠 Tech stack
 
 - **Framework:** Next.js 16 (App Router, Turbopack), React 19, TypeScript
 - **Styling:** Tailwind CSS v4, custom CSS variables and keyframes
-- **Animation:** GSAP (ScrollTrigger), Lenis smooth scroll, Framer Motion (AI widget)
-- **AI:** Vercel AI SDK + Groq (`openai/gpt-oss-120b` → `gpt-oss-20b` → `compound-mini` cascade)
+- **Animation:** GSAP (ScrollTrigger), Lenis smooth scroll
 - **Quality:** Oxlint, strict TypeScript
 
 ## 🚢 Deployment
@@ -166,4 +162,4 @@ npm run build
 npm start
 ```
 
-Remember to set `NEXT_PUBLIC_SITE_URL` and `GROQ_API_KEY` in the host's environment settings.
+Remember to set `NEXT_PUBLIC_SITE_URL` in the host's environment settings.

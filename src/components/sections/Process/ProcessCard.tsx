@@ -1,4 +1,5 @@
 import React from 'react';
+import { SmartImage } from '@/components/ui/SmartImage';
 import type { ProcessStep } from '@/types/content';
 import { padNumber } from '@/utils/format';
 
@@ -38,10 +39,12 @@ export const ProcessCard: React.FC<ProcessCardProps> = ({ step, index, isActive,
       >
         {/* Expanded layer: photo, bottom caption, number */}
         <div className={`absolute inset-0 transition-opacity duration-700 ${isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-          <img
+          <SmartImage
             src={step.image}
             alt={step.title}
-            loading="lazy"
+            width={1200}
+            height={896}
+            sizes="(min-width: 768px) 560px, 100vw"
             className={`w-full h-full object-cover transition-transform duration-[1200ms] ease-out ${isActive ? 'scale-100' : 'scale-110'}`}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-white/20" />

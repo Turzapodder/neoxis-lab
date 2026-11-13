@@ -1,8 +1,9 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 
-import { meetMindsTeamImg, studioFactImg } from '@/lib/images';
+import { meetMindsTeamImage, studioFactImage } from '@/lib/images';
 import { SectionTag } from '@/components/ui/SectionTag';
+import { SmartImage } from '@/components/ui/SmartImage';
 import { STUDIO_FACTS, STUDIO_REASONS } from '@/data/studio';
 import { TEAM_AVATARS } from '@/data/team';
 import { ClientLogos } from './ClientLogos';
@@ -51,16 +52,17 @@ export const MeetTheMindsSection: React.FC<MeetTheMindsSectionProps> = ({ onBook
       {/* 2. Image row: wide team photo + narrow studio photo */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4">
         <div className="md:col-span-8 relative h-[340px] sm:h-[440px] lg:h-[520px] rounded-[28px] sm:rounded-[32px] overflow-hidden bg-neutral-200 group">
-          <img
-            src={meetMindsTeamImg}
+          <SmartImage
+            src={meetMindsTeamImage}
             alt="The neoxis team together in the studio"
-            loading="lazy"
+            sizes="(min-width: 768px) 66vw, 100vw"
+            placeholder="blur"
             className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out"
           />
           <div className="absolute left-4 bottom-4 sm:left-6 sm:bottom-6 flex items-center gap-3 rounded-full bg-white/90 backdrop-blur-md pl-1.5 pr-5 py-1.5 shadow-sm">
             <div className="flex -space-x-2.5">
               {TEAM_AVATARS.meetTheMinds.map((src) => (
-                <img key={src} src={src} alt="" className="w-9 h-9 rounded-full object-cover border-2 border-white" />
+                <SmartImage key={src} src={src} alt="" width={36} height={36} className="w-9 h-9 rounded-full object-cover border-2 border-white" />
               ))}
             </div>
             <div className="leading-tight">
@@ -71,10 +73,11 @@ export const MeetTheMindsSection: React.FC<MeetTheMindsSectionProps> = ({ onBook
         </div>
 
         <div className="md:col-span-4 relative h-[280px] md:h-auto rounded-[28px] sm:rounded-[32px] overflow-hidden bg-neutral-900 text-white group">
-          <img
-            src={studioFactImg}
+          <SmartImage
+            src={studioFactImage}
             alt="Designers reviewing work at a desk"
-            loading="lazy"
+            sizes="(min-width: 768px) 33vw, 100vw"
+            placeholder="blur"
             className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />

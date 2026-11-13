@@ -1,5 +1,6 @@
 import React from 'react';
 import type { SelectedProject } from '@/types/content';
+import { SmartImage } from '@/components/ui/SmartImage';
 
 interface ProjectTileProps {
   project: SelectedProject;
@@ -14,9 +15,12 @@ export const ProjectTile: React.FC<ProjectTileProps> = ({ project, heightClass, 
     <div
       className={`relative w-full ${heightClass} rounded-[24px] sm:rounded-[32px] overflow-hidden bg-neutral-950 shadow-sm border border-neutral-200/50`}
     >
-      <img
+      <SmartImage
         src={project.image}
         alt={project.title}
+        width={1200}
+        height={896}
+        sizes="(min-width: 768px) 50vw, 100vw"
         className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
       />
       <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />

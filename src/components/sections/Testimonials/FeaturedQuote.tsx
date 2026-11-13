@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowLeft, ArrowRight, Quote } from 'lucide-react';
 import { useTestimonials } from '@/components/content/ContentProvider';
+import { SmartImage } from '@/components/ui/SmartImage';
 import { useCarousel } from '@/hooks/useCarousel';
 import { padNumber } from '@/utils/format';
 
@@ -80,9 +81,11 @@ export const FeaturedQuote: React.FC = () => {
                   isActive ? 'bg-neutral-100 pr-5' : 'hover:bg-neutral-100'
                 }`}
               >
-                <img
+                <SmartImage
                   src={t.image}
                   alt=""
+                  width={44}
+                  height={44}
                   className={`w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover transition-[filter,opacity] duration-500 ${
                     isActive ? '' : 'grayscale opacity-60'
                   }`}

@@ -1,8 +1,9 @@
 import React from 'react';
 import { ChevronUp } from 'lucide-react';
 
-import { meetMindsTeamImg as footerImg } from '@/lib/images';
+import { meetMindsTeamImage as footerImg } from '@/lib/images';
 import { Link } from '@/components/ui/Link';
+import { SmartImage } from '@/components/ui/SmartImage';
 import { ROUTES } from '@/constants/routes';
 import { SECTION_IDS } from '@/constants/sections';
 import { CONTACT_EMAIL } from '@/data/company';
@@ -21,10 +22,10 @@ export const Footer: React.FC = () => (
         <div className={`${GRID_CLASS} gap-y-12`}>
           <div className="col-span-2 lg:col-span-1 max-w-[400px]">
             <div className="aspect-[16/9] rounded-[18px] overflow-hidden bg-neutral-100">
-              <img
+              <SmartImage
                 src={footerImg}
                 alt="neoxis studio team at work"
-                loading="lazy"
+                sizes="400px"
                 className="w-full h-full object-cover hover:scale-[1.03] transition-transform duration-700"
               />
             </div>

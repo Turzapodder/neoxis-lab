@@ -8,6 +8,22 @@ import { SITE } from '@/config/site';
 
 const absoluteUrl = (path: string) => new URL(path, SITE.url).toString();
 
+/**
+ * Social profiles you control. Add full profile URLs (https://dribbble.com/neoxis),
+ * never bare network homepages: those tell Google the brand *is* twitter.com.
+ */
+const SOCIAL_PROFILE_URLS: string[] = [
+  'https://twitter.com',
+  'https://dribbble.com',
+  'https://instagram.com',
+  'https://facebook.com',
+  'https://linkedin.com',
+];
+
+/** Keeps only real profile URLs (something after the domain). */
+const realProfiles = (urls: string[]) => urls.filter((url) => new URL(url).pathname.replace(/\/+$/, '') !== '');
+const sameAs = realProfiles(SOCIAL_PROFILE_URLS);
+
 export const organizationJsonLd = () => ({
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -15,7 +31,9 @@ export const organizationJsonLd = () => ({
   alternateName: SITE.shortName,
   legalName: `${SITE.name} Studio`,
   url: SITE.url,
-  logo: absoluteUrl('/favicon.svg'),
+  // Raster logo: Google's Organization logo guidelines ask for at least 112x112px.
+  logo: absoluteUrl('/icons/icon-512.png'),
+  image: absoluteUrl('/icons/icon-512.png'),
   email: SITE.email,
   description: SITE.description,
   foundingDate: SITE.founded,
@@ -24,13 +42,7 @@ export const organizationJsonLd = () => ({
     name: SITE.founder,
   },
   /** Every real profile you control — this is what populates the panel's Profiles row. */
-  sameAs: [
-    'https://twitter.com',
-    'https://dribbble.com',
-    'https://instagram.com',
-    'https://facebook.com',
-    'https://linkedin.com',
-  ],
+  ...(sameAs.length > 0 ? { sameAs } : {}),
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'sales',
@@ -45,6 +57,8 @@ export const websiteJsonLd = () => ({
   name: `${SITE.shortName}® — Design Agency`,
   url: SITE.url,
   description: SITE.description,
+  inLanguage: 'en',
+  publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
 });
 
 export const projectJsonLd = (project: ProjectDetail) => ({

@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
-import { smokeBg } from '@/lib/images';
+import { smokeBgImage } from '@/lib/images';
 import { SectionTag } from '@/components/ui/SectionTag';
+import { SmartImage } from '@/components/ui/SmartImage';
 import { useServices } from '@/components/content/ContentProvider';
 import { padNumber } from '@/utils/format';
 import { useAccordion } from '@/hooks/useAccordion';
@@ -26,9 +27,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onExploreClick
       <div data-wipe className="relative w-full rounded-[24px] sm:rounded-[32px] md:rounded-[40px] overflow-hidden bg-black text-white">
         {/* Grayscale smoke backdrop */}
         <div data-wipe-bg className="absolute inset-0 z-0 pointer-events-none select-none">
-          <img
-            src={smokeBg}
+          <SmartImage
+            src={smokeBgImage}
             alt=""
+            sizes="(min-width: 640px) 120vw, 160vw"
             className="absolute top-[28%] left-1/2 -translate-x-1/2 w-[160%] max-w-none sm:w-[120%] opacity-40 grayscale mix-blend-screen"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black via-black/40 to-black" />

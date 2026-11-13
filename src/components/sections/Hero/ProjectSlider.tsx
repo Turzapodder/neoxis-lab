@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowIcon } from '@/components/icons/UiIcons';
+import { SmartImage } from '@/components/ui/SmartImage';
 import { heroProjectCardId } from '@/constants/sections';
 import { useHeroProjects } from '@/components/content/ContentProvider';
 import { HeroProjectLogo } from './HeroProjectLogo';
@@ -30,9 +31,14 @@ export const ProjectSlider: React.FC = () => {
               onClick={() => focusCard(idx)}
               className="group relative rounded-[20px] sm:rounded-[24px] overflow-hidden border border-white/15 bg-[#14151B] aspect-[16/11] w-[82vw] sm:w-[calc(50%-8px)] shrink-0 shadow-[0_15px_35px_rgba(0,0,0,0.5)] transition-all duration-300 hover:border-white/35 cursor-pointer will-change-transform"
             >
-              <img
+              {/* Eager: off-screen slides sit inside an overflow-hidden track, which never triggers lazy loading */}
+              <SmartImage
                 src={project.image}
                 alt={project.title}
+                width={1200}
+                height={896}
+                sizes="(min-width: 640px) 320px, 82vw"
+                loading="eager"
                 draggable={false}
                 className="w-full h-full object-cover object-center pointer-events-none transition-transform duration-700 group-hover:scale-105"
               />
