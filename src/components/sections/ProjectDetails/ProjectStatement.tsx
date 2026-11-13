@@ -1,4 +1,5 @@
 import React from 'react';
+import { SmartImage } from '@/components/ui/SmartImage';
 import type { ProjectDetail } from '@/types/content';
 import { stripQuotes } from '@/utils/format';
 import { CONTAINER_CLASS } from './styles';
@@ -25,11 +26,13 @@ export const ProjectStatement: React.FC<ProjectStatementProps> = ({ project }) =
         data-wipe
         className="relative h-[62svh] sm:h-[80svh] overflow-hidden rounded-[24px] sm:rounded-[32px] md:rounded-[40px] bg-neutral-900"
       >
-        <img
+        <SmartImage
           data-wipe-bg
           src={project.heroImage2}
           alt={`${project.title} showcase`}
-          loading="lazy"
+          width={1280}
+          height={896}
+          sizes="100vw"
           className="h-full w-full object-cover object-center"
         />
       </div>

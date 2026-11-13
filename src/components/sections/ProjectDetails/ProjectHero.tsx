@@ -1,5 +1,6 @@
 import React from 'react';
 import { RollingLinkLabel } from '@/components/ui/RollingText';
+import { SmartImage } from '@/components/ui/SmartImage';
 import type { ProjectDetail } from '@/types/content';
 import { CONTAINER_CLASS } from './styles';
 
@@ -23,9 +24,14 @@ export const ProjectHero: React.FC<ProjectHeroProps> = ({ project }) => {
     <section className="w-full bg-white p-1.5 sm:p-2">
       <div className="relative isolate flex min-h-[calc(100svh-0.75rem)] sm:min-h-[calc(100svh-1rem)] flex-col justify-end overflow-hidden rounded-[24px] sm:rounded-[32px] md:rounded-[40px] lg:rounded-[44px] bg-neutral-950">
         <div data-hero-media className="absolute inset-0 -z-10">
-          <img
+          {/* Largest paint on the case study page, so it is preloaded */}
+          <SmartImage
             src={project.heroImage1}
             alt={`${project.title} key visual`}
+            width={1280}
+            height={896}
+            sizes="100vw"
+            preload
             className="h-full w-full scale-[1.15] object-cover object-center"
           />
           {/* Darkens the lower half so the title and facts read over any image */}

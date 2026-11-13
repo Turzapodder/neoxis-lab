@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from '@/components/ui/Link';
+import { SmartImage } from '@/components/ui/SmartImage';
+import { projectPath } from '@/constants/routes';
 import type { SelectedProject } from '@/types/content';
 import { ProjectLogo } from './ProjectLogo';
 
 interface ProjectCardProps {
   project: SelectedProject;
-  onSelect?: (project: SelectedProject) => void;
 }
 
 /**
@@ -13,12 +15,13 @@ interface ProjectCardProps {
  * - Header pill with title, bullet, category, and dual-sliding animated arrow
  * - Image frame with scale-up hover zoom
  * - Center logo pill with dual vertical rolling logo animation
+ * The whole card is a real link, so crawlers and middle-click reach the case study.
  */
-export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) => {
+export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
-    <div
-      onClick={() => onSelect?.(project)}
-      className="group relative w-full cursor-pointer select-none rounded-[26px] sm:rounded-[32px] p-2.5 sm:p-3.5 lg:p-4 transition-all duration-500"
+    <Link
+      to={projectPath(project.id)}
+      className="group relative block w-full cursor-pointer select-none rounded-[26px] sm:rounded-[32px] p-2.5 sm:p-3.5 lg:p-4 transition-all duration-500"
     >
       {/* Background Glass Panel */}
       <div className="absolute inset-0 rounded-[26px] sm:rounded-[32px] bg-white/80 backdrop-blur-2xl border border-black/[0.08] shadow-[0_15px_45px_-10px_rgba(0,0,0,0.05)] group-hover:border-black/20 group-hover:shadow-[0_25px_65px_-15px_rgba(0,0,0,0.1)] transition-all duration-500 pointer-events-none" />
@@ -58,9 +61,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
 
         {/* Project Image Frame */}
         <div className="relative w-full aspect-[16/11] sm:aspect-[16/10] rounded-[20px] sm:rounded-[24px] overflow-hidden bg-neutral-950 shadow-inner">
-          <img
+          <SmartImage
             src={project.image}
             alt={project.title}
+            width={1200}
+            height={896}
+            sizes="(min-width: 768px) 50vw, 100vw"
             className="w-full h-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
           />
 
@@ -84,6 +90,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };

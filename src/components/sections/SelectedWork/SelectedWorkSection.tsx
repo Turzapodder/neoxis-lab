@@ -147,7 +147,7 @@ export const SelectedWorkSection: React.FC<SelectedWorkSectionProps> = ({ onSele
                 index > 0 ? 'mt-6 sm:mt-8' : ''
               }`}
             >
-              <ProjectCard project={project} onSelect={onSelectProject} />
+              <ProjectCard project={project} />
             </div>
           ))}
         </div>
@@ -160,7 +160,7 @@ export const SelectedWorkSection: React.FC<SelectedWorkSectionProps> = ({ onSele
             className="sticky top-24 lg:top-28 z-10 grid grid-cols-2 gap-5 sm:gap-6 lg:gap-8 will-change-transform"
           >
             {row1Projects.map((project) => (
-              <ProjectCard key={project.id} project={project} onSelect={onSelectProject} />
+              <ProjectCard key={project.id} project={project} />
             ))}
           </div>
 
@@ -170,7 +170,7 @@ export const SelectedWorkSection: React.FC<SelectedWorkSectionProps> = ({ onSele
             className="relative z-20 mt-5 sm:mt-6 md:mt-8 lg:mt-10 grid grid-cols-2 gap-5 sm:gap-6 lg:gap-8"
           >
             {row2Projects.map((project) => (
-              <ProjectCard key={project.id} project={project} onSelect={onSelectProject} />
+              <ProjectCard key={project.id} project={project} />
             ))}
           </div>
         </div>

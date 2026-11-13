@@ -1,5 +1,6 @@
 import React from 'react';
 import { DribbbleIcon, LinkedInIcon, XIcon } from '@/components/icons/SocialIcons';
+import { SmartImage } from '@/components/ui/SmartImage';
 import { SOCIAL_PROFILES } from '@/data/company';
 import type { TeamMember } from '@/types/content';
 
@@ -21,12 +22,14 @@ export const TeamPortrait: React.FC<TeamPortraitProps> = ({ members, activeIndex
   return (
     <div className="relative aspect-[4/5] max-h-[620px] w-full rounded-[24px] overflow-hidden bg-neutral-900">
       {members.map((m, i) => (
-        <img
+        <SmartImage
           key={m.id}
           src={m.image}
           alt={i === activeIndex ? m.name : ''}
           aria-hidden={i !== activeIndex}
-          loading="lazy"
+          width={800}
+          height={1000}
+          sizes="(min-width: 1024px) 500px, 100vw"
           className={`absolute inset-0 w-full h-full object-cover transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none ${
             i === activeIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
           }`}

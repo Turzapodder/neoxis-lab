@@ -1,4 +1,5 @@
 import React from 'react';
+import { SmartImage } from '@/components/ui/SmartImage';
 
 interface FloatingImageProps {
   src: string;
@@ -26,7 +27,15 @@ export const FloatingImage = React.forwardRef<HTMLDivElement, FloatingImageProps
         willChange: 'transform, left, top, width, height, opacity, border-radius',
       }}
     >
-      <img src={src} alt={alt} className="w-full h-full object-cover object-center" />
+      {/* Never larger than a hero slider card; GSAP resizes the frame and CSS fills it */}
+      <SmartImage
+        src={src}
+        alt={alt}
+        width={1200}
+        height={896}
+        sizes="(max-width: 640px) 82vw, 320px"
+        className="w-full h-full object-cover object-center"
+      />
     </div>
   );
 });

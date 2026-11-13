@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { silkBg } from '@/lib/images';
+import { silkBgImage } from '@/lib/images';
 import { SectionTag } from '@/components/ui/SectionTag';
+import { SmartImage } from '@/components/ui/SmartImage';
 import { usePricing } from '@/components/content/ContentProvider';
 import { PRICING_TIERS } from '@/data/pricing';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
@@ -24,9 +25,11 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onChoosePlan }) 
       <div data-wipe className="relative w-full rounded-[24px] sm:rounded-[32px] md:rounded-[40px] overflow-hidden bg-[#0b0f17] text-white">
         {/* Blue-tinted silk backdrop */}
         <div data-wipe-bg className="absolute inset-0 z-0 pointer-events-none select-none">
-          <img
-            src={silkBg}
+          {/* Blurred, tinted and low-opacity, so a viewport-wide source is plenty */}
+          <SmartImage
+            src={silkBgImage}
             alt=""
+            sizes="100vw"
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[260%] sm:w-[170%] max-w-none rotate-[-18deg] grayscale opacity-60 blur-[1.5px]"
           />
           <div className="absolute inset-0 bg-[#1b2a4a] mix-blend-color" />

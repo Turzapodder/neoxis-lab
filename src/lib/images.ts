@@ -29,9 +29,9 @@ import studioFactWorkStatic from '@/assets/images/studio-fact-work.jpg';
 import cardAureaStatic from '@/assets/images/card-aurea.jpg';
 import cardSpatialStatic from '@/assets/images/card-spatial.jpg';
 import cardMobileStatic from '@/assets/images/card-mobile.jpg';
-import headerBgStatic from '@/assets/images/header.png';
-import sloganStatic from '@/assets/images/slogan.png';
-import headrBgStatic from '@/assets/images/headr-bg.png';
+import headerBgStatic from '@/assets/images/header.jpg';
+import sloganStatic from '@/assets/images/slogan.jpg';
+import headrBgStatic from '@/assets/images/headr-bg.jpg';
 import pricingStatic from '@/assets/images/pricing.jpg';
 
 export const neonFrameImg = asset(neonFrameStatic);
@@ -59,7 +59,14 @@ export const studioFactImg = asset(studioFactWorkStatic);
 export const cardAureaImg = asset(cardAureaStatic);
 export const cardSpatialImg = asset(cardSpatialStatic);
 export const cardMobileImg = asset(cardMobileStatic);
-export const heroBg = asset(headerBgStatic);
-export const chromeBg = asset(sloganStatic);
-export const smokeBg = asset(headrBgStatic);
-export const silkBg = asset(pricingStatic);
+
+/*
+ * Section backdrops and fixed photos, kept as static image objects so next/image
+ * gets intrinsic dimensions and a build-time blur placeholder for free.
+ */
+export const heroBgImage = headerBgStatic;
+export const chromeBgImage = sloganStatic;
+export const smokeBgImage = headrBgStatic;
+export const silkBgImage = pricingStatic;
+export const meetMindsTeamImage = meetMindsTeamStatic;
+export const studioFactImage = studioFactWorkStatic;

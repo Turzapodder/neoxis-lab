@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
-import { chromeBg } from '@/lib/images';
+import { chromeBgImage } from '@/lib/images';
+import { SmartImage } from '@/components/ui/SmartImage';
 import { FLOATING_CARDS } from '@/data/hero';
 import { FloatingImage } from './FloatingImage';
 import { StudioFrameDetails } from './StudioFrameDetails';
@@ -84,9 +85,11 @@ export const CreativeStudioSection: React.FC<CreativeStudioSectionProps> = ({ on
           style={{ clipPath: 'inset(100% 0 0 0)' }}
         >
           <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
-            <img
-              src={chromeBg}
+            {/* Grayscale at 25% opacity, so a viewport-wide source is plenty */}
+            <SmartImage
+              src={chromeBgImage}
               alt=""
+              sizes="100vw"
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220%] sm:w-[130%] max-w-none grayscale opacity-25"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" />

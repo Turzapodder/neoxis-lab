@@ -1,6 +1,7 @@
 import React from 'react';
-import { heroBg } from '@/lib/images';
+import { heroBgImage } from '@/lib/images';
 import { ArrowIcon } from '@/components/icons/UiIcons';
+import { SmartImage } from '@/components/ui/SmartImage';
 import { SECTION_IDS } from '@/constants/sections';
 import { ProjectSlider } from './ProjectSlider';
 
@@ -15,9 +16,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onConnectClick, onView
     <div className="relative min-h-[calc(100vh-1.25rem)] sm:min-h-[calc(100vh-2rem)] md:min-h-[calc(100vh-2.5rem)] w-full rounded-[24px] sm:rounded-[32px] md:rounded-[40px] lg:rounded-[44px] overflow-hidden flex flex-col justify-between shadow-[0_20px_60px_-15px_rgba(0,0,0,0.65)] border border-neutral-200/80 z-20">
       {/* Full-width liquid chrome background image with dark overlay */}
       <div className="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden">
-        <img
-          src={heroBg}
-          alt="Neoxis Liquid Chrome Background"
+        {/* Above the fold and the largest paint: preload it and show a blur until it lands */}
+        <SmartImage
+          src={heroBgImage}
+          alt=""
+          preload
+          sizes="100vw"
+          placeholder="blur"
           className="w-full h-full object-cover object-center scale-[1.01]"
         />
         <div className="absolute inset-0 bg-black/30 backdrop-blur-[0.5px]" />
@@ -39,6 +44,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onConnectClick, onView
               <div className="flex items-start">
                 <h1 className="font-clash font-bold text-white tracking-[-0.04em] leading-[0.88] text-[clamp(3.5rem,14vw,14rem)] drop-shadow-2xl">
                   neoxis
+                  {/* Gives search engines and screen readers what the studio does; the wordmark stays visually alone */}
+                  <span className="sr-only"> — creative design agency for brand identity, web and product design</span>
                 </h1>
                 {/* Registered mark matches the footer wordmark: one third of the name size */}
                 <span

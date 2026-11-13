@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowUpRight, Check, Copy } from 'lucide-react';
 import { SectionTag } from '@/components/ui/SectionTag';
+import { SmartImage } from '@/components/ui/SmartImage';
 import { AVAILABILITY, CONTACT_EMAIL } from '@/data/company';
 import { TEAM_AVATARS } from '@/data/team';
 import { useCopyToClipboard } from '@/hooks/useCopyToClipboard';
@@ -79,7 +80,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onBookCallClick 
                 <div className="flex items-center gap-3">
                   <div className="flex -space-x-2.5">
                     {TEAM_AVATARS.contact.map((src) => (
-                      <img key={src} src={src} alt="" className="w-9 h-9 rounded-full object-cover border-2 border-neutral-950" />
+                      <SmartImage key={src} src={src} alt="" width={36} height={36} className="w-9 h-9 rounded-full object-cover border-2 border-neutral-950" />
                     ))}
                   </div>
                   <p className="text-sm text-neutral-400 leading-tight">

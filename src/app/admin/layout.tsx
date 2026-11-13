@@ -3,7 +3,7 @@ import AdminShell from '@/components/admin/AdminShell';
 
 /**
  * Admin shell. Opts the admin tree out of the public site's global overlays
- * (custom cursor, ripples, AI copilot, cookie consent) which live in the root
+ * (custom cursor, ripples, cookie consent) which live in the root
  * layout, and wraps everything in the CRM-style dashboard chrome. The shell
  * itself renders children bare on /admin/login.
  */

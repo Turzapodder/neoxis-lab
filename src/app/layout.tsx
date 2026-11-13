@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 import { DEFAULT_TITLE } from '@/config/site';
 import { HOME_METADATA, absoluteUrl } from '@/lib/seo';
 import { organizationJsonLd, websiteJsonLd } from '@/lib/jsonld';
 import { ClickRipple } from '@/layout/click-ripple';
-import { AiCopilotWidget } from '@/layout/floting-ai-copilot';
 import { CookieConsentModal } from '@/components/modals/CookieConsentModal';
 import './globals.css';
 
@@ -17,6 +17,20 @@ const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
+});
+
+/**
+ * Display font: Clash Display (Fontshare, ITF Free Font License) self-hosted as one
+ * 29 KB variable file covering weights 200–700. Served from our own origin and
+ * preloaded, so headings no longer wait on a render-blocking third-party stylesheet.
+ */
+const clashDisplay = localFont({
+  src: '../assets/fonts/ClashDisplay-Variable.woff2',
+  weight: '200 700',
+  style: 'normal',
+  display: 'swap',
+  variable: '--font-clash-display',
+  fallback: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
 });
 
 export const metadata: Metadata = {
@@ -45,17 +59,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`light ${inter.variable}`}
+      className={`light ${inter.variable} ${clashDisplay.variable}`}
       data-theme="light"
       style={{ colorScheme: 'light' }}
     >
       <head>
-        {/* Preconnect & Clash Display webfont from Fontshare */}
-        <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="" />
-        <link
-          rel="stylesheet"
-          href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap"
-        />
         {/* Enforce light mode before paint */}
         <script
           dangerouslySetInnerHTML={{
@@ -76,7 +84,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         {/* Global interactive layer — each overlay hides itself on /admin */}
         <ClickRipple />
-        <AiCopilotWidget />
         <CookieConsentModal />
       </body>
     </html>

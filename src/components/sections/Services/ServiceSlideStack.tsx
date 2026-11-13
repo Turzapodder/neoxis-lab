@@ -1,4 +1,5 @@
 import React from 'react';
+import { SmartImage } from '@/components/ui/SmartImage';
 import type { ServiceSlide } from '@/types/content';
 import { padNumber } from '@/utils/format';
 
@@ -57,7 +58,14 @@ export const ServiceSlideStack: React.FC<ServiceSlideStackProps> = ({ slides, ac
                 <span className="text-xs text-neutral-500">{slide.label}</span>
               </div>
               <div className="flex-1 min-h-0 rounded-xl overflow-hidden bg-neutral-300">
-                <img src={slide.image} alt={depth === 0 ? slide.title : ''} loading="lazy" className="w-full h-full object-cover" />
+                <SmartImage
+                  src={slide.image}
+                  alt={depth === 0 ? slide.title : ''}
+                  width={1200}
+                  height={896}
+                  sizes="(min-width: 640px) 360px, 100vw"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           );

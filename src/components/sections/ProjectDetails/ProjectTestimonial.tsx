@@ -1,4 +1,5 @@
 import React from 'react';
+import { SmartImage } from '@/components/ui/SmartImage';
 import type { ProjectDetail } from '@/types/content';
 import { stripQuotes } from '@/utils/format';
 import { RevealImage } from './RevealImage';
@@ -31,11 +32,12 @@ export const ProjectTestimonial: React.FC<ProjectTestimonialProps> = ({ project 
           </blockquote>
 
           <figcaption className="flex items-center gap-4">
-            <img
+            <SmartImage
               data-pop
               src={clientImage}
               alt=""
-              loading="lazy"
+              width={64}
+              height={64}
               className="h-14 w-14 sm:h-16 sm:w-16 shrink-0 rounded-full object-cover"
             />
             <span>
@@ -48,6 +50,7 @@ export const ProjectTestimonial: React.FC<ProjectTestimonialProps> = ({ project 
         <RevealImage
           src={project.showcaseImage}
           alt={`${project.title} in use`}
+          sizes="(min-width: 1024px) 42vw, 100vw"
           className="lg:col-span-5 min-h-[360px] sm:min-h-[460px] rounded-[28px] sm:rounded-[36px]"
         />
       </div>
